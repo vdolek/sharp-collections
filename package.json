@@ -7,12 +7,20 @@
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-mocha --paths -p tsconfig.spec.json '**/*.spec.ts'"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "mocha": "^8.0.1",
+    "ts-mocha": "^7.0.0",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.5"
   }
 }
