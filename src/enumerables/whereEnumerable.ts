@@ -8,7 +8,7 @@ export class WhereEnumerable<T> extends EnumerableBase<T> {
         super();
     }
 
-    * [Symbol.iterator](): Iterator<T> {
+    *[Symbol.iterator](): Iterator<T> {
         for (const item of this.innerEnumerable) {
             if (this.predicate(item)) {
                 yield item;
