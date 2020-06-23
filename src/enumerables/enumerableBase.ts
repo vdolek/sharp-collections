@@ -8,6 +8,16 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         return new WhereEnumerable(this, predicate);
     }
 
+    first(): T {
+        const iterator = this[Symbol.iterator]();
+        const item = iterator.next();
+        if (item.done) {
+            throw new Error(); // TODO
+        }
+
+        return item.value;
+    }
+
     firstOrDefault(): T | null {
         const iterator = this[Symbol.iterator]();
         const item = iterator.next();
