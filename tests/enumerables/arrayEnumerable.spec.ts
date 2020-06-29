@@ -1,4 +1,4 @@
-import { ArrayEnumerable } from '@src/enumerables/arrayEnumerable';
+import { ArrayEnumerable } from '@src/internal';
 import { expect } from 'chai';
 
 describe('Options tests', () => {

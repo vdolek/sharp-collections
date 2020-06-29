@@ -1,4 +1,4 @@
-import { EnumerableBase } from '@src/enumerables/enumerableBase';
+import { EnumerableBase } from '@src/internal';
 
 export class ArrayEnumerable<T> extends EnumerableBase<T> {
     constructor(protected readonly source: T[]) {
