@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build",
-    "test": "ts-mocha --paths -p tsconfig.spec.json '**/*.spec.ts'"
+    "test": "ts-mocha --paths -p tsconfig.tests.json 'tests/**/*.spec.ts'"
   },
   "keywords": [],
   "author": "",
