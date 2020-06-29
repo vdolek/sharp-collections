@@ -1,4 +1,4 @@
-import { Enumerable, WhereEnumerable } from '@src/internal';
+import { Enumerable, SelectEnumerable, WhereEnumerable } from '@src/internal';
 
 export abstract class EnumerableBase<T> implements Enumerable<T> {
     abstract [Symbol.iterator](): Iterator<T>;
@@ -7,24 +7,31 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         return Array.from(this);
     }
 
-    where(predicate: (x: T) => boolean): Enumerable<T> {
-        return new WhereEnumerable(this, predicate);
-    }
-
-    first(): T {
-        const iterator = this[Symbol.iterator]();
-        const item = iterator.next();
-        if (item.done) {
-            throw new Error(); // TODO
+    first(predicate?: (x: T) => boolean): T {
+        for (const item of this) {
+            if (!predicate || predicate(item)) {
+                return item;
+            }
         }
 
-        return item.value;
+        throw new Error(); // TODO
     }
 
-    firstOrDefault(): T | null {
-        const iterator = this[Symbol.iterator]();
-        const item = iterator.next();
-        const value = item.done ? null : item.value;
-        return value;
+    firstOrDefault(predicate?: (x: T) => boolean): T | null {
+        for (const item of this) {
+            if (!predicate || predicate(item)) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    select<TResult>(selector: (x: T) => TResult): Enumerable<TResult> {
+        return new SelectEnumerable<T, TResult>(this, selector);
+    }
+
+    where(predicate: (x: T) => boolean): Enumerable<T> {
+        return new WhereEnumerable(this, predicate);
     }
 }
