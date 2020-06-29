@@ -8,5 +8,10 @@ export interface Enumerable<T> extends Iterable<T> {
 
     select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
 
+    single(): T;
+    single(predicate: (x: T) => boolean): T;
+    singleOrDefault(): T | null;
+    singleOrDefault(predicate: (x: T) => boolean): T | null;
+
     where(predicate: (x: T) => boolean): Enumerable<T>;
 }
