@@ -1,3 +1,5 @@
+export * from '@src/enumerables/errors';
+
 export * from '@src/enumerables/enumerable';
 export * from '@src/enumerables/enumerableBase';
 
