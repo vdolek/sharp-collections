@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "lint": "tslint --project .",
     "prepublish": "npm run build",
     "test": "ts-mocha --paths -p tsconfig.tests.json 'tests/**/*.spec.ts'"
   },
@@ -21,6 +22,11 @@
     "ts-mocha": "^7.0.0",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
+    "tslint": "~6.1.0",
+    "tslint-eslint-rules": "~5.4.0",
+    "tslint-microsoft-contrib": "~6.2.0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
+    "tslint-teamcity-reporter": "~3.2.2",
     "typescript": "^3.9.5"
   }
 }

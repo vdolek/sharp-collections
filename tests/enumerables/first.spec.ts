@@ -17,21 +17,20 @@ describe('First tests', () => {
     });
 
     it('Empty source test', () => {
-        const enumerable = new ArrayEnumerable([]);
+        const enumerable = new ArrayEnumerable<number>([]);
 
         expect(() => enumerable.first()).throws;
     });
 
     it('Empty source predicate test', () => {
-        const enumerable = new ArrayEnumerable([]);
+        const enumerable = new ArrayEnumerable<number>([]);
 
         expect(() => enumerable.first(x => x > 3)).throws;
     });
 
     it('Empty source predicate test 2', () => {
-        const enumerable = new ArrayEnumerable([2, 4, 6]);
+        const enumerable = new ArrayEnumerable<number>([2, 4, 6]);
 
         expect(() => enumerable.first(x => x > 10)).throws;
     });
 });
-
