@@ -1,5 +1,4 @@
-import { Enumerable } from '@src/enumerables/enumerable';
-import { EnumerableBase } from '@src/enumerables/enumerableBase';
+import { Enumerable, EnumerableBase } from '@src/internal';
 
 export class WhereEnumerable<T> extends EnumerableBase<T> {
     constructor(

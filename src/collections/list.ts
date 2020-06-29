@@ -1,4 +1,4 @@
-import { ReadOnlyList } from '@src/collections/readOnlyList';
+import { ReadOnlyList } from '@src/internal';
 
 export class List<T> extends ReadOnlyList<T> {
     //[index: number]: T; // TODO

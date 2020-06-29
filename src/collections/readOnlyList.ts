@@ -1,4 +1,4 @@
-import { ArrayEnumerable } from '@src/enumerables/arrayEnumerable';
+import { ArrayEnumerable } from '@src/internal';
 
 export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     //readonly [index: number]: T; // TODO

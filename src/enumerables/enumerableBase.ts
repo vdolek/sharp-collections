@@ -1,5 +1,4 @@
-import { Enumerable } from '@src/enumerables/enumerable';
-import { WhereEnumerable } from '@src/enumerables/whereEnumerable';
+import { Enumerable, WhereEnumerable } from '@src/internal';
 
 export abstract class EnumerableBase<T> implements Enumerable<T> {
     abstract [Symbol.iterator](): Iterator<T>;
