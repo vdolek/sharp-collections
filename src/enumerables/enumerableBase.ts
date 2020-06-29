@@ -1,4 +1,4 @@
-import { Enumerable, SelectEnumerable, WhereEnumerable } from '@src/internal';
+import { Enumerable, Errors, SelectEnumerable, WhereEnumerable } from '@src/internal';
 
 export abstract class EnumerableBase<T> implements Enumerable<T> {
     public abstract [Symbol.iterator](): Iterator<T>;
@@ -16,7 +16,7 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
             }
         }
 
-        throw new Error(); // TODO
+        throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
     public firstOrDefault(): T | null;
@@ -31,8 +31,10 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         return null;
     }
 
-    public select<TResult>(selector: (x: T) => TResult): Enumerable<TResult> {
-        return new SelectEnumerable<T, TResult>(this, selector);
+    public select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
+    public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult>;
+    public select<TResult>(selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)): Enumerable<TResult> {
+        return new SelectEnumerable(this, selector);
     }
 
     public single(): T;
@@ -43,7 +45,7 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         for (const item of this) {
             if (predicate == null || predicate(item)) {
                 if (found) {
-                    throw new Error(); // TODO
+                    throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
                 }
 
                 value = item;
@@ -52,7 +54,7 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         }
 
         if (!found) {
-            throw new Error(); // TODO
+            throw predicate != null ? Errors.noMatch() : Errors.noElements();
         }
 
         // tslint:disable-next-line:ban-ts-ignore
@@ -68,7 +70,7 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         for (const item of this) {
             if (predicate == null || predicate(item)) {
                 if (found) {
-                    throw new Error(); // TODO
+                    throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
                 }
 
                 value = item;
@@ -79,7 +81,9 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
         return value;
     }
 
-    public where(predicate: (x: T) => boolean): Enumerable<T> {
+    public where(predicate: (item: T) => boolean): Enumerable<T>;
+    public where(predicate: (item: T, index: number) => boolean): Enumerable<T>;
+    public where(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
         return new WhereEnumerable(this, predicate);
     }
 }

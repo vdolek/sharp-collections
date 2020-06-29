@@ -1,15 +1,17 @@
 import { Enumerable, EnumerableBase } from '@src/internal';
 
-export class SelectEnumerable<TSource, TDest> extends EnumerableBase<TDest> {
+export class SelectEnumerable<T, TResult> extends EnumerableBase<TResult> {
     public constructor(
-        private readonly innerEnumerable: Enumerable<TSource>,
-        private readonly selector: (x: TSource) => TDest) {
+        private readonly innerEnumerable: Enumerable<T>,
+        private readonly selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)) {
         super();
     }
 
-    public *[Symbol.iterator](): Iterator<TDest> {
+    public *[Symbol.iterator](): Iterator<TResult> {
+        let index = 0;
         for (const item of this.innerEnumerable) {
-            yield this.selector(item);
+            yield this.selector(item, index);
+            ++index;
         }
     }
 }

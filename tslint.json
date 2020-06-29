@@ -311,6 +311,7 @@
                 }
             ]
         },
+        "unified-signatures": false,
         "use-isnan": true,
         "valid-typeof": true,
         "variable-name": {

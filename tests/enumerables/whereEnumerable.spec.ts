@@ -9,6 +9,13 @@ describe('WhereEnumerable tests', () => {
         expect(enumerable.toArray()).to.be.deep.equal([4, 6]);
     });
 
+    it('Simple indexed test', () => {
+        const enumerable = new ArrayEnumerable([2, 4, 6])
+            .where((x: number, idx: number) => idx % 2 === 0);
+
+        expect(enumerable.toArray()).to.be.deep.equal([2, 6]);
+    });
+
     it('Empty source test', () => {
         const enumerable = new ArrayEnumerable<number>([])
             .where(x => x > 3);
