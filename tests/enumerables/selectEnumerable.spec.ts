@@ -10,10 +10,9 @@ describe('SelectEnumerable tests', () => {
     });
 
     it('Empty source test', () => {
-        const enumerable = new ArrayEnumerable([])
+        const enumerable = new ArrayEnumerable<number>([])
             .select(x => x * 2);
 
         expect(enumerable.toArray()).to.be.empty;
     });
 });
-

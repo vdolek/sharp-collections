@@ -10,7 +10,7 @@ describe('WhereEnumerable tests', () => {
     });
 
     it('Empty source test', () => {
-        const enumerable = new ArrayEnumerable([])
+        const enumerable = new ArrayEnumerable<number>([])
             .where(x => x > 3);
 
         expect(enumerable.toArray()).to.be.empty;
@@ -23,4 +23,3 @@ describe('WhereEnumerable tests', () => {
         expect(enumerable.toArray()).to.be.empty;
     });
 });
-
