@@ -4,7 +4,7 @@ import {
     List,
     ReadOnlyList,
     SelectEnumerable,
-    SelectManyEnumerable,
+    SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
     TakeEnumerable, TakeWhileEnumerable,
     WhereEnumerable
 } from '@src/internal';
@@ -103,6 +103,16 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return value;
+    }
+
+    public skip(count: number): Enumerable<T> {
+        return new SkipEnumerable(this, count);
+    }
+
+    public skipWhile(predicate: (item: T) => boolean): Enumerable<T>;
+    public skipWhile(predicate: (item: T, index: number) => boolean): Enumerable<T>;
+    public skipWhile(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
+        return new SkipWhileEnumerable(this, predicate);
     }
 
     public take(count: number): Enumerable<T> {
