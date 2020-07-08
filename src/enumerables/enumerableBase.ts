@@ -1,10 +1,14 @@
-import { Enumerable, Errors, SelectEnumerable, WhereEnumerable } from '@src/internal';
+import { ConcatEnumerable, Enumerable, Errors, SelectEnumerable, SelectManyEnumerable, WhereEnumerable } from '@src/internal';
 
 export abstract class EnumerableBase<T> implements Enumerable<T> {
     public abstract [Symbol.iterator](): Iterator<T>;
 
     public toArray(): T[] {
         return Array.from(this);
+    }
+
+    public concat(second: Enumerable<T>): Enumerable<T> {
+        return new ConcatEnumerable(this, second);
     }
 
     public first(): T;
@@ -35,6 +39,10 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
     public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult>;
     public select<TResult>(selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)): Enumerable<TResult> {
         return new SelectEnumerable(this, selector);
+    }
+
+    public selectMany<TResult>(selector: (x: T) => Enumerable<TResult>): Enumerable<TResult> {
+        return new SelectManyEnumerable(this, selector);
     }
 
     public single(): T;

@@ -1,6 +1,8 @@
 export interface Enumerable<T> extends Iterable<T> {
     toArray(): T[];
 
+    concat(second: Enumerable<T>): Enumerable<T>;
+
     first(): T;
     first(predicate: (x: T) => boolean): T;
     firstOrDefault(): T | null;
@@ -8,6 +10,8 @@ export interface Enumerable<T> extends Iterable<T> {
 
     select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
     select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult>;
+
+    selectMany<TResult>(selector: (x: T) => Enumerable<TResult>): Enumerable<TResult>;
 
     single(): T;
     single(predicate: (x: T) => boolean): T;
