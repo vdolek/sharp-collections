@@ -44,6 +44,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return resultSelector != null ? resultSelector(result) : result;
     }
 
+    public cast<TResult>(): Enumerable<TResult> {
+        return this as unknown as Enumerable<TResult>; // TODO MV throw?
+    }
+
     public concat(second: Enumerable<T>): Enumerable<T> {
         return new ConcatEnumerable(this, second);
     }
