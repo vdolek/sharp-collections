@@ -1,5 +1,9 @@
+import { List, ReadOnlyList } from '@src/internal';
+
 export interface Enumerable<T> extends Iterable<T> {
     toArray(): T[];
+    toReadOnlyList(): ReadOnlyList<T>;
+    toList(): List<T>;
 
     concat(second: Enumerable<T>): Enumerable<T>;
 
