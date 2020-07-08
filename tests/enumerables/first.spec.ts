@@ -1,36 +1,36 @@
-import { ArrayEnumerable } from '@src/internal';
+import { List } from '@src/internal';
 import { expect } from 'chai';
 
 describe('First tests', () => {
     it('Simple test', () => {
-        const enumerable = new ArrayEnumerable([2, 4, 6]);
-        const value = enumerable.first();
+        const list = new List([2, 4, 6]);
+        const value = list.first();
 
         expect(value).to.be.equal(2);
     });
 
     it('Simple predicate test', () => {
-        const enumerable = new ArrayEnumerable([2, 4, 6]);
-        const value = enumerable.first(x => x > 3);
+        const list = new List([2, 4, 6]);
+        const value = list.first(x => x > 3);
 
         expect(value).to.be.equal(4);
     });
 
     it('Empty source test', () => {
-        const enumerable = new ArrayEnumerable<number>([]);
+        const list = new List<number>([]);
 
-        expect(() => enumerable.first()).throws;
+        expect(() => list.first()).throws;
     });
 
     it('Empty source predicate test', () => {
-        const enumerable = new ArrayEnumerable<number>([]);
+        const list = new List<number>([]);
 
-        expect(() => enumerable.first(x => x > 3)).throws;
+        expect(() => list.first(x => x > 3)).throws;
     });
 
     it('Empty source predicate test 2', () => {
-        const enumerable = new ArrayEnumerable<number>([2, 4, 6]);
+        const list = new List<number>([2, 4, 6]);
 
-        expect(() => enumerable.first(x => x > 10)).throws;
+        expect(() => list.first(x => x > 10)).throws;
     });
 });

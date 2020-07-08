@@ -1,48 +1,48 @@
-import { ArrayEnumerable } from '@src/internal';
+import { List } from '@src/internal';
 import { expect } from 'chai';
 
 describe('Single tests', () => {
     it('Simple test', () => {
-        const enumerable = new ArrayEnumerable([2]);
-        const value = enumerable.single();
+        const list = new List([2]);
+        const value = list.single();
 
         expect(value).to.be.equal(2);
     });
 
     it('Simple predicate test', () => {
-        const enumerable = new ArrayEnumerable([2, 4, 6]);
-        const value = enumerable.single(x => x > 5);
+        const list = new List([2, 4, 6]);
+        const value = list.single(x => x > 5);
 
         expect(value).to.be.equal(6);
     });
 
     it('Empty source test', () => {
-        const enumerable = new ArrayEnumerable<number>([]);
+        const list = new List<number>([]);
 
-        expect(() => enumerable.single()).throws;
+        expect(() => list.single()).throws;
     });
 
     it('Empty source predicate test', () => {
-        const enumerable = new ArrayEnumerable<number>([]);
+        const list = new List<number>([]);
 
-        expect(() => enumerable.single(x => x > 3)).throws;
+        expect(() => list.single(x => x > 3)).throws;
     });
 
     it('Empty source predicate test 2', () => {
-        const enumerable = new ArrayEnumerable<number>([2, 4, 6]);
+        const list = new List<number>([2, 4, 6]);
 
-        expect(() => enumerable.single(x => x > 10)).throws;
+        expect(() => list.single(x => x > 10)).throws;
     });
 
     it('Multiple test', () => {
-        const enumerable = new ArrayEnumerable<number>([2, 4, 6]);
+        const list = new List<number>([2, 4, 6]);
 
-        expect(() => enumerable.single()).throws;
+        expect(() => list.single()).throws;
     });
 
     it('Multiple predicate test', () => {
-        const enumerable = new ArrayEnumerable<number>([2, 4, 6]);
+        const list = new List<number>([2, 4, 6]);
 
-        expect(() => enumerable.single(x => x > 3)).throws;
+        expect(() => list.single(x => x > 3)).throws;
     });
 });
