@@ -2,7 +2,7 @@ import { Enumerable } from '@src/internal';
 
 export class SkipEnumerable<T> extends Enumerable<T> {
     public constructor(
-        private readonly source: Enumerable<T>,
+        private readonly source: Iterable<T>,
         private readonly elementCount: number) {
         super();
     }
