@@ -1,8 +1,9 @@
 import {
+    ArrayEnumerable,
     ConcatEnumerable, EmptyEnumerable,
-    Errors, IteratorEnumerable,
-    List,
-    ReadOnlyList,
+    Errors,
+    List, RangeEnumerable,
+    ReadOnlyList, RepeatEnumerable,
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
     TakeEnumerable, TakeWhileEnumerable,
@@ -15,34 +16,19 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     public static from<T>(...elements: T[]): Enumerable<T> {
-        return new IteratorEnumerable(function*(): Iterator<T> {
-            for (const element of elements) {
-                yield element;
-            }
-        }());
+        return new ArrayEnumerable(elements);
     }
 
     public static repeat<T>(element: T, count: number): Enumerable<T> {
-        return new IteratorEnumerable(function*(): Iterator<T> {
-            for (let i = 0; i < count; ++i) {
-                yield element;
-            }
-        }());
+        return new RepeatEnumerable(element, count);
     }
 
     public static range(count: number): Enumerable<number>;
     public static range(start: number, count: number): Enumerable<number>;
     public static range(start: number, count: number, increment: number): Enumerable<number>;
     public static range(a: number, b?: number, c?: number): Enumerable<number> {
-        const start = b == null ? 0 : a;
-        const count = b == null ? a : b;
-        const increment = c ?? 1;
-
-        return new IteratorEnumerable(function*(): Iterator<number> {
-            for (let i = 0; i < count; ++i) {
-                yield start + i * increment;
-            }
-        }());
+        // @ts-ignore
+        return new RangeEnumerable(a, b, c);
     }
 
     public abstract [Symbol.iterator](): Iterator<T>;
