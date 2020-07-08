@@ -1,4 +1,13 @@
-import { ConcatEnumerable, Errors, List, ReadOnlyList, SelectEnumerable, SelectManyEnumerable, WhereEnumerable } from '@src/internal';
+import {
+    ConcatEnumerable,
+    Errors,
+    List,
+    ReadOnlyList,
+    SelectEnumerable,
+    SelectManyEnumerable,
+    TakeEnumerable,
+    WhereEnumerable
+} from '@src/internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
     public abstract [Symbol.iterator](): Iterator<T>;
@@ -94,6 +103,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return value;
+    }
+
+    public take(count: number): Enumerable<T> {
+        return new TakeEnumerable(this, count);
     }
 
     public where(predicate: (item: T) => boolean): Enumerable<T>;
