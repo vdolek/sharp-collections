@@ -1,8 +1,8 @@
 import {
     ArrayEnumerable,
     ConcatEnumerable, EmptyEnumerable,
-    Errors,
-    List, RangeEnumerable,
+    Errors, IteratorEnumerable,
+    List, OfTypeEnumerable, RangeEnumerable,
     ReadOnlyList, RepeatEnumerable,
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
@@ -71,6 +71,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return null;
+    }
+
+    // tslint:disable-next-line:no-any
+    public ofType<TResult>(type: new(...args: any[]) => TResult): Enumerable<TResult> {
+        return new OfTypeEnumerable(this, type);
     }
 
     public select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
