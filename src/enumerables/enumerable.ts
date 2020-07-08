@@ -1,7 +1,7 @@
 import {
     ArrayEnumerable,
     ConcatEnumerable, EmptyEnumerable,
-    Errors, IteratorEnumerable,
+    Errors,
     List, OfTypeEnumerable, RangeEnumerable,
     ReadOnlyList, RepeatEnumerable,
     SelectEnumerable,
@@ -47,6 +47,14 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public concat(second: Enumerable<T>): Enumerable<T> {
         return new ConcatEnumerable(this, second);
+    }
+
+    public count(): number {
+        let index = 0;
+        for (const element of this) {
+            ++index;
+        }
+        return index;
     }
 
     public first(): T;
