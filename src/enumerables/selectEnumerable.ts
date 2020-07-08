@@ -9,8 +9,8 @@ export class SelectEnumerable<T, TResult> extends Enumerable<TResult> {
 
     public *[Symbol.iterator](): Iterator<TResult> {
         let index = 0;
-        for (const item of this.innerEnumerable) {
-            yield this.selector(item, index);
+        for (const element of this.innerEnumerable) {
+            yield this.selector(element, index);
             ++index;
         }
     }

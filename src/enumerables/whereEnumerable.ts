@@ -9,9 +9,9 @@ export class WhereEnumerable<T> extends Enumerable<T> {
 
     public *[Symbol.iterator](): Iterator<T> {
         let index = 0;
-        for (const item of this.innerEnumerable) {
-            if (this.predicate(item, index)) {
-                yield item;
+        for (const element of this.innerEnumerable) {
+            if (this.predicate(element, index)) {
+                yield element;
             }
 
             ++index;
