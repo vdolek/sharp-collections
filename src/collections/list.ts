@@ -1,9 +1,13 @@
-import { ReadOnlyList } from '@src/internal';
+import { Enumerable, ReadOnlyList } from '@src/internal';
 
 export class List<T> extends ReadOnlyList<T> {
     // [index: number]: T; // TODO
 
-    public constructor(source: T[] = []) {
+    public constructor();
+    public constructor(source: T[]);
+    public constructor(source: Enumerable<T>);
+    public constructor(source?: T[] | Enumerable<T>) {
+        // @ts-ignore
         super(source);
     }
 

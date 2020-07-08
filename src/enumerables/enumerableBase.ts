@@ -1,10 +1,27 @@
-import { ConcatEnumerable, Enumerable, Errors, SelectEnumerable, SelectManyEnumerable, WhereEnumerable } from '@src/internal';
+import {
+    ConcatEnumerable,
+    Enumerable,
+    Errors,
+    List,
+    ReadOnlyList,
+    SelectEnumerable,
+    SelectManyEnumerable,
+    WhereEnumerable
+} from '@src/internal';
 
 export abstract class EnumerableBase<T> implements Enumerable<T> {
     public abstract [Symbol.iterator](): Iterator<T>;
 
     public toArray(): T[] {
         return Array.from(this);
+    }
+
+    public toReadOnlyList(): ReadOnlyList<T> {
+        return new ReadOnlyList<T>(this.toArray());
+    }
+
+    public toList(): List<T> {
+        return new List<T>(this.toArray());
     }
 
     public concat(second: Enumerable<T>): Enumerable<T> {
@@ -65,7 +82,6 @@ export abstract class EnumerableBase<T> implements Enumerable<T> {
             throw predicate != null ? Errors.noMatch() : Errors.noElements();
         }
 
-        // tslint:disable-next-line:ban-ts-ignore
         // @ts-ignore
         return value;
     }

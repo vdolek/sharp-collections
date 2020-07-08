@@ -29,6 +29,7 @@
             "ban-single-arg-parens"
         ],
         "arrow-return-shorthand": true,
+        "ban-ts-ignore": false,
         "block-spacing": [
             true,
             "always"
