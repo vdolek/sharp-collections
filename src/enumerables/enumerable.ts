@@ -5,7 +5,7 @@ import {
     ReadOnlyList,
     SelectEnumerable,
     SelectManyEnumerable,
-    TakeEnumerable,
+    TakeEnumerable, TakeWhileEnumerable,
     WhereEnumerable
 } from '@src/internal';
 
@@ -107,6 +107,12 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public take(count: number): Enumerable<T> {
         return new TakeEnumerable(this, count);
+    }
+
+    public takeWhile(predicate: (item: T) => boolean): Enumerable<T>;
+    public takeWhile(predicate: (item: T, index: number) => boolean): Enumerable<T>;
+    public takeWhile(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
+        return new TakeWhileEnumerable(this, predicate);
     }
 
     public where(predicate: (item: T) => boolean): Enumerable<T>;
