@@ -2,7 +2,10 @@ export * from '@src/enumerables/errors';
 
 export * from '@src/enumerables/enumerable';
 
+export * from '@src/enumerables/emptyEnumerable';
 export * from '@src/enumerables/arrayEnumerable';
+export * from '@src/enumerables/iteratorEnumerable';
+
 export * from '@src/enumerables/concatEnumerable';
 export * from '@src/enumerables/selectEnumerable';
 export * from '@src/enumerables/selectManyEnumerable';

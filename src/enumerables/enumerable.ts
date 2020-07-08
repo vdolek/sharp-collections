@@ -1,6 +1,6 @@
 import {
-    ConcatEnumerable,
-    Errors,
+    ConcatEnumerable, EmptyEnumerable,
+    Errors, IteratorEnumerable,
     List,
     ReadOnlyList,
     SelectEnumerable,
@@ -10,6 +10,41 @@ import {
 } from '@src/internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
+    public static empty<T>(): Enumerable<T> {
+        return new EmptyEnumerable();
+    }
+
+    public static from<T>(...elements: T[]): Enumerable<T> {
+        return new IteratorEnumerable(function*(): Iterator<T> {
+            for (const element of elements) {
+                yield element;
+            }
+        }());
+    }
+
+    public static repeat<T>(element: T, count: number): Enumerable<T> {
+        return new IteratorEnumerable(function*(): Iterator<T> {
+            for (let i = 0; i < count; ++i) {
+                yield element;
+            }
+        }());
+    }
+
+    public static range(count: number): Enumerable<number>;
+    public static range(start: number, count: number): Enumerable<number>;
+    public static range(start: number, count: number, increment: number): Enumerable<number>;
+    public static range(a: number, b?: number, c?: number): Enumerable<number> {
+        const start = b == null ? 0 : a;
+        const count = b == null ? a : b;
+        const increment = c ?? 1;
+
+        return new IteratorEnumerable(function*(): Iterator<number> {
+            for (let i = 0; i < count; ++i) {
+                yield start + i * increment;
+            }
+        }());
+    }
+
     public abstract [Symbol.iterator](): Iterator<T>;
 
     public toArray(): T[] {
