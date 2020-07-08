@@ -1,6 +1,6 @@
-import { EnumerableBase } from '@src/internal';
+import { Enumerable } from '@src/internal';
 
-export class ArrayEnumerable<T> extends EnumerableBase<T> {
+export class ArrayEnumerable<T> extends Enumerable<T> {
     public constructor(protected readonly source: T[]) {
         super();
     }

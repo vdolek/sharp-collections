@@ -1,6 +1,6 @@
-import { Enumerable, EnumerableBase } from '@src/internal';
+import { Enumerable } from '@src/internal';
 
-export class SelectEnumerable<T, TResult> extends EnumerableBase<TResult> {
+export class SelectEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(
         private readonly innerEnumerable: Enumerable<T>,
         private readonly selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)) {

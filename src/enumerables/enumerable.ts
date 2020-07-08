@@ -1,27 +1,104 @@
-import { List, ReadOnlyList } from '@src/internal';
+import { ConcatEnumerable, Errors, List, ReadOnlyList, SelectEnumerable, SelectManyEnumerable, WhereEnumerable } from '@src/internal';
 
-export interface Enumerable<T> extends Iterable<T> {
-    toArray(): T[];
-    toReadOnlyList(): ReadOnlyList<T>;
-    toList(): List<T>;
+export abstract class Enumerable<T> implements Iterable<T> {
+    public abstract [Symbol.iterator](): Iterator<T>;
 
-    concat(second: Enumerable<T>): Enumerable<T>;
+    public toArray(): T[] {
+        return Array.from(this);
+    }
 
-    first(): T;
-    first(predicate: (x: T) => boolean): T;
-    firstOrDefault(): T | null;
-    firstOrDefault(predicate: (x: T) => boolean): T | null;
+    public toReadOnlyList(): ReadOnlyList<T> {
+        return new ReadOnlyList<T>(this.toArray());
+    }
 
-    select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
-    select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult>;
+    public toList(): List<T> {
+        return new List<T>(this.toArray());
+    }
 
-    selectMany<TResult>(selector: (x: T) => Enumerable<TResult>): Enumerable<TResult>;
+    public concat(second: Enumerable<T>): Enumerable<T> {
+        return new ConcatEnumerable(this, second);
+    }
 
-    single(): T;
-    single(predicate: (x: T) => boolean): T;
-    singleOrDefault(): T | null;
-    singleOrDefault(predicate: (x: T) => boolean): T | null;
+    public first(): T;
+    public first(predicate: (x: T) => boolean): T;
+    public first(predicate?: (x: T) => boolean): T {
+        for (const item of this) {
+            if (predicate == null || predicate(item)) {
+                return item;
+            }
+        }
 
-    where(predicate: (item: T) => boolean): Enumerable<T>;
-    where(predicate: (item: T, index: number) => boolean): Enumerable<T>;
+        throw predicate != null ? Errors.noMatch() : Errors.noElements();
+    }
+
+    public firstOrDefault(): T | null;
+    public firstOrDefault(predicate: (x: T) => boolean): T | null;
+    public firstOrDefault(predicate?: (x: T) => boolean): T | null {
+        for (const item of this) {
+            if (predicate == null || predicate(item)) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
+    public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult>;
+    public select<TResult>(selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)): Enumerable<TResult> {
+        return new SelectEnumerable(this, selector);
+    }
+
+    public selectMany<TResult>(selector: (x: T) => Enumerable<TResult>): Enumerable<TResult> {
+        return new SelectManyEnumerable(this, selector);
+    }
+
+    public single(): T;
+    public single(predicate: (x: T) => boolean): T;
+    public single(predicate?: (x: T) => boolean): T {
+        let value: T;
+        let found = false;
+        for (const item of this) {
+            if (predicate == null || predicate(item)) {
+                if (found) {
+                    throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
+                }
+
+                value = item;
+                found = true;
+            }
+        }
+
+        if (!found) {
+            throw predicate != null ? Errors.noMatch() : Errors.noElements();
+        }
+
+        // @ts-ignore
+        return value;
+    }
+
+    public singleOrDefault(): T | null;
+    public singleOrDefault(predicate: (x: T) => boolean): T | null;
+    public singleOrDefault(predicate?: (x: T) => boolean): T | null {
+        let value: T | null = null;
+        let found = false;
+        for (const item of this) {
+            if (predicate == null || predicate(item)) {
+                if (found) {
+                    throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
+                }
+
+                value = item;
+                found = true;
+            }
+        }
+
+        return value;
+    }
+
+    public where(predicate: (item: T) => boolean): Enumerable<T>;
+    public where(predicate: (item: T, index: number) => boolean): Enumerable<T>;
+    public where(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
+        return new WhereEnumerable(this, predicate);
+    }
 }

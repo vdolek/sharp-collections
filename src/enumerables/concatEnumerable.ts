@@ -1,6 +1,6 @@
-import { Enumerable, EnumerableBase } from '@src/internal';
+import { Enumerable } from '@src/internal';
 
-export class ConcatEnumerable<T> extends EnumerableBase<T> {
+export class ConcatEnumerable<T> extends Enumerable<T> {
     public constructor(
         private readonly firstEnumerable: Enumerable<T>,
         private readonly secondEnumerable: Enumerable<T>) {

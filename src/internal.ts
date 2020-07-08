@@ -1,7 +1,6 @@
 export * from '@src/enumerables/errors';
 
 export * from '@src/enumerables/enumerable';
-export * from '@src/enumerables/enumerableBase';
 
 export * from '@src/enumerables/arrayEnumerable';
 export * from '@src/enumerables/concatEnumerable';
