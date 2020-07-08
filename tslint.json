@@ -84,10 +84,7 @@
             true,
             1
         ],
-        "max-line-length": [
-            true,
-            140
-        ],
+        "max-line-length": false,
         "member-ordering": [
             true,
             {
@@ -255,7 +252,7 @@
         ],
         "ter-max-len": [
             true,
-            175,
+            200,
             {
                 "ignoreUrls": true
             }
