@@ -6,6 +6,8 @@ export * from '@src/enumerables/arrayEnumerable';
 export * from '@src/enumerables/concatEnumerable';
 export * from '@src/enumerables/selectEnumerable';
 export * from '@src/enumerables/selectManyEnumerable';
+export * from '@src/enumerables/skipEnumerable';
+export * from '@src/enumerables/skipWhileEnumerable';
 export * from '@src/enumerables/takeEnumerable';
 export * from '@src/enumerables/takeWhileEnumerable';
 export * from '@src/enumerables/whereEnumerable';
