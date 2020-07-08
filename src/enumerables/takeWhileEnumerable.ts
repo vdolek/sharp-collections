@@ -1,21 +1,20 @@
 import { Enumerable } from '@src/internal';
 
-export class TakeEnumerable<T> extends Enumerable<T> {
+export class TakeWhileEnumerable<T> extends Enumerable<T> {
     public constructor(
         private readonly source: Enumerable<T>,
-        private readonly count: number) {
+        private readonly predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)) {
         super();
     }
 
     public *[Symbol.iterator](): Iterator<T> {
         let index = 0;
         for (const item of this.source) {
-            if (index === this.count) {
+            if (!this.predicate(item, index)) {
                 break;
             }
 
             yield item;
-
             ++index;
         }
     }
