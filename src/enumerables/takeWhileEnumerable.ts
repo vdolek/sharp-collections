@@ -9,12 +9,12 @@ export class TakeWhileEnumerable<T> extends Enumerable<T> {
 
     public *[Symbol.iterator](): Iterator<T> {
         let index = 0;
-        for (const item of this.source) {
-            if (!this.predicate(item, index)) {
+        for (const element of this.source) {
+            if (!this.predicate(element, index)) {
                 break;
             }
 
-            yield item;
+            yield element;
             ++index;
         }
     }

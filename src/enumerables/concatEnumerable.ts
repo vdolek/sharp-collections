@@ -8,12 +8,12 @@ export class ConcatEnumerable<T> extends Enumerable<T> {
     }
 
     public *[Symbol.iterator](): Iterator<T> {
-        for (const item of this.firstEnumerable) {
-            yield item;
+        for (const element of this.firstEnumerable) {
+            yield element;
         }
 
-        for (const item of this.secondEnumerable) {
-            yield item;
+        for (const element of this.secondEnumerable) {
+            yield element;
         }
     }
 }

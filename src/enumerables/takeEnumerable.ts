@@ -9,12 +9,12 @@ export class TakeEnumerable<T> extends Enumerable<T> {
 
     public *[Symbol.iterator](): Iterator<T> {
         let index = 0;
-        for (const item of this.source) {
+        for (const element of this.source) {
             if (index === this.count) {
                 break;
             }
 
-            yield item;
+            yield element;
 
             ++index;
         }

@@ -9,9 +9,9 @@ export class SkipEnumerable<T> extends Enumerable<T> {
 
     public *[Symbol.iterator](): Iterator<T> {
         let index = 0;
-        for (const item of this.source) {
+        for (const element of this.source) {
             if (index >= this.count) {
-                yield item;
+                yield element;
             }
 
             ++index;

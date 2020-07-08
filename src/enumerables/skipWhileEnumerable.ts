@@ -10,13 +10,13 @@ export class SkipWhileEnumerable<T> extends Enumerable<T> {
     public *[Symbol.iterator](): Iterator<T> {
         let index = 0;
         let yielding = false;
-        for (const item of this.source) {
-            if (!yielding && !this.predicate(item, index)) {
+        for (const element of this.source) {
+            if (!yielding && !this.predicate(element, index)) {
                 yielding = true;
             }
 
             if (yielding) {
-                yield item;
+                yield element;
             }
 
             ++index;

@@ -8,8 +8,8 @@ export class SelectManyEnumerable<T, TResult> extends Enumerable<TResult> {
     }
 
     public *[Symbol.iterator](): Iterator<TResult> {
-        for (const item of this.innerEnumerable) {
-            const subEnumerable = this.selector(item);
+        for (const element of this.innerEnumerable) {
+            const subEnumerable = this.selector(element);
             for (const x of subEnumerable) {
                 yield x;
             }
