@@ -2,7 +2,7 @@ import { Enumerable } from '@src/internal';
 
 export class SkipWhileEnumerable<T> extends Enumerable<T> {
     public constructor(
-        private readonly source: Iterable<T>,
+        private readonly source: Enumerable<T>,
         private readonly predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)) {
         super();
     }

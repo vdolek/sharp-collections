@@ -2,7 +2,7 @@ import { Enumerable } from '@src/internal';
 
 export class OfTypeEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(
-        private readonly source: Iterable<T>,
+        private readonly source: Enumerable<T>,
         // tslint:disable-next-line:no-any
         private readonly type: new(...args: any[]) => TResult) {
         super();
