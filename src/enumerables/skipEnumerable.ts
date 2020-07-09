@@ -17,4 +17,9 @@ export class SkipEnumerable<T> extends Enumerable<T> {
             ++index;
         }
     }
+
+    public count(): number {
+        const count = this.source.count() - this.elementCount;
+        return count < 0 ? 0 : count;
+    }
 }
