@@ -2,8 +2,8 @@ import { Enumerable } from '@src/internal';
 
 export class ConcatEnumerable<T> extends Enumerable<T> {
     public constructor(
-        private readonly firstSource: Iterable<T>,
-        private readonly secondSource: Iterable<T>) {
+        private readonly firstSource: Enumerable<T>,
+        private readonly secondSource: Enumerable<T>) {
         super();
     }
 
@@ -15,5 +15,10 @@ export class ConcatEnumerable<T> extends Enumerable<T> {
         for (const element of this.secondSource) {
             yield element;
         }
+    }
+
+    public count(): number {
+        const count = this.firstSource.count() + this.secondSource.count();
+        return count;
     }
 }

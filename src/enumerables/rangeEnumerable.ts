@@ -21,4 +21,8 @@ export class RangeEnumerable extends Enumerable<number> {
             yield this.start + i * this.increment;
         }
     }
+
+    public count(): number {
+        return this.cnt;
+    }
 }

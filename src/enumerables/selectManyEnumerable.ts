@@ -2,8 +2,8 @@ import { Enumerable } from '@src/internal';
 
 export class SelectManyEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(
-        private readonly source: Iterable<T>,
-        private readonly selector: (x: T) => Iterable<TResult>) {
+        private readonly source: Enumerable<T>,
+        private readonly selector: (x: T) => Enumerable<TResult>) {
         super();
     }
 

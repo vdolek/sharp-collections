@@ -2,7 +2,7 @@ import { Enumerable } from '@src/internal';
 
 export class TakeEnumerable<T> extends Enumerable<T> {
     public constructor(
-        private readonly source: Iterable<T>,
+        private readonly source: Enumerable<T>,
         private readonly elementCount: number) {
         super();
     }
