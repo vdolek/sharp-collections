@@ -19,4 +19,9 @@ export class TakeEnumerable<T> extends Enumerable<T> {
             ++index;
         }
     }
+
+    public count(): number {
+        const count = this.source.count();
+        return count < this.elementCount ? count : this.elementCount;
+    }
 }
