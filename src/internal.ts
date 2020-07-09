@@ -1,4 +1,4 @@
-export * from '@src/enumerables/errors';
+export * from '@src/errors';
 
 export * from '@src/enumerables/enumerable';
 

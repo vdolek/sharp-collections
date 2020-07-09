@@ -1,4 +1,4 @@
-import { ArrayEnumerable, Enumerable } from '@src/internal';
+import { ArrayEnumerable, Enumerable, Errors } from '@src/internal';
 
 export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     public static empty<T>(): ReadOnlyList<T> {
@@ -44,7 +44,7 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
 
     public get(index: number): T {
         if (index < 0 || index >= this.source.length) {
-            throw new Error('The index was out of range of the list.'); // TODO
+            throw Errors.indexOutOfRange();
         }
 
         return this.source[index];

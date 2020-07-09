@@ -14,4 +14,8 @@ export class Errors {
     public static moreThanOneElement(): Error {
         return new Error('Sequence contains more than one matching element');
     }
+
+    public static indexOutOfRange(): Error {
+        return new Error('Index was out of range');
+    }
 }
