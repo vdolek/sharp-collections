@@ -15,4 +15,14 @@ export class SelectManyEnumerable<T, TResult> extends Enumerable<TResult> {
             }
         }
     }
+
+    public count(): number {
+        let count = 0;
+        for (const element of this.source) {
+            const subEnumerable = this.selector(element);
+            count += subEnumerable.count();
+        }
+
+        return count;
+    }
 }
