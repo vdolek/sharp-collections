@@ -176,8 +176,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
-    public groupBy<TKey>(keySelector: (x: T, index: number) => TKey): Enumerable<Grouping<TKey, T>> {
-        return new GroupByEnumerable(this, keySelector);
+    public groupBy<TKey, TResult = Grouping<TKey, T>>(keySelector: (x: T, index: number) => TKey, resultSelector?: (key: TKey, group: Enumerable<T>) => TResult): Enumerable<TResult> {
+        return new GroupByEnumerable(this, keySelector, resultSelector);
     }
 
     public last(predicate?: (x: T, index: number) => boolean): T {
