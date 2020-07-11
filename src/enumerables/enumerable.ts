@@ -120,6 +120,38 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return index;
     }
 
+    public elementAt(index: number): T {
+        if (index < 0) {
+            throw Errors.indexOutOfRange();
+        }
+
+        let idx = 0;
+        for (const element of this) {
+            if (idx === index) {
+                return element;
+            }
+            ++idx;
+        }
+
+        throw Errors.indexOutOfRange();
+    }
+
+    public elementAtOrDefault(index: number): T | null {
+        if (index < 0) {
+            return null;
+        }
+
+        let idx = 0;
+        for (const element of this) {
+            if (idx === index) {
+                return element;
+            }
+            ++idx;
+        }
+
+        return null;
+    }
+
     public empty(): boolean {
         return this.no();
     }
