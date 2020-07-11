@@ -14,6 +14,7 @@ export * from '@src/enumerables/iteratorEnumerable';
 export * from '@src/enumerables/mapEnumerable';
 
 export * from '@src/enumerables/concatEnumerable';
+export * from '@src/enumerables/groupByEnumerable';
 export * from '@src/enumerables/ofTypeEnumerable';
 export * from '@src/enumerables/rangeEnumerable';
 export * from '@src/enumerables/repeatEnumerable';
@@ -33,3 +34,4 @@ export * from '@src/collections/dictionary';
 export * from '@src/collections/list';
 export * from '@src/collections/pair';
 export * from '@src/collections/zipElement';
+export * from '@src/collections/grouping';

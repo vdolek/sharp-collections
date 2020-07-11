@@ -1,7 +1,7 @@
 import {
     ArrayEnumerable,
     ConcatEnumerable, EmptyEnumerable, EqualityComparer,
-    Errors,
+    Errors, GroupByEnumerable, Grouping,
     List, OfTypeEnumerable, RangeEnumerable,
     ReadOnlyList, RepeatEnumerable,
     SelectEnumerable,
@@ -174,6 +174,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return null;
+    }
+
+    public groupBy<TKey>(keySelector: (x: T, index: number) => TKey): Enumerable<Grouping<TKey, T>> {
+        return new GroupByEnumerable(this, keySelector);
     }
 
     public last(predicate?: (x: T, index: number) => boolean): T {
