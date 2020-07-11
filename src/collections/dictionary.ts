@@ -9,6 +9,10 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
         return new Dictionary(elements);
     }
 
+    public static single<TKey, TValue>(key: TKey, value: TValue): Dictionary<TKey, TValue> {
+        return Dictionary.from(Pair.from(key, value));
+    }
+
     // [key: TKey]: T; // TODO
 
     public add(key: TKey, value: TValue): this {

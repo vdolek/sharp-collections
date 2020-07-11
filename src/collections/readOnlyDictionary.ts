@@ -10,6 +10,10 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
         return new ReadOnlyDictionary(elements);
     }
 
+    public static single<TKey, TValue>(key: TKey, value: TValue): ReadOnlyDictionary<TKey, TValue> {
+        return ReadOnlyDictionary.from(Pair.from(key, value));
+    }
+
     // readonly [key: TKey]: T; // TODO
 
     public constructor(source?: Iterable<Pair<TKey, TValue>>) {

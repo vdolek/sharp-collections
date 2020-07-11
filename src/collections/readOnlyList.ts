@@ -21,6 +21,10 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         return Enumerable.range(a, b, c).toReadOnlyList();
     }
 
+    public static single<T>(element: T): ReadOnlyList<T> {
+        return ReadOnlyList.from(element);
+    }
+
     // readonly [index: number]: T; // TODO
 
     public constructor(source?: Iterable<T>) {
