@@ -3,19 +3,18 @@ import { expect } from 'chai';
 
 class Foo { public constructor(public readonly value: number) { } }
 
-describe('First tests', () => {
+describe('Average tests', () => {
     it('Simple test', () => {
         const list = List.from(2, 4, 6);
-        const sum = list.sum();
+        const avg = list.average();
 
-        expect(sum).to.be.equal(12);
+        expect(avg).to.be.equal(4);
     });
 
     it('Empty source test', () => {
         const list = List.empty();
-        const sum = list.sum();
 
-        expect(sum).to.be.equal(0);
+        expect(() => list.average()).to.throw('Sequence contains no elements');
     });
 
     it('Not a number throws test', () => {
@@ -32,8 +31,8 @@ describe('First tests', () => {
             .from(2, 4, 6)
             .select(x => new Foo(x))
             .toList();
-        const sum = list.sum(x => x.value);
+        const avg = list.sum(x => x.value);
 
-        expect(sum).to.be.equal(12);
+        expect(avg).to.be.equal(12);
     });
 });

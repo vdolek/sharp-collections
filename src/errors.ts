@@ -19,7 +19,9 @@ export class Errors {
         return new Error('Sequence contains more than one matching element');
     }
 
-    public static valueIsNotNumber(value: unknown): Error {
-        return new Error(`Value ${value} is not a number`);
+    // tslint:disable-next-line:no-any
+    public static valueIsNotNumber(value: any): Error {
+        // tslint:disable-next-line:no-unsafe-any
+        return new TypeError(`Value ${value.toString()} is not a number`);
     }
 }
