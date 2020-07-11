@@ -1,12 +1,12 @@
-import { Enumerable, IteratorEnumerable, JoinElement } from '@src/Internal';
+import { Enumerable, IteratorEnumerable, JoinElement, LeftJoinElement } from '@src/Internal';
 
-export class JoinEnumerable<TLeft, TRight, TKey, TResult = JoinElement<TLeft, TRight>> extends Enumerable<TResult> {
+export class LeftJoinEnumerable<TLeft, TRight, TKey, TResult = LeftJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
         private readonly leftSource: Iterable<TLeft>,
         private readonly rightSource: Iterable<TRight>,
         private readonly leftKeySelector: (value: TLeft, index: number) => TKey,
         private readonly rightKeySelector: (value: TRight, index: number) => TKey,
-        private readonly resultSelector?: (left: TLeft, right: TRight) => TResult
+        private readonly resultSelector?: (left: TLeft, right: TRight | null) => TResult
     ) {
         super();
     }
@@ -22,6 +22,7 @@ export class JoinEnumerable<TLeft, TRight, TKey, TResult = JoinElement<TLeft, TR
             const key = this.leftKeySelector(left, index++);
             const rightGroup = rightLookup.getOrNull(key);
             if (rightGroup == null) {
+                yield selector(left, null);
                 continue;
             }
 
