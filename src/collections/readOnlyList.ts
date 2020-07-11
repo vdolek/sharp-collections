@@ -2,11 +2,11 @@ import { ArrayEnumerable, Enumerable, Errors } from '@src/internal';
 
 export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     public static empty<T>(): ReadOnlyList<T> {
-        return Enumerable.empty<T>().toReadOnlyList();
+        return new ReadOnlyList<T>();
     }
 
     public static from<T>(...elements: T[]): ReadOnlyList<T> {
-        return Enumerable.from(...elements).toReadOnlyList();
+        return new ReadOnlyList<T>(elements);
     }
 
     public static repeat<T>(element: T, count: number): ReadOnlyList<T> {
@@ -23,28 +23,21 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
 
     // readonly [index: number]: T; // TODO
 
-    public constructor();
-    public constructor(source: T[]);
-    public constructor(source: Enumerable<T>);
-    public constructor(source?: T[] | Enumerable<T>) {
-        super(ReadOnlyList.getSourceArray(source));
-    }
-
-    private static getSourceArray<T>(source?: T[] | Enumerable<T>): T[] {
-        if (source == null) {
-            return [];
-        }
-
-        if (Array.isArray(source)) {
-            return source;
-        }
-
-        return source.toArray();
+    public constructor(source?: Iterable<T>) {
+        super(Array.from(source ?? []));
     }
 
     public get(index: number): T {
         if (index < 0 || index >= this.source.length) {
             throw Errors.indexOutOfRange();
+        }
+
+        return this.source[index];
+    }
+
+    public getOrNull(index: number): T | null {
+        if (index < 0 || index >= this.source.length) {
+            return null;
         }
 
         return this.source[index];

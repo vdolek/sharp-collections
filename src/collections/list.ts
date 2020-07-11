@@ -2,11 +2,11 @@ import { Enumerable, ReadOnlyList } from '@src/internal';
 
 export class List<T> extends ReadOnlyList<T> {
     public static empty<T>(): List<T> {
-        return Enumerable.empty<T>().toList();
+        return new List<T>();
     }
 
     public static from<T>(...elements: T[]): List<T> {
-        return Enumerable.from(...elements).toList();
+        return new List<T>(elements);
     }
 
     public static repeat<T>(element: T, count: number): List<T> {
@@ -22,14 +22,6 @@ export class List<T> extends ReadOnlyList<T> {
     }
 
     // [index: number]: T; // TODO
-
-    public constructor();
-    public constructor(source: T[]);
-    public constructor(source: Enumerable<T>);
-    public constructor(source?: T[] | Enumerable<T>) {
-        // @ts-ignore
-        super(source);
-    }
 
     public set(index: number, value: T): void {
         if (index < 0 || index >= this.source.length) {
