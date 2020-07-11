@@ -1,9 +1,9 @@
 import {
     ArrayEnumerable,
     ConcatEnumerable, Dictionary, EmptyEnumerable, EqualityComparer,
-    Errors, GroupByEnumerable, Grouping, JoinElement, JoinEnumerable,
+    Errors, GroupByEnumerable, Grouping, JoinElement, JoinEnumerable, LeftJoinElement, LeftJoinEnumerable,
     List, Lookup, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary,
-    ReadOnlyList, RepeatEnumerable,
+    ReadOnlyList, RepeatEnumerable, RightJoinElement, RightJoinEnumerable,
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
     TakeEnumerable, TakeWhileEnumerable,
@@ -230,6 +230,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
+    public leftJoin<TRight, TKey, TResult = LeftJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T, right: TRight | null) => TResult
+    ): Enumerable<TResult> {
+        return new LeftJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
+    }
+
     public max(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let maxValue = Number.NaN;
@@ -283,6 +292,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
     // tslint:disable-next-line:no-any
     public ofType<TResult>(type: new(...args: any[]) => TResult): Enumerable<TResult> {
         return new OfTypeEnumerable(this, type);
+    }
+
+    public rightJoin<TRight, TKey, TResult = RightJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T | null, right: TRight) => TResult
+    ): Enumerable<TResult> {
+        return new RightJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult> {
