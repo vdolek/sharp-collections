@@ -210,6 +210,23 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new SkipWhileEnumerable(this, predicate);
     }
 
+    public sum(): number;
+    public sum(selector: (element: T) => number): number;
+    public sum(selector: (element: T, index: number) => number): number;
+    public sum(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+        let index = 0;
+        let sum = 0;
+        for (const element of this) {
+            const value: unknown = selector != null ? selector(element, index++) : element;
+            if (typeof value !== 'number') {
+                throw Errors.valueIsNotNumber(value);
+            }
+
+            sum += value;
+        }
+        return sum;
+    }
+
     public take(count: number): Enumerable<T> {
         return new TakeEnumerable(this, count);
     }
