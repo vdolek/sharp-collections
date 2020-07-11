@@ -22,4 +22,17 @@ describe('groupBy tests', () => {
             ['Bye']
         ]);
     });
+
+    it('ResultSelector test', () => {
+        const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const groupedAsArray = list
+            .groupBy(x => x[0], (key, group) => group.toArray())
+            .toArray();
+
+        expect(groupedAsArray).to.be.deep.equal([
+            ['Hello', 'Hi'],
+            ['Good morning', 'Good evening'],
+            ['Bye']
+        ]);
+    });
 });
