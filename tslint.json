@@ -53,7 +53,7 @@
         "eofline": true,
         "file-name-casing": [
             true,
-            "camel-case"
+            "pascal-case"
         ],
         "function-name": [
             true,
