@@ -2,7 +2,7 @@ import { Dictionary, Enumerable, Grouping } from '@src/internal';
 
 export class GroupByEnumerable<TKey, TValue> extends Enumerable<Grouping<TKey, TValue>> {
     public constructor(
-        protected readonly source: Enumerable<TValue>,
+        protected readonly source: Iterable<TValue>,
         protected readonly keySelector: (value: TValue, index: number) => TKey) {
         super();
     }
