@@ -184,6 +184,48 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
+    public last(): T;
+    public last(predicate: (x: T) => boolean): T;
+    public last(predicate: (x: T, index: number) => boolean): T;
+    public last(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
+        let index = 0;
+        let lastItem: T | null = null;
+        let lastItemSet = false;
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
+                lastItem = element;
+                lastItemSet = true;
+            }
+        }
+
+        if (lastItemSet) {
+            return lastItem as T;
+        }
+
+        throw predicate != null ? Errors.noMatch() : Errors.noElements();
+    }
+
+    public lastOrDefault(): T | null;
+    public lastOrDefault(predicate: (x: T) => boolean): T | null;
+    public lastOrDefault(predicate: (x: T, index: number) => boolean): T | null;
+    public lastOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
+        let index = 0;
+        let lastItem: T | null = null;
+        let lastItemSet = false;
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
+                lastItem = element;
+                lastItemSet = true;
+            }
+        }
+
+        if (lastItemSet) {
+            return lastItem;
+        }
+
+        return null;
+    }
+
     public max(): number;
     public max(selector: (element: T) => number): number;
     public max(selector: (element: T, index: number) => number): number;
