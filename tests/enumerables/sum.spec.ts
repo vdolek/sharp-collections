@@ -24,7 +24,7 @@ describe('First tests', () => {
             .select(x => new Foo(x))
             .toList();
 
-        expect(() => list.sum()).to.throw('is not a number');
+        expect(() => list.sum()).to.throw('Value is not a number');
     });
 
     it('Selector test', () => {

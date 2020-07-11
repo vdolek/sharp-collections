@@ -78,7 +78,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         for (const element of this) {
             const value = selector != null ? selector(element, index) : element;
             if (typeof value !== 'number') {
-                throw Errors.valueIsNotNumber(value);
+                throw Errors.valueIsNotNumber();
             }
 
             sum += value;
@@ -150,6 +150,58 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return null;
+    }
+
+    public max(): number;
+    public max(selector: (element: T) => number): number;
+    public max(selector: (element: T, index: number) => number): number;
+    public max(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+        let index = 0;
+        let maxValue = Number.NaN;
+        for (const element of this) {
+            const value = selector != null ? selector(element, index) : element;
+            if (typeof value !== 'number') {
+                throw Errors.valueIsNotNumber();
+            }
+
+            if (isNaN(maxValue) || maxValue < value) {
+                maxValue = value;
+            }
+
+            index++;
+        }
+
+        if (index === 0) {
+            throw Errors.noElements();
+        }
+
+        return maxValue;
+    }
+
+    public min(): number;
+    public min(selector: (element: T) => number): number;
+    public min(selector: (element: T, index: number) => number): number;
+    public min(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+        let index = 0;
+        let minValue = Number.NaN;
+        for (const element of this) {
+            const value = selector != null ? selector(element, index) : element;
+            if (typeof value !== 'number') {
+                throw Errors.valueIsNotNumber();
+            }
+
+            if (isNaN(minValue) || minValue > value) {
+                minValue = value;
+            }
+
+            index++;
+        }
+
+        if (index === 0) {
+            throw Errors.noElements();
+        }
+
+        return minValue;
     }
 
     public no(): boolean;
@@ -242,7 +294,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         for (const element of this) {
             const value: unknown = selector != null ? selector(element, index++) : element;
             if (typeof value !== 'number') {
-                throw Errors.valueIsNotNumber(value);
+                throw Errors.valueIsNotNumber();
             }
 
             sum += value;
