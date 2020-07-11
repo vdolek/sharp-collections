@@ -36,13 +36,14 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public abstract [Symbol.iterator](): Iterator<T>;
 
-    public aggregate(seed: T, func: (a: T, s: T) => T): T;
-    public aggregate<TAccumulate>(seed: TAccumulate, func: (a: TAccumulate, s: T) => TAccumulate): TAccumulate;
-    public aggregate<TAccumulate, TResult>(seed: TAccumulate, func: (a: TAccumulate, s: T) => TAccumulate, resultSelector: (a: TAccumulate) => TResult): TResult;
-    public aggregate<TAccumulate, TResult>(seed: TAccumulate, func: (a: TAccumulate, s: T) => TAccumulate, resultSelector?: (a: TAccumulate) => TResult): TAccumulate | TResult {
+    public aggregate(seed: T, func: (acc: T, value: T, index: number) => T): T;
+    public aggregate<TAccumulate>(seed: TAccumulate, func: (acc: TAccumulate, value: T, index: number) => TAccumulate): TAccumulate;
+    public aggregate<TAccumulate, TResult>(seed: TAccumulate, func: (acc: TAccumulate, value: T, index: number) => TAccumulate, resultSelector: (a: TAccumulate) => TResult): TResult;
+    public aggregate<TAccumulate, TResult>(seed: TAccumulate, func: (acc: TAccumulate, value: T, index: number) => TAccumulate, resultSelector?: (a: TAccumulate) => TResult): TAccumulate | TResult {
+        let index = 0;
         let result = seed;
         for (const element of this) {
-            result = func(result, element);
+            result = func(result, element, index++);
         }
         return resultSelector != null ? resultSelector(result) : result;
     }
