@@ -1,5 +1,9 @@
 export * from '@src/errors';
 
+export * from '@src/comparers/equalityComparer';
+export * from '@src/comparers/defaultEqualityComparer';
+export * from '@src/comparers/predicateEqualityComparer';
+
 export * from '@src/enumerables/enumerable';
 
 export * from '@src/enumerables/emptyEnumerable';

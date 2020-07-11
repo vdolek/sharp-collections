@@ -203,7 +203,13 @@
             "never"
         ],
         "space-within-parens": 0,
-        "strict-comparisons": true,
+        "strict-comparisons": [
+            true,
+            {
+                "allow-object-equal-comparison": true,
+                "allow-string-order-comparison": false
+            }
+        ],
         "strict-type-predicates": false,
         "ter-arrow-body-style": [
             true,

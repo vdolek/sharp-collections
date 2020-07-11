@@ -1,6 +1,6 @@
 import {
     ArrayEnumerable,
-    ConcatEnumerable, EmptyEnumerable,
+    ConcatEnumerable, EmptyEnumerable, EqualityComparer,
     Errors,
     List, OfTypeEnumerable, RangeEnumerable,
     ReadOnlyList, RepeatEnumerable,
@@ -75,6 +75,18 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public concat(second: Enumerable<T>): Enumerable<T> {
         return new ConcatEnumerable(this, second);
+    }
+
+    public contains(value: T): boolean;
+    public contains(value: T, comparer: EqualityComparer<T>): boolean;
+    public contains(value: T, comparer?: EqualityComparer<T>): boolean {
+        const cmp = comparer ?? EqualityComparer.default<T>();
+        for (const element of this) {
+            if (cmp.equals(value, element)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public count(): number {
