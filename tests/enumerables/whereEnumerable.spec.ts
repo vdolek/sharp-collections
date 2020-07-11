@@ -11,7 +11,7 @@ describe('WhereEnumerable tests', () => {
 
     it('Simple indexed test', () => {
         const list = List.from(2, 4, 6)
-            .where((x: number, idx: number) => idx % 2 === 0);
+            .where((x, idx) => idx % 2 === 0);
 
         expect(list.toArray()).to.be.deep.equal([2, 6]);
     });
