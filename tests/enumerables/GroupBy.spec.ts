@@ -12,9 +12,9 @@ describe('groupBy tests', () => {
             .select(x => x.toArray())
             .toArray();
 
-        expect(grouped.get(0).key).to.be.equals('H');
-        expect(grouped.get(1).key).to.be.equals('G');
-        expect(grouped.get(2).key).to.be.equals('B');
+        expect(grouped.get(0).key).to.be.equal('H');
+        expect(grouped.get(1).key).to.be.equal('G');
+        expect(grouped.get(2).key).to.be.equal('B');
 
         expect(asArray).to.be.deep.equal([
             ['Hello', 'Hi'],
