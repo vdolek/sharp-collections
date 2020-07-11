@@ -1,4 +1,3 @@
-import { ZipElement } from '@src/collections/zipElement';
 import {
     ArrayEnumerable,
     ConcatEnumerable, EmptyEnumerable, EqualityComparer,
@@ -8,7 +7,7 @@ import {
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
     TakeEnumerable, TakeWhileEnumerable,
-    WhereEnumerable, ZipEnumerable
+    WhereEnumerable, ZipElement, ZipEnumerable
 } from '@src/internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {

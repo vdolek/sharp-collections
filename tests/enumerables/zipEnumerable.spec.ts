@@ -1,5 +1,4 @@
-import { ZipElement } from '@src/collections/zipElement';
-import { Enumerable, List } from '@src/internal';
+import { Enumerable, List, ZipElement } from '@src/internal';
 import { expect } from 'chai';
 
 describe('Zip tests', () => {
