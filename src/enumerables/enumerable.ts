@@ -74,9 +74,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public first(): T;
     public first(predicate: (x: T) => boolean): T;
-    public first(predicate?: (x: T) => boolean): T {
+    public first(predicate: (x: T, index: number) => boolean): T;
+    public first(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
+        let index = 0;
         for (const item of this) {
-            if (predicate == null || predicate(item)) {
+            if (predicate == null || predicate(item, index++)) {
                 return item;
             }
         }
@@ -86,9 +88,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public firstOrDefault(): T | null;
     public firstOrDefault(predicate: (x: T) => boolean): T | null;
-    public firstOrDefault(predicate?: (x: T) => boolean): T | null {
+    public firstOrDefault(predicate: (x: T, index: number) => boolean): T | null;
+    public firstOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
+        let index = 0;
         for (const item of this) {
-            if (predicate == null || predicate(item)) {
+            if (predicate == null || predicate(item, index++)) {
                 return item;
             }
         }
@@ -113,11 +117,13 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public single(): T;
     public single(predicate: (x: T) => boolean): T;
-    public single(predicate?: (x: T) => boolean): T {
+    public single(predicate: (x: T, index: number) => boolean): T;
+    public single(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
         let value: T;
         let found = false;
+        let index = 0;
         for (const item of this) {
-            if (predicate == null || predicate(item)) {
+            if (predicate == null || predicate(item, index++)) {
                 if (found) {
                     throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
                 }
@@ -137,11 +143,13 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public singleOrDefault(): T | null;
     public singleOrDefault(predicate: (x: T) => boolean): T | null;
-    public singleOrDefault(predicate?: (x: T) => boolean): T | null {
+    public singleOrDefault(predicate: (x: T, index: number) => boolean): T | null;
+    public singleOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
         let value: T | null = null;
         let found = false;
+        let index = 0;
         for (const item of this) {
-            if (predicate == null || predicate(item)) {
+            if (predicate == null || predicate(item, index++)) {
                 if (found) {
                     throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
                 }
