@@ -1,8 +1,8 @@
 import {
     ArrayEnumerable,
     ConcatEnumerable, Dictionary, EmptyEnumerable, EqualityComparer,
-    Errors, GroupByEnumerable, Grouping,
-    List, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary,
+    Errors, GroupByEnumerable, Grouping, JoinElement, JoinEnumerable,
+    List, Lookup, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary,
     ReadOnlyList, RepeatEnumerable,
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
@@ -43,7 +43,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
     public aggregate<TAccumulate = T, TResult = T>(
         seed: TAccumulate,
         func: (acc: TAccumulate, value: T, index: number) => TAccumulate,
-        resultSelector?: (a: TAccumulate) => TResult): TAccumulate | TResult {
+        resultSelector?: (a: TAccumulate) => TResult
+    ): TAccumulate | TResult {
         let index = 0;
         let result = seed;
         for (const element of this) {
@@ -176,11 +177,21 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
-    public groupBy<TKey, TElement = T, TResult = Grouping<TKey, T>>(
+    public groupBy<TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
         keySelector: (x: T, index: number) => TKey,
         elementSelector?: (value: T, index: number) => TElement,
-        resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult): Enumerable<TResult> {
+        resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult
+    ): Enumerable<TResult> {
         return new GroupByEnumerable(this, keySelector, elementSelector, resultSelector);
+    }
+
+    public join<TRight, TKey, TResult = JoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T, right: TRight) => TResult
+    ): Enumerable<TResult> {
+        return new JoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public last(predicate?: (x: T, index: number) => boolean): T {
@@ -380,7 +391,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public toReadOnlyDictionary<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
-        valueSelector?: (element: T, index: number) => TValue): ReadOnlyDictionary<TKey, TValue> {
+        valueSelector?: (element: T, index: number) => TValue
+    ): ReadOnlyDictionary<TKey, TValue> {
         const pairs = this.select((x, idx) => Pair.from(
             keySelector(x, idx),
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue
@@ -391,7 +403,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public toDictionary<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
-        valueSelector?: (element: T, index: number) => TValue): Dictionary<TKey, TValue> {
+        valueSelector?: (element: T, index: number) => TValue
+    ): Dictionary<TKey, TValue> {
         const pairs = this.select((x, idx) => Pair.from(
             keySelector(x, idx),
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue));
@@ -403,6 +416,16 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new List<T>(this.toArray());
     }
 
+    public toLookup<TKey, TValue = T>(
+        keySelector: (element: T, index: number) => TKey,
+        valueSelector?: (element: T, index: number) => TValue
+    ): Lookup<TKey, TValue> {
+        const dict = this
+            .groupBy(keySelector, valueSelector)
+            .toReadOnlyDictionary(x => x.key);
+        return new Lookup<TKey, TValue>(dict);
+    }
+
     public toReadOnlyList(): ReadOnlyList<T> {
         return new ReadOnlyList<T>(this.toArray());
     }
@@ -411,7 +434,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new WhereEnumerable(this, predicate);
     }
 
-    public zip<TSecond, TResult = ZipElement<T, TSecond>>(second: Enumerable<TSecond>, resultSelector?: (first: T, second: TSecond, index: number) => TResult): Enumerable<TResult> {
+    public zip<TSecond, TResult = ZipElement<T, TSecond>>(
+        second: Enumerable<TSecond>,
+        resultSelector?: (first: T, second: TSecond, index: number) => TResult
+    ): Enumerable<TResult> {
         const selector = resultSelector ?? ((f, s) => new ZipElement(f, s));
         // @ts-ignore
         return new ZipEnumerable(this, second, selector);
