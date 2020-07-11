@@ -1,8 +1,8 @@
 import {
     ArrayEnumerable,
-    ConcatEnumerable, EmptyEnumerable, EqualityComparer,
+    ConcatEnumerable, Dictionary, EmptyEnumerable, EqualityComparer,
     Errors, GroupByEnumerable, Grouping,
-    List, OfTypeEnumerable, RangeEnumerable,
+    List, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary,
     ReadOnlyList, RepeatEnumerable,
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
@@ -376,6 +376,27 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public toArray(): T[] {
         return Array.from(this);
+    }
+
+    public toReadOnlyDictionary<TKey, TValue = T>(
+        keySelector: (element: T, index: number) => TKey,
+        valueSelector?: (element: T, index: number) => TValue): ReadOnlyDictionary<TKey, TValue> {
+        const pairs = this.select((x, idx) => Pair.from(
+            keySelector(x, idx),
+            valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue
+        ));
+
+        return new Dictionary<TKey, TValue>(pairs);
+    }
+
+    public toDictionary<TKey, TValue = T>(
+        keySelector: (element: T, index: number) => TKey,
+        valueSelector?: (element: T, index: number) => TValue): Dictionary<TKey, TValue> {
+        const pairs = this.select((x, idx) => Pair.from(
+            keySelector(x, idx),
+            valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue));
+
+        return new Dictionary<TKey, TValue>(pairs);
     }
 
     public toList(): List<T> {
