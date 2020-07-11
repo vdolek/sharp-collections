@@ -11,7 +11,7 @@ describe('SelectEnumerable tests', () => {
 
     it('Indexed test', () => {
         const list = List.from(2, 4, 6)
-            .select((x: number, idx: number) => [idx, x * 2]);
+            .select((x, idx) => [idx, x * 2]);
 
         expect(list.toArray()).to.be.deep.equal([ [0, 4], [1, 8], [2, 12] ]);
     });
