@@ -1,3 +1,4 @@
+import { ZipElement } from '@src/collections/zipElement';
 import {
     ArrayEnumerable,
     ConcatEnumerable, EmptyEnumerable, EqualityComparer,
@@ -7,7 +8,7 @@ import {
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
     TakeEnumerable, TakeWhileEnumerable,
-    WhereEnumerable
+    WhereEnumerable, ZipEnumerable
 } from '@src/internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
@@ -377,5 +378,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public where(predicate: (element: T, index: number) => boolean): Enumerable<T> {
         return new WhereEnumerable(this, predicate);
+    }
+
+    public zip<TSecond, TResult = ZipElement<T, TSecond>>(second: Enumerable<TSecond>, resultSelector?: (first: T, second: TSecond, index: number) => TResult): Enumerable<TResult> {
+        const selector = resultSelector ?? ((f, s) => new ZipElement(f, s));
+        // @ts-ignore
+        return new ZipEnumerable(this, second, selector);
     }
 }

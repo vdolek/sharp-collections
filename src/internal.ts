@@ -21,6 +21,7 @@ export * from '@src/enumerables/skipWhileEnumerable';
 export * from '@src/enumerables/takeEnumerable';
 export * from '@src/enumerables/takeWhileEnumerable';
 export * from '@src/enumerables/whereEnumerable';
+export * from '@src/enumerables/zipEnumerable';
 
 export * from '@src/collections/readOnlyList';
 export * from '@src/collections/list';
