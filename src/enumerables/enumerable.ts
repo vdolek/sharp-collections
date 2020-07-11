@@ -34,6 +34,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new RangeEnumerable(start, count, increment);
     }
 
+    public static single<T>(element: T): Enumerable<T> {
+        return Enumerable.from(element);
+    }
+
     public abstract [Symbol.iterator](): Iterator<T>;
 
     public aggregate<TAccumulate = T, TResult = T>(

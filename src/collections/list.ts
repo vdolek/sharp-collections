@@ -21,6 +21,10 @@ export class List<T> extends ReadOnlyList<T> {
         return Enumerable.range(a, b, c).toList();
     }
 
+    public static single<T>(element: T): List<T> {
+        return List.from(element);
+    }
+
     // [index: number]: T; // TODO
 
     public set(index: number, value: T): void {
