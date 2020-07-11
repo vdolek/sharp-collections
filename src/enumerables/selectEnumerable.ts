@@ -3,7 +3,7 @@ import { Enumerable } from '@src/internal';
 export class SelectEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(
         private readonly source: Enumerable<T>,
-        private readonly selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)) {
+        private readonly selector: (x: T, idx: number) => TResult) {
         super();
     }
 

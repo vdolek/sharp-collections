@@ -27,8 +27,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
     public static range(start: number, count: number): Enumerable<number>;
     public static range(start: number, count: number, increment: number): Enumerable<number>;
     public static range(a: number, b?: number, c?: number): Enumerable<number> {
-        // @ts-ignore
-        return new RangeEnumerable(a, b, c);
+        const start = b == null ? 0 : a;
+        const count = b == null ? a : b;
+        const increment = c ?? 1;
+
+        return new RangeEnumerable(start, count, increment);
     }
 
     public abstract [Symbol.iterator](): Iterator<T>;
@@ -44,9 +47,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return resultSelector != null ? resultSelector(result) : result;
     }
 
-    public all(predicate: (x: T) => boolean): boolean;
-    public all(predicate: (x: T, index: number) => boolean): boolean;
-    public all(predicate: ((x: T) => boolean) | ((x: T, idx: number) => boolean)): boolean {
+    public all(predicate: (x: T, idx: number) => boolean): boolean {
         let index = 0;
         for (const element of this) {
             if (!predicate(element, index++)) {
@@ -56,10 +57,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return true;
     }
 
-    public any(): boolean;
-    public any(predicate: (x: T) => boolean): boolean;
-    public any(predicate: (x: T, index: number) => boolean): boolean;
-    public any(predicate?: ((x: T) => boolean) | ((x: T, idx: number) => boolean)): boolean {
+    public any(predicate?: (x: T, index: number) => boolean): boolean {
         let index = 0;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -69,10 +67,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return false;
     }
 
-    public average(): number;
-    public average(selector: (element: T) => number): number;
-    public average(selector: (element: T, index: number) => number): number;
-    public average(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+    public average(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let sum = 0;
         for (const element of this) {
@@ -100,8 +95,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new ConcatEnumerable(this, second);
     }
 
-    public contains(value: T): boolean;
-    public contains(value: T, comparer: EqualityComparer<T>): boolean;
     public contains(value: T, comparer?: EqualityComparer<T>): boolean {
         const cmp = comparer ?? EqualityComparer.default<T>();
         for (const element of this) {
@@ -156,10 +149,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return this.no();
     }
 
-    public first(): T;
-    public first(predicate: (x: T) => boolean): T;
-    public first(predicate: (x: T, index: number) => boolean): T;
-    public first(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
+    public first(predicate?: (x: T, index: number) => boolean): T {
         let index = 0;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -170,10 +160,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    public firstOrDefault(): T | null;
-    public firstOrDefault(predicate: (x: T) => boolean): T | null;
-    public firstOrDefault(predicate: (x: T, index: number) => boolean): T | null;
-    public firstOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
+    public firstOrDefault(predicate?: (x: T, index: number) => boolean): T | null {
         let index = 0;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -184,10 +171,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
-    public last(): T;
-    public last(predicate: (x: T) => boolean): T;
-    public last(predicate: (x: T, index: number) => boolean): T;
-    public last(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
+    public last(predicate?: (x: T, index: number) => boolean): T {
         let index = 0;
         let lastItem: T | null = null;
         let lastItemSet = false;
@@ -205,10 +189,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    public lastOrDefault(): T | null;
-    public lastOrDefault(predicate: (x: T) => boolean): T | null;
-    public lastOrDefault(predicate: (x: T, index: number) => boolean): T | null;
-    public lastOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
+    public lastOrDefault(predicate?: (x: T, index: number) => boolean): T | null {
         let index = 0;
         let lastItem: T | null = null;
         let lastItemSet = false;
@@ -226,10 +207,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
-    public max(): number;
-    public max(selector: (element: T) => number): number;
-    public max(selector: (element: T, index: number) => number): number;
-    public max(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+    public max(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let maxValue = Number.NaN;
         for (const element of this) {
@@ -252,10 +230,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return maxValue;
     }
 
-    public min(): number;
-    public min(selector: (element: T) => number): number;
-    public min(selector: (element: T, index: number) => number): number;
-    public min(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+    public min(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let minValue = Number.NaN;
         for (const element of this) {
@@ -278,13 +253,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return minValue;
     }
 
-    public no(): boolean;
-    public no(predicate: (x: T) => boolean): boolean;
-    public no(predicate: (x: T, index: number) => boolean): boolean;
-    public no(predicate?: ((x: T) => boolean) | ((x: T, idx: number) => boolean)): boolean {
-        // @ts-ignore
-        const result = !this.any(predicate);
-        return result;
+    public no(predicate?: (x: T, index: number) => boolean): boolean {
+        return !this.any(predicate);
     }
 
     // tslint:disable-next-line:no-any
@@ -292,9 +262,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new OfTypeEnumerable(this, type);
     }
 
-    public select<TResult>(selector: (x: T) => TResult): Enumerable<TResult>;
-    public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult>;
-    public select<TResult>(selector: ((x: T) => TResult) | ((x: T, idx: number) => TResult)): Enumerable<TResult> {
+    public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult> {
         return new SelectEnumerable(this, selector);
     }
 
@@ -302,8 +270,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new SelectManyEnumerable(this, selector);
     }
 
-    public sequenceEqual(secondSource: Enumerable<T>): boolean;
-    public sequenceEqual(secondSource: Enumerable<T>, comparer: EqualityComparer<T>): boolean;
     public sequenceEqual(secondSource: Enumerable<T>, comparer?: EqualityComparer<T>): boolean {
         const cmp = comparer ?? EqualityComparer.default<T>();
 
@@ -325,10 +291,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return true;
     }
 
-    public single(): T;
-    public single(predicate: (x: T) => boolean): T;
-    public single(predicate: (x: T, index: number) => boolean): T;
-    public single(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
+    public single(predicate?: (x: T, index: number) => boolean): T {
         let value: T;
         let found = false;
         let index = 0;
@@ -351,10 +314,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return value;
     }
 
-    public singleOrDefault(): T | null;
-    public singleOrDefault(predicate: (x: T) => boolean): T | null;
-    public singleOrDefault(predicate: (x: T, index: number) => boolean): T | null;
-    public singleOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
+    public singleOrDefault(predicate?: (x: T, index: number) => boolean): T | null {
         let value: T | null = null;
         let found = false;
         let index = 0;
@@ -376,16 +336,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new SkipEnumerable(this, count);
     }
 
-    public skipWhile(predicate: (element: T) => boolean): Enumerable<T>;
-    public skipWhile(predicate: (element: T, index: number) => boolean): Enumerable<T>;
-    public skipWhile(predicate: ((element: T) => boolean) | ((element: T, index: number) => boolean)): Enumerable<T> {
+    public skipWhile(predicate: (element: T, index: number) => boolean): Enumerable<T> {
         return new SkipWhileEnumerable(this, predicate);
     }
 
-    public sum(): number;
-    public sum(selector: (element: T) => number): number;
-    public sum(selector: (element: T, index: number) => number): number;
-    public sum(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+    public sum(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let sum = 0;
         for (const element of this) {
@@ -403,9 +358,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new TakeEnumerable(this, count);
     }
 
-    public takeWhile(predicate: (element: T) => boolean): Enumerable<T>;
-    public takeWhile(predicate: (element: T, index: number) => boolean): Enumerable<T>;
-    public takeWhile(predicate: ((element: T) => boolean) | ((element: T, index: number) => boolean)): Enumerable<T> {
+    public takeWhile(predicate: (element: T, index: number) => boolean): Enumerable<T> {
         return new TakeWhileEnumerable(this, predicate);
     }
 
@@ -421,9 +374,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new ReadOnlyList<T>(this.toArray());
     }
 
-    public where(predicate: (element: T) => boolean): Enumerable<T>;
-    public where(predicate: (element: T, index: number) => boolean): Enumerable<T>;
-    public where(predicate: ((element: T) => boolean) | ((element: T, index: number) => boolean)): Enumerable<T> {
+    public where(predicate: (element: T, index: number) => boolean): Enumerable<T> {
         return new WhereEnumerable(this, predicate);
     }
 }
