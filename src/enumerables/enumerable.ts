@@ -69,6 +69,29 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return false;
     }
 
+    public average(): number;
+    public average(selector: (element: T) => number): number;
+    public average(selector: (element: T, index: number) => number): number;
+    public average(selector?: ((element: T) => number) | ((element: T, index: number) => number)): number {
+        let index = 0;
+        let sum = 0;
+        for (const element of this) {
+            const value = selector != null ? selector(element, index) : element;
+            if (typeof value !== 'number') {
+                throw Errors.valueIsNotNumber(value);
+            }
+
+            sum += value;
+            index++;
+        }
+
+        if (index === 0) {
+            throw Errors.noElements();
+        }
+
+        return sum / index;
+    }
+
     public cast<TResult>(): Enumerable<TResult> {
         return this as unknown as Enumerable<TResult>; // TODO MV throw?
     }
