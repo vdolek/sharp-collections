@@ -1,7 +1,7 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('ElementAt tests', () => {
+describe('elementAt tests', () => {
     it('elementAt test', () => {
         const list = List.from(2, 4, 6);
 

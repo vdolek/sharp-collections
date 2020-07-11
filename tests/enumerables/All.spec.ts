@@ -1,29 +1,29 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('All tests', () => {
-    it('True test', () => {
+describe('all tests', () => {
+    it('true test', () => {
         const list = List.from(2, 4, 6);
         const value = list.all(x => x < 10);
 
         expect(value).to.be.true;
     });
 
-    it('False test', () => {
+    it('false test', () => {
         const list = List.from(2, 4, 6);
         const value = list.all(x => x < 5);
 
         expect(value).to.be.false;
     });
 
-    it('True indexed test', () => {
+    it('true indexed test', () => {
         const list = List.from(2, 4, 6);
         const value = list.all((x, idx) => idx < 5);
 
         expect(value).to.be.true;
     });
 
-    it('False indexed test', () => {
+    it('false indexed test', () => {
         const list = List.from(2, 4, 6);
         const value = list.all((x, idx) => idx < 1);
 

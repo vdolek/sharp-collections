@@ -6,7 +6,7 @@ class Foo { public constructor(public readonly foo: number) { } }
 class Bar { public constructor(public readonly bar: number) { } }
 
 describe('join tests', () => {
-    it('Simple test', () => {
+    it('simple test', () => {
         const list1 = Enumerable
             .range(0, 5)
             .select(x => new Foo(x))

@@ -1,8 +1,8 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('Any, no, empty tests', () => {
-    it('Empty list test', () => {
+describe('any, no, empty tests', () => {
+    it('empty list test', () => {
         const list = List.empty<number>();
 
         expect(list.empty()).to.be.true;
@@ -12,7 +12,7 @@ describe('Any, no, empty tests', () => {
         expect(list.no(x => x < 10)).to.be.true;
     });
 
-    it('List test', () => {
+    it('list test', () => {
         const list = List.from(2, 4, 6);
 
         expect(list.empty()).to.be.false;

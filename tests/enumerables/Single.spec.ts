@@ -1,46 +1,46 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('Single tests', () => {
-    it('Simple test', () => {
+describe('single tests', () => {
+    it('simple test', () => {
         const list = List.from(2);
         const value = list.single();
 
         expect(value).to.be.equal(2);
     });
 
-    it('Simple predicate test', () => {
+    it('simple predicate test', () => {
         const list = List.from(2, 4, 6);
         const value = list.single(x => x > 5);
 
         expect(value).to.be.equal(6);
     });
 
-    it('Empty source test', () => {
+    it('empty source test', () => {
         const list = List.empty<number>();
 
         expect(() => list.single()).throws;
     });
 
-    it('Empty source predicate test', () => {
+    it('empty source predicate test', () => {
         const list = List.empty<number>();
 
         expect(() => list.single(x => x > 3)).throws;
     });
 
-    it('Empty source predicate test 2', () => {
+    it('empty source predicate test 2', () => {
         const list = List.from(2, 4, 6);
 
         expect(() => list.single(x => x > 10)).throws;
     });
 
-    it('Multiple test', () => {
+    it('multiple test', () => {
         const list = List.from(2, 4, 6);
 
         expect(() => list.single()).throws;
     });
 
-    it('Multiple predicate test', () => {
+    it('multiple predicate test', () => {
         const list = List.from(2, 4, 6);
 
         expect(() => list.single(x => x > 3)).throws;

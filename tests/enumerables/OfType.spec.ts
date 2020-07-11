@@ -7,8 +7,8 @@ class FooA extends Base { }
 class FooB extends FooA { }
 class Bar extends Base { }
 
-describe('OfTypeEnumerable tests', () => {
-    it('Simple test', () => {
+describe('ofType tests', () => {
+    it('simple test', () => {
         const list = List.from(new FooA(1), new FooB(2), new Bar(3), new FooB(4))
             .ofType(FooA);
 
