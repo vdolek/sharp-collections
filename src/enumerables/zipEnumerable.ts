@@ -2,8 +2,8 @@ import { Enumerable } from '@src/internal';
 
 export class ZipEnumerable<TFirst, TSecond, TResult> extends Enumerable<TResult> {
     public constructor(
-        private readonly firstSource: Enumerable<TFirst>,
-        private readonly secondSource: Enumerable<TSecond>,
+        private readonly firstSource: Iterable<TFirst>,
+        private readonly secondSource: Iterable<TSecond>,
         private readonly resultSelector: (first: TFirst, second: TSecond, index: number) => TResult) {
         super();
     }
@@ -17,11 +17,5 @@ export class ZipEnumerable<TFirst, TSecond, TResult> extends Enumerable<TResult>
             const value = this.resultSelector(i1.value, i2.value, index++);
             yield value;
         }
-    }
-
-    public count(): number {
-        const count1 = this.firstSource.count();
-        const count2 = this.secondSource.count();
-        return Math.min(count1, count2);
     }
 }

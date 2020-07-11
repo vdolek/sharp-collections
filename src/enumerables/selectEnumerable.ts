@@ -2,7 +2,7 @@ import { Enumerable } from '@src/internal';
 
 export class SelectEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(
-        private readonly source: Enumerable<T>,
+        private readonly source: Iterable<T>,
         private readonly selector: (x: T, idx: number) => TResult) {
         super();
     }
@@ -13,9 +13,5 @@ export class SelectEnumerable<T, TResult> extends Enumerable<TResult> {
             yield this.selector(element, index);
             ++index;
         }
-    }
-
-    public count(): number {
-        return this.source.count();
     }
 }
