@@ -2,7 +2,7 @@ import { List } from '@src/Internal';
 import { expect } from 'chai';
 
 describe('groupBy tests', () => {
-    it('Simple test', () => {
+    it('simple test', () => {
         const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const grouped = list
             .groupBy(x => x[0])
@@ -23,7 +23,7 @@ describe('groupBy tests', () => {
         ]);
     });
 
-    it('ElementSelector test', () => {
+    it('elementSelector test', () => {
         const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const grouped = list
             .groupBy(x => x[0], x => x.toUpperCase())
@@ -40,7 +40,7 @@ describe('groupBy tests', () => {
         ]);
     });
 
-    it('ResultSelector test', () => {
+    it('resultSelector test', () => {
         const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const groupedAsArray = list
             .groupBy(x => x[0], undefined, (key, group) => group.toArray())
@@ -53,7 +53,7 @@ describe('groupBy tests', () => {
         ]);
     });
 
-    it('ResultSelector test', () => {
+    it('elementSelector and resultSelector test', () => {
         const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const groupedAsArray = list
             .groupBy(x => x[0], x => x.toUpperCase(), (key, group) => group.toArray())

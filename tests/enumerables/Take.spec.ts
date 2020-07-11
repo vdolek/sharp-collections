@@ -1,8 +1,8 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('TakeEnumerable tests', () => {
-    it('Simple test', () => {
+describe('take tests', () => {
+    it('simple test', () => {
         const list = List.from(2, 4, 6, 8);
 
         expect(list.take(0).toArray()).to.be.empty;

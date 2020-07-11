@@ -3,21 +3,21 @@ import { expect } from 'chai';
 
 class Foo { public constructor(public readonly value: number) { } }
 
-describe('Average tests', () => {
-    it('Simple test', () => {
+describe('average tests', () => {
+    it('simple test', () => {
         const list = List.from(2, 4, 6);
         const avg = list.average();
 
         expect(avg).to.be.equal(4);
     });
 
-    it('Empty source test', () => {
+    it('empty source test', () => {
         const list = List.empty();
 
         expect(() => list.average()).to.throw('Sequence contains no elements');
     });
 
-    it('Not a number throws test', () => {
+    it('not a number throws test', () => {
         const list = List
             .from(2, 4, 6)
             .select(x => new Foo(x))
@@ -26,7 +26,7 @@ describe('Average tests', () => {
         expect(() => list.sum()).to.throw('Value is not a number');
     });
 
-    it('Selector test', () => {
+    it('selector test', () => {
         const list = List
             .from(2, 4, 6)
             .select(x => new Foo(x))

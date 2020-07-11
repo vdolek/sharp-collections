@@ -1,8 +1,8 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('SkipEnumerable tests', () => {
-    it('Simple test', () => {
+describe('skip tests', () => {
+    it('simple test', () => {
         const list = List.from(2, 4, 6, 8, 10);
 
         expect(list.skip(0).toArray()).to.be.deep.equal([2, 4, 6, 8, 10]);

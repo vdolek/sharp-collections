@@ -1,8 +1,8 @@
 import { List } from '@src/Internal';
 import { expect } from 'chai';
 
-describe('SelectManyEnumerable tests', () => {
-    it('Simple test', () => {
+describe('selectMany tests', () => {
+    it('simple test', () => {
         const list1 = List.from(
             { dummy: List.from(2, 4, 6) },
             { dummy: List.empty<number>() },

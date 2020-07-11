@@ -3,22 +3,22 @@ import { expect } from 'chai';
 
 class Foo { public constructor(public readonly value: number) { } }
 
-describe('Min and Max tests', () => {
-    it('Simple test', () => {
+describe('min and max tests', () => {
+    it('simple test', () => {
         const list = List.from(4, 2, 8, 6);
 
         expect(list.min()).to.be.equal(2);
         expect(list.max()).to.be.equal(8);
     });
 
-    it('Empty source test', () => {
+    it('empty source test', () => {
         const list = List.empty();
 
         expect(() => list.min()).to.throw('Sequence contains no elements');
         expect(() => list.max()).to.throw('Sequence contains no elements');
     });
 
-    it('Not a number throws test', () => {
+    it('not a number throws test', () => {
         const list = List
             .from(2, 4, 6)
             .select(x => new Foo(x))
@@ -28,7 +28,7 @@ describe('Min and Max tests', () => {
         expect(() => list.max()).to.throw('Value is not a number');
     });
 
-    it('Selector test', () => {
+    it('selector test', () => {
         const list = List
             .from(4, 2, 8, 6)
             .select(x => new Foo(x))
