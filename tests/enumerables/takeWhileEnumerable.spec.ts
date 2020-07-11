@@ -11,7 +11,7 @@ describe('TakeWhileEnumerable tests', () => {
 
     it('Simple indexed test', () => {
         const list = List.from(2, 4, 6, 8, 10)
-            .takeWhile((x: number, idx: number) => idx < 3);
+            .takeWhile((x, idx) => idx < 3);
 
         expect(list.toArray()).to.be.deep.equal([2, 4, 6]);
     });

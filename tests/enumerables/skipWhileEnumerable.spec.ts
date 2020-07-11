@@ -11,7 +11,7 @@ describe('SkipWhileEnumerable tests', () => {
 
     it('Simple indexed test', () => {
         const list = List.from(2, 4, 6, 8, 2)
-            .skipWhile((x: number, idx: number) => idx < 3);
+            .skipWhile((x, idx) => idx < 3);
 
         expect(list.toArray()).to.be.deep.equal([8, 2]);
     });
