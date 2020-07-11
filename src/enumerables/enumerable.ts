@@ -161,9 +161,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
     public first(predicate: (x: T, index: number) => boolean): T;
     public first(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T {
         let index = 0;
-        for (const item of this) {
-            if (predicate == null || predicate(item, index++)) {
-                return item;
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
+                return element;
             }
         }
 
@@ -175,9 +175,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
     public firstOrDefault(predicate: (x: T, index: number) => boolean): T | null;
     public firstOrDefault(predicate?: ((x: T) => boolean) | ((x: T, index: number) => boolean)): T | null {
         let index = 0;
-        for (const item of this) {
-            if (predicate == null || predicate(item, index++)) {
-                return item;
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
+                return element;
             }
         }
 
@@ -309,13 +309,13 @@ export abstract class Enumerable<T> implements Iterable<T> {
         let value: T;
         let found = false;
         let index = 0;
-        for (const item of this) {
-            if (predicate == null || predicate(item, index++)) {
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
                 if (found) {
                     throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
                 }
 
-                value = item;
+                value = element;
                 found = true;
             }
         }
@@ -335,13 +335,13 @@ export abstract class Enumerable<T> implements Iterable<T> {
         let value: T | null = null;
         let found = false;
         let index = 0;
-        for (const item of this) {
-            if (predicate == null || predicate(item, index++)) {
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
                 if (found) {
                     throw predicate != null ? Errors.moreThanOneMatch() : Errors.moreThanOneElement();
                 }
 
-                value = item;
+                value = element;
                 found = true;
             }
         }
@@ -353,9 +353,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new SkipEnumerable(this, count);
     }
 
-    public skipWhile(predicate: (item: T) => boolean): Enumerable<T>;
-    public skipWhile(predicate: (item: T, index: number) => boolean): Enumerable<T>;
-    public skipWhile(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
+    public skipWhile(predicate: (element: T) => boolean): Enumerable<T>;
+    public skipWhile(predicate: (element: T, index: number) => boolean): Enumerable<T>;
+    public skipWhile(predicate: ((element: T) => boolean) | ((element: T, index: number) => boolean)): Enumerable<T> {
         return new SkipWhileEnumerable(this, predicate);
     }
 
@@ -380,9 +380,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new TakeEnumerable(this, count);
     }
 
-    public takeWhile(predicate: (item: T) => boolean): Enumerable<T>;
-    public takeWhile(predicate: (item: T, index: number) => boolean): Enumerable<T>;
-    public takeWhile(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
+    public takeWhile(predicate: (element: T) => boolean): Enumerable<T>;
+    public takeWhile(predicate: (element: T, index: number) => boolean): Enumerable<T>;
+    public takeWhile(predicate: ((element: T) => boolean) | ((element: T, index: number) => boolean)): Enumerable<T> {
         return new TakeWhileEnumerable(this, predicate);
     }
 
@@ -398,9 +398,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new ReadOnlyList<T>(this.toArray());
     }
 
-    public where(predicate: (item: T) => boolean): Enumerable<T>;
-    public where(predicate: (item: T, index: number) => boolean): Enumerable<T>;
-    public where(predicate: ((item: T) => boolean) | ((item: T, index: number) => boolean)): Enumerable<T> {
+    public where(predicate: (element: T) => boolean): Enumerable<T>;
+    public where(predicate: (element: T, index: number) => boolean): Enumerable<T>;
+    public where(predicate: ((element: T) => boolean) | ((element: T, index: number) => boolean)): Enumerable<T> {
         return new WhereEnumerable(this, predicate);
     }
 }
