@@ -2,8 +2,8 @@ import { Enumerable } from '@src/Internal';
 
 export class RepeatEnumerable<T> extends Enumerable<T> {
     public constructor(
-        protected readonly element: T,
-        protected readonly elementCount: number) {
+        private readonly element: T,
+        private readonly elementCount: number) {
         super();
     }
 

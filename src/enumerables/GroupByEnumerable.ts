@@ -2,10 +2,10 @@ import { Dictionary, Enumerable, Grouping, List } from '@src/Internal';
 
 export class GroupByEnumerable<TKey, TValue, TElement = TValue, TResult = Grouping<TKey, TElement>> extends Enumerable<TResult> {
     public constructor(
-        protected readonly source: Iterable<TValue>,
-        protected readonly keySelector: (value: TValue, index: number) => TKey,
-        protected readonly elementSelector?: (value: TValue, index: number) => TElement,
-        protected readonly resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult) {
+        private readonly source: Iterable<TValue>,
+        private readonly keySelector: (value: TValue, index: number) => TKey,
+        private readonly elementSelector?: (value: TValue, index: number) => TElement,
+        private readonly resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult) {
         super();
     }
 
