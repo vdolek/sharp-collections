@@ -312,13 +312,13 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
         let i1 = iterator1.next();
         let i2 = iterator2.next();
-        for (; !i1.done && !i2.done; i1 = iterator1.next(), i2 = iterator2.next()) {
+        for (; i1.done !== true && i2.done !== true; i1 = iterator1.next(), i2 = iterator2.next()) {
             if (!cmp.equals(i1.value, i2.value)) {
                 return false;
             }
         }
 
-        if (!i1.done || !i2.done) {
+        if (i1.done !== true || i2.done !== true) {
             return false;
         }
 
