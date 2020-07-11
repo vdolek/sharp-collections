@@ -302,6 +302,29 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new SelectManyEnumerable(this, selector);
     }
 
+    public sequenceEqual(secondSource: Enumerable<T>): boolean;
+    public sequenceEqual(secondSource: Enumerable<T>, comparer: EqualityComparer<T>): boolean;
+    public sequenceEqual(secondSource: Enumerable<T>, comparer?: EqualityComparer<T>): boolean {
+        const cmp = comparer ?? EqualityComparer.default<T>();
+
+        const iterator1 = this[Symbol.iterator]();
+        const iterator2 = secondSource[Symbol.iterator]();
+
+        let i1 = iterator1.next();
+        let i2 = iterator2.next();
+        for (; !i1.done && !i2.done; i1 = iterator1.next(), i2 = iterator2.next()) {
+            if (!cmp.equals(i1.value, i2.value)) {
+                return false;
+            }
+        }
+
+        if (!i1.done || !i2.done) {
+            return false;
+        }
+
+        return true;
+    }
+
     public single(): T;
     public single(predicate: (x: T) => boolean): T;
     public single(predicate: (x: T, index: number) => boolean): T;

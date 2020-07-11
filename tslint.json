@@ -169,6 +169,10 @@
             "as-needed"
         ],
         "object-literal-sort-keys": false,
+        "one-variable-per-declaration": [
+            true,
+            "ignore-for-loop"
+        ],
         "prefer-conditional-expression": [
             true,
             "check-else-if"
