@@ -18,7 +18,7 @@ describe('Contains tests', () => {
     });
 
     it('Empty source test', () => {
-        const list = List.from();
+        const list = List.empty<number>();
 
         expect(list.contains(1)).to.be.false;
     });
