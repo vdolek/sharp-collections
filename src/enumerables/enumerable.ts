@@ -44,6 +44,18 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return resultSelector != null ? resultSelector(result) : result;
     }
 
+    public all(predicate: (x: T) => boolean): boolean;
+    public all(predicate: (x: T, index: number) => boolean): boolean;
+    public all(predicate: ((x: T) => boolean) | ((x: T, idx: number) => boolean)): boolean {
+        let index = 0;
+        for (const element of this) {
+            if (!predicate(element, index++)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public cast<TResult>(): Enumerable<TResult> {
         return this as unknown as Enumerable<TResult>; // TODO MV throw?
     }
