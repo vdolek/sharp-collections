@@ -56,6 +56,19 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return true;
     }
 
+    public any(): boolean;
+    public any(predicate: (x: T) => boolean): boolean;
+    public any(predicate: (x: T, index: number) => boolean): boolean;
+    public any(predicate?: ((x: T) => boolean) | ((x: T, idx: number) => boolean)): boolean {
+        let index = 0;
+        for (const element of this) {
+            if (predicate == null || predicate(element, index++)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public cast<TResult>(): Enumerable<TResult> {
         return this as unknown as Enumerable<TResult>; // TODO MV throw?
     }
@@ -70,6 +83,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
             ++index;
         }
         return index;
+    }
+
+    public empty(): boolean {
+        return this.no();
     }
 
     public first(): T;
@@ -98,6 +115,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return null;
+    }
+
+    public no(): boolean;
+    public no(predicate: (x: T) => boolean): boolean;
+    public no(predicate: (x: T, index: number) => boolean): boolean;
+    public no(predicate?: ((x: T) => boolean) | ((x: T, idx: number) => boolean)): boolean {
+        // @ts-ignore
+        const result = !this.any(predicate);
+        return result;
     }
 
     // tslint:disable-next-line:no-any
