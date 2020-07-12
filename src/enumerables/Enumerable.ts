@@ -9,22 +9,24 @@ import {
     EqualityComparer,
     Errors,
     ExceptEnumerable,
+    FullJoinElement,
+    FullJoinEnumerable,
     GroupByEnumerable,
     Grouping,
     GroupJoinElement,
-    GroupJoinEnumerable, LeftGroupJoinElement, LeftGroupJoinEnumerable,
+    GroupJoinEnumerable,
     HashSet,
     IntersectEnumerable,
     IterableEnumerable,
     JoinElement,
     JoinEnumerable,
+    LeftGroupJoinElement,
+    LeftGroupJoinEnumerable,
     LeftJoinElement,
     LeftJoinEnumerable,
     List,
     Lookup,
     OfTypeEnumerable,
-    OuterJoinElement,
-    OuterJoinEnumerable,
     Pair,
     RangeEnumerable,
     ReadOnlyDictionary,
@@ -246,6 +248,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
+    public fullJoin<TRight, TKey, TResult = FullJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T | null, right: TRight | null) => TResult
+    ): Enumerable<TResult> {
+        return new FullJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
+    }
+
     public groupBy<TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
         keySelector: (x: T, index: number) => TKey,
         elementSelector?: (value: T, index: number) => TElement,
@@ -383,15 +394,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
     // tslint:disable-next-line:no-any
     public ofType<TResult>(type: new(...args: any[]) => TResult): Enumerable<TResult> {
         return new OfTypeEnumerable(this, type);
-    }
-
-    public outerJoin<TRight, TKey, TResult = OuterJoinElement<T, TRight>>(
-        rightSource: Iterable<TRight>,
-        leftKeySelector: (value: T, index: number) => TKey,
-        rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T | null, right: TRight | null) => TResult
-    ): Enumerable<TResult> {
-        return new OuterJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public reverse(): Enumerable<T> {
