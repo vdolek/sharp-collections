@@ -11,6 +11,8 @@ import {
     ExceptEnumerable,
     GroupByEnumerable,
     Grouping,
+    GroupJoinElement,
+    GroupJoinEnumerable,
     HashSet,
     IntersectEnumerable,
     IterableEnumerable,
@@ -250,6 +252,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult
     ): Enumerable<TResult> {
         return new GroupByEnumerable(this, keySelector, elementSelector, resultSelector);
+    }
+
+    public groupJoin<TRight, TKey, TResult = GroupJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T, rightList: ReadOnlyList<TRight>) => TResult
+    ): Enumerable<TResult> {
+        return new GroupJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public intersect(second: Iterable<T>): Enumerable<T> {
