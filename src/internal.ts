@@ -11,6 +11,7 @@ export * from '@src/enumerables/Enumerable';
 export * from '@src/enumerables/ArrayEnumerable';
 export * from '@src/enumerables/EmptyEnumerable';
 export * from '@src/enumerables/IteratorEnumerable';
+export * from '@src/enumerables/IterableEnumerable';
 export * from '@src/enumerables/MapEnumerable';
 
 export * from '@src/enumerables/ConcatEnumerable';

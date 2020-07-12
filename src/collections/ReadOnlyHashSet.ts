@@ -5,6 +5,10 @@ export class ReadOnlyHashSet<T> extends SetEnumerable<T> {
         return new ReadOnlyHashSet<T>();
     }
 
+    public static from<T>(source: Iterable<T>): ReadOnlyHashSet<T> {
+        return new ReadOnlyHashSet<T>(source);
+    }
+
     public static fromElements<T>(...elements: T[]): ReadOnlyHashSet<T> {
         return new ReadOnlyHashSet<T>(elements);
     }

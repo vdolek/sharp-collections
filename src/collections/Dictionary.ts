@@ -5,6 +5,10 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
         return new Dictionary<TKey, TValue>();
     }
 
+    public static from<TKey, TValue>(source: Iterable<Pair<TKey, TValue>>): Dictionary<TKey, TValue> {
+        return new Dictionary(source);
+    }
+
     public static fromElements<TKey, TValue>(...elements: Pair<TKey, TValue>[]): Dictionary<TKey, TValue> {
         return new Dictionary(elements);
     }
