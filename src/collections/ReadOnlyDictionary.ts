@@ -1,4 +1,4 @@
-import { Enumerable, Errors, IterableEnumerable, MapEnumerable, Pair } from '@src/Internal';
+import { Enumerable, Errors, MapEnumerable, Pair } from '@src/Internal';
 
 // @ts-ignore
 export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue> {
@@ -25,7 +25,7 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
     }
 
     private static getSourceMap<TKey, TValue>(source?: Iterable<Pair<TKey, TValue>>): Map<TKey, Pair<TKey, TValue>> {
-        const sourceEnumerable = new IterableEnumerable(source ?? []);
+        const sourceEnumerable = Enumerable.from(source ?? []);
         const mapped = sourceEnumerable.select<[TKey, Pair<TKey, TValue>]>(pair => [pair.key, pair]);
         return new Map<TKey, Pair<TKey, TValue>>(mapped);
     }
@@ -53,11 +53,11 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
     }
 
     public keys(): Enumerable<TKey> {
-        return new IterableEnumerable(this.map.keys());
+        return Enumerable.from(this.map.keys());
     }
 
     public values(): Enumerable<TValue> {
-        return new IterableEnumerable(this.map.values())
+        return Enumerable.from(this.map.values())
             .select(x => x.value);
     }
 }

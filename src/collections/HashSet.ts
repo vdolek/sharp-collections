@@ -26,7 +26,7 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
     }
 
     public constructor(source?: Iterable<T>) {
-        super(Array.from(source ?? []));
+        super(source ?? []);
     }
 
     public add(value: T): this {

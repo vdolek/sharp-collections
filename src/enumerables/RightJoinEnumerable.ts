@@ -1,4 +1,4 @@
-import { Enumerable, IterableEnumerable, JoinElement, RightJoinElement } from '@src/Internal';
+import { Enumerable, JoinElement, RightJoinElement } from '@src/Internal';
 
 export class RightJoinEnumerable<TLeft, TRight, TKey, TResult = RightJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
@@ -12,7 +12,7 @@ export class RightJoinEnumerable<TLeft, TRight, TKey, TResult = RightJoinElement
     }
 
     public *[Symbol.iterator](): Iterator<TResult> {
-        const leftEnumerable = new IterableEnumerable(this.leftSource);
+        const leftEnumerable = Enumerable.from(this.leftSource);
         const leftLookup = leftEnumerable.toLookup(this.leftKeySelector);
 
         const selector = this.resultSelector ?? ((left, right) => new JoinElement(left, right) as unknown as TResult);
