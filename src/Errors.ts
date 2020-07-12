@@ -1,4 +1,8 @@
 export class Errors {
+    public static argumentOutOfRange(): Error {
+        return new Error('Argument was out of range');
+    }
+
     public static indexOutOfRange(): Error {
         return new Error('Index was out of range');
     }
