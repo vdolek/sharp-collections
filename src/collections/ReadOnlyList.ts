@@ -35,8 +35,12 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         super(Array.from(source ?? []));
     }
 
+    public containsIndex(index: number): boolean {
+        return index >= 0 && index < this.source.length;
+    }
+
     public get(index: number): T {
-        if (index < 0 || index >= this.source.length) {
+        if (!this.containsIndex(index)) {
             throw Errors.indexOutOfRange();
         }
 
@@ -44,7 +48,7 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     }
 
     public getOrNull(index: number): T | null {
-        if (index < 0 || index >= this.source.length) {
+        if (!this.containsIndex(index)) {
             return null;
         }
 
