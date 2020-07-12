@@ -1,4 +1,5 @@
 import {
+    AppendEnumerable,
     ArrayEnumerable,
     ConcatEnumerable,
     Dictionary,
@@ -91,6 +92,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     public abstract [Symbol.iterator](): Iterator<T>;
+
+    public append(value: T): Enumerable<T> {
+        return new AppendEnumerable(this, value);
+    }
 
     public aggregate<TAccumulate = T, TResult = T>(
         seed: TAccumulate,

@@ -14,6 +14,7 @@ export * from '@src/enumerables/IteratorEnumerable';
 export * from '@src/enumerables/IterableEnumerable';
 export * from '@src/enumerables/MapEnumerable';
 
+export * from '@src/enumerables/AppendEnumerable';
 export * from '@src/enumerables/ConcatEnumerable';
 export * from '@src/enumerables/DistinctByEnumerable';
 export * from '@src/enumerables/ElementsAtEnumerable';
