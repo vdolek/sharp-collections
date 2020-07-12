@@ -1,4 +1,4 @@
-import { List } from '@src/Internal';
+import { List } from '@sharp-collections';
 
 export class Grouping<TKey, TElement> extends List<TElement> {
     public readonly key: TKey;

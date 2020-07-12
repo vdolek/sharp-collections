@@ -1,4 +1,4 @@
-import { Enumerable } from '@src/Internal';
+import { Enumerable } from '@sharp-collections';
 
 export class IterableEnumerable<T> extends Enumerable<T> {
     public constructor(private readonly source: Iterable<T>) {

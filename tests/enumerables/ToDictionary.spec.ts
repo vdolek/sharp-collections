@@ -1,4 +1,4 @@
-import { ArrayEnumerable, Enumerable, List, Pair } from '@src/Internal';
+import { ArrayEnumerable, Enumerable, List, Pair } from '@sharp-collections';
 import { expect } from 'chai';
 
 describe('toDictionary tests', () => {

@@ -1,4 +1,4 @@
-import { Dictionary, Enumerable, Grouping, List } from '@src/Internal';
+import { Dictionary, Enumerable, Grouping, List } from '@sharp-collections';
 
 export class GroupByEnumerable<TKey, TValue, TElement = TValue, TResult = Grouping<TKey, TElement>> extends Enumerable<TResult> {
     public constructor(

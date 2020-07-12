@@ -1,4 +1,4 @@
-import { Enumerable } from '@src/Internal';
+import { Enumerable } from '@sharp-collections';
 
 export class RangeEnumerable extends Enumerable<number> {
     public constructor(

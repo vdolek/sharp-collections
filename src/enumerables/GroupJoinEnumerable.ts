@@ -1,4 +1,4 @@
-import { Enumerable, GroupJoinElement, ReadOnlyList } from '@src/Internal';
+import { Enumerable, GroupJoinElement, ReadOnlyList } from '@sharp-collections';
 
 export class GroupJoinEnumerable<TLeft, TRight, TKey, TResult = GroupJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

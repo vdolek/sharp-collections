@@ -1,4 +1,4 @@
-import { List } from '@src/Internal';
+import { List } from '@sharp-collections';
 import { expect } from 'chai';
 
 describe('first tests', () => {

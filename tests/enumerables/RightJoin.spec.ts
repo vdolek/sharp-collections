@@ -1,5 +1,5 @@
 /* tslint:disable:max-classes-per-file */
-import { Enumerable, RightJoinElement } from '@src/Internal';
+import { Enumerable, RightJoinElement } from '@sharp-collections';
 import { expect } from 'chai';
 
 class Foo { public constructor(public readonly foo: number) { } }

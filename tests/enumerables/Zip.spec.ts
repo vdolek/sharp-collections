@@ -1,4 +1,4 @@
-import { Enumerable, List, ZipElement } from '@src/Internal';
+import { Enumerable, List, ZipElement } from '@sharp-collections';
 import { expect } from 'chai';
 
 describe('zip tests', () => {

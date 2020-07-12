@@ -1,4 +1,4 @@
-import { Enumerable, HashSet } from '@src/Internal';
+import { Enumerable, HashSet } from '@sharp-collections';
 
 export class ExceptEnumerable<T> extends Enumerable<T> {
     public constructor(

@@ -1,4 +1,4 @@
-import { Enumerable, Grouping, ReadOnlyDictionary } from '@src/Internal';
+import { Enumerable, Grouping, ReadOnlyDictionary } from '@sharp-collections';
 
 export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>> {
     public constructor(private readonly dict: ReadOnlyDictionary<TKey, Grouping<TKey, TElement>>) {

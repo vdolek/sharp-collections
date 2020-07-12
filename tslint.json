@@ -121,6 +121,7 @@
             true,
             [
                 "@src",
+                "@sharp-collections",
                 "chai"
             ]
         ],
