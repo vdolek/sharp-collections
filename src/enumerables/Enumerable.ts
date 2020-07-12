@@ -509,6 +509,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Set(this);
     }
 
+    public union(second: Enumerable<T>): Enumerable<T> {
+        return this.concat(second).distinct();
+    }
+
     public where(predicate: (element: T, index: number) => boolean): Enumerable<T> {
         return new WhereEnumerable(this, predicate);
     }
