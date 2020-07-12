@@ -5,7 +5,7 @@ import { expect } from 'chai';
 class Foo { public constructor(public readonly foo: number) { } }
 class Bar { public constructor(public readonly bar: number) { } }
 
-describe('groupJoin tests', () => {
+describe('groupLeftJoin tests', () => {
     it('simple test', () => {
         const list1 = Enumerable
             .fromElements(1, 2, 1, 3, 5, 3)
@@ -18,16 +18,24 @@ describe('groupJoin tests', () => {
             .toList();
 
         const joined = list1
-            .groupJoin(list2, x => x.foo, x => x.bar)
-            .select(x => [x.left, x.rightList.toArray()])
+            .groupLeftJoin(list2, x => x.foo, x => x.bar)
+            .select(x => [x.left, x.rightList === null ? null : x.rightList.toArray()])
             .toArray();
 
         expect(joined).to.be.deep.equal([
+            [
+                list1.get(0),
+                null
+            ],
             [
                 list1.get(1),
                 [
                     list2.get(0)
                 ]
+            ],
+            [
+                list1.get(2),
+                null
             ],
             [
                 list1.get(3),
