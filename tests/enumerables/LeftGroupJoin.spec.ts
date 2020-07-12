@@ -5,7 +5,7 @@ import { expect } from 'chai';
 class Foo { public constructor(public readonly foo: number) { } }
 class Bar { public constructor(public readonly bar: number) { } }
 
-describe('groupLeftJoin tests', () => {
+describe('leftGroupJoin tests', () => {
     it('simple test', () => {
         const list1 = Enumerable
             .fromElements(1, 2, 1, 3, 5, 3)
@@ -18,7 +18,7 @@ describe('groupLeftJoin tests', () => {
             .toList();
 
         const joined = list1
-            .groupLeftJoin(list2, x => x.foo, x => x.bar)
+            .leftGroupJoin(list2, x => x.foo, x => x.bar)
             .select(x => [x.left, x.rightList === null ? null : x.rightList.toArray()])
             .toArray();
 

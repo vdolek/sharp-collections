@@ -12,7 +12,7 @@ import {
     GroupByEnumerable,
     Grouping,
     GroupJoinElement,
-    GroupJoinEnumerable, GroupLeftJoinElement, GroupLeftJoinEnumerable,
+    GroupJoinEnumerable, LeftGroupJoinElement, LeftGroupJoinEnumerable,
     HashSet,
     IntersectEnumerable,
     IterableEnumerable,
@@ -263,15 +263,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new GroupJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
-    public groupLeftJoin<TRight, TKey, TResult = GroupLeftJoinElement<T, TRight>>(
-        rightSource: Iterable<TRight>,
-        leftKeySelector: (value: T, index: number) => TKey,
-        rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T, rightList: ReadOnlyList<TRight> | null) => TResult
-    ): Enumerable<TResult> {
-        return new GroupLeftJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
-    }
-
     public intersect(second: Iterable<T>): Enumerable<T> {
         return new IntersectEnumerable(this, second);
     }
@@ -319,6 +310,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         }
 
         return null;
+    }
+
+    public leftGroupJoin<TRight, TKey, TResult = LeftGroupJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T, rightList: ReadOnlyList<TRight> | null) => TResult
+    ): Enumerable<TResult> {
+        return new LeftGroupJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public leftJoin<TRight, TKey, TResult = LeftJoinElement<T, TRight>>(

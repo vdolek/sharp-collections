@@ -1,6 +1,6 @@
-import { Enumerable, GroupLeftJoinElement, ReadOnlyList } from '@sharp-collections';
+import { Enumerable, LeftGroupJoinElement, ReadOnlyList } from '@sharp-collections';
 
-export class GroupLeftJoinEnumerable<TLeft, TRight, TKey, TResult = GroupLeftJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
+export class LeftGroupJoinEnumerable<TLeft, TRight, TKey, TResult = LeftGroupJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
         private readonly leftSource: Iterable<TLeft>,
         private readonly rightSource: Iterable<TRight>,
@@ -15,7 +15,7 @@ export class GroupLeftJoinEnumerable<TLeft, TRight, TKey, TResult = GroupLeftJoi
         const rightEnumerable = Enumerable.from(this.rightSource);
         const rightLookup = rightEnumerable.toLookup(this.rightKeySelector);
 
-        const selector = this.resultSelector ?? ((left, rightsList) => new GroupLeftJoinElement(left, rightsList) as unknown as TResult);
+        const selector = this.resultSelector ?? ((left, rightsList) => new LeftGroupJoinElement(left, rightsList) as unknown as TResult);
 
         let index = 0;
         for (const left of this.leftSource) {
