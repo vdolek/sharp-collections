@@ -207,7 +207,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return null;
     }
 
-    public elementsAt(indexes: Iterable<number>): Enumerable<T | null>;
+    public elementsAt(indexes: Iterable<number>): Enumerable<T>;
     public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.returnNull): Enumerable<T | null>;
     public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.throw | ElementsAtNotFoundBehavior.ignore): Enumerable<T>;
     public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior = ElementsAtNotFoundBehavior.throw): Enumerable<T | null> {
