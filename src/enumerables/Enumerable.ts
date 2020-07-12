@@ -12,6 +12,7 @@ import {
     GroupByEnumerable,
     Grouping,
     HashSet,
+    IntersectEnumerable,
     IterableEnumerable,
     JoinElement,
     JoinEnumerable,
@@ -253,6 +254,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult
     ): Enumerable<TResult> {
         return new GroupByEnumerable(this, keySelector, elementSelector, resultSelector);
+    }
+
+    public intersect(second: Iterable<T>): Enumerable<T> {
+        return new IntersectEnumerable(this, second);
     }
 
     public join<TRight, TKey, TResult = JoinElement<T, TRight>>(
