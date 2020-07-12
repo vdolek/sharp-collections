@@ -19,6 +19,7 @@ export * from '@src/enumerables/DistinctByEnumerable';
 export * from '@src/enumerables/ElementsAtEnumerable';
 export * from '@src/enumerables/ExceptEnumerable';
 export * from '@src/enumerables/GroupByEnumerable';
+export * from '@src/enumerables/IntersectEnumerable';
 export * from '@src/enumerables/JoinEnumerable';
 export * from '@src/enumerables/LeftJoinEnumerable';
 export * from '@src/enumerables/OfTypeEnumerable';
