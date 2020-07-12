@@ -15,7 +15,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new EmptyEnumerable();
     }
 
-    public static from<T>(...elements: T[]): Enumerable<T> {
+    public static fromElements<T>(...elements: T[]): Enumerable<T> {
         return new ArrayEnumerable(elements);
     }
 
@@ -35,7 +35,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     public static single<T>(element: T): Enumerable<T> {
-        return Enumerable.from(element);
+        return Enumerable.fromElements(element);
     }
 
     public abstract [Symbol.iterator](): Iterator<T>;
@@ -411,7 +411,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
     ): ReadOnlyDictionary<TKey, TValue> {
-        const pairs = this.select((x, idx) => Pair.from(
+        const pairs = this.select((x, idx) => Pair.fromElements(
             keySelector(x, idx),
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue
         ));
@@ -423,7 +423,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
     ): Dictionary<TKey, TValue> {
-        const pairs = this.select((x, idx) => Pair.from(
+        const pairs = this.select((x, idx) => Pair.fromElements(
             keySelector(x, idx),
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue));
 

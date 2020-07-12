@@ -5,7 +5,7 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
         return new HashSet<T>();
     }
 
-    public static from<T>(...elements: T[]): HashSet<T> {
+    public static fromElements<T>(...elements: T[]): HashSet<T> {
         return new HashSet<T>(elements);
     }
 
@@ -18,7 +18,7 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
     }
 
     public static single<T>(element: T): HashSet<T> {
-        return HashSet.from(element);
+        return HashSet.fromElements(element);
     }
 
     public constructor(source?: Iterable<T>) {

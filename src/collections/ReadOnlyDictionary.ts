@@ -6,12 +6,12 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
         return new ReadOnlyDictionary<TKey, TValue>();
     }
 
-    public static from<TKey, TValue>(...elements: Pair<TKey, TValue>[]): ReadOnlyDictionary<TKey, TValue> {
+    public static fromElements<TKey, TValue>(...elements: Pair<TKey, TValue>[]): ReadOnlyDictionary<TKey, TValue> {
         return new ReadOnlyDictionary(elements);
     }
 
     public static single<TKey, TValue>(key: TKey, value: TValue): ReadOnlyDictionary<TKey, TValue> {
-        return ReadOnlyDictionary.from(Pair.from(key, value));
+        return ReadOnlyDictionary.fromElements(Pair.fromElements(key, value));
     }
 
     // readonly [key: TKey]: T; // TODO

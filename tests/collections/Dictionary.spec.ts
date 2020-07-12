@@ -3,7 +3,7 @@ import { expect } from 'chai';
 
 describe('Dictionary tests', () => {
     it('get test', () => {
-        const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
+        const dict = Dictionary.fromElements(Pair.fromElements('a1', 1), Pair.fromElements('a2', 2));
         dict.add('a3', 3);
         dict.set('a2', 22);
 
@@ -16,13 +16,13 @@ describe('Dictionary tests', () => {
     });
 
     it('add test', () => {
-        const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
+        const dict = Dictionary.fromElements(Pair.fromElements('a1', 1), Pair.fromElements('a2', 2));
 
         expect(() => dict.add('a1', 11)).throws('An item with the same key has already been added');
     });
 
     it('remove test', () => {
-        const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
+        const dict = Dictionary.fromElements(Pair.fromElements('a1', 1), Pair.fromElements('a2', 2));
         dict.add('a3', 3);
         dict.remove('a2');
 
@@ -34,7 +34,7 @@ describe('Dictionary tests', () => {
     });
 
     it('clear test', () => {
-        const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
+        const dict = Dictionary.fromElements(Pair.fromElements('a1', 1), Pair.fromElements('a2', 2));
         dict.add('a3', 3);
         dict.clear();
 
@@ -45,7 +45,7 @@ describe('Dictionary tests', () => {
     });
 
     it('keys test', () => {
-        const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
+        const dict = Dictionary.fromElements(Pair.fromElements('a1', 1), Pair.fromElements('a2', 2));
         const keys = dict.keys().toArray();
 
         expect(keys).to.have.length(2);
@@ -53,7 +53,7 @@ describe('Dictionary tests', () => {
     });
 
     it('values test', () => {
-        const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
+        const dict = Dictionary.fromElements(Pair.fromElements('a1', 1), Pair.fromElements('a2', 2));
         const values = dict.values().toArray();
 
         expect(values).to.have.length(2);

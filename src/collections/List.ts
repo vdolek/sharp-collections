@@ -5,7 +5,7 @@ export class List<T> extends ReadOnlyList<T> {
         return new List<T>();
     }
 
-    public static from<T>(...elements: T[]): List<T> {
+    public static fromElements<T>(...elements: T[]): List<T> {
         return new List<T>(elements);
     }
 
@@ -22,7 +22,7 @@ export class List<T> extends ReadOnlyList<T> {
     }
 
     public static single<T>(element: T): List<T> {
-        return List.from(element);
+        return List.fromElements(element);
     }
 
     // [index: number]: T; // TODO

@@ -8,8 +8,8 @@ describe('Enumerable tests', () => {
         expect(enumerable.toArray()).to.be.empty;
     });
 
-    it('from', () => {
-        const enumerable = Enumerable.from(2, 4, 6);
+    it('fromElements', () => {
+        const enumerable = Enumerable.fromElements(2, 4, 6);
 
         expect(enumerable.toArray()).to.be.deep.equal([2, 4, 6]);
     });

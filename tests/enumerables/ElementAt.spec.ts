@@ -3,7 +3,7 @@ import { expect } from 'chai';
 
 describe('elementAt tests', () => {
     it('elementAt test', () => {
-        const list = List.from(2, 4, 6);
+        const list = List.fromElements(2, 4, 6);
 
         expect(list.elementAt(0)).to.be.equal(2);
         expect(list.elementAt(1)).to.be.equal(4);
@@ -14,7 +14,7 @@ describe('elementAt tests', () => {
     });
 
     it('elementAtOrDefault test', () => {
-        const list = List.from(2, 4, 6);
+        const list = List.fromElements(2, 4, 6);
 
         expect(list.elementAtOrDefault(0)).to.be.equal(2);
         expect(list.elementAtOrDefault(1)).to.be.equal(4);

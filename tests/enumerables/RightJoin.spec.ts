@@ -8,12 +8,12 @@ class Bar { public constructor(public readonly bar: number) { } }
 describe('leftJoin tests', () => {
     it('simple test', () => {
         const list1 = Enumerable
-            .from(1, 2, 1, 3, 5, 3, 4)
+            .fromElements(1, 2, 1, 3, 5, 3, 4)
             .select(x => new Foo(x))
             .toList();
 
         const list2 = Enumerable
-            .from(2, 3, 3, 6, 5)
+            .fromElements(2, 3, 3, 6, 5)
             .select(x => new Bar(x))
             .toList();
 

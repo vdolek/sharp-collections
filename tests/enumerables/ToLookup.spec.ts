@@ -3,7 +3,7 @@ import { expect } from 'chai';
 
 describe('toLookup tests', () => {
     it('simple test', () => {
-        const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const list = List.fromElements('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const lookup = list.toLookup(x => x[0]);
 
         expect(lookup.count()).to.be.equal(3);
@@ -15,7 +15,7 @@ describe('toLookup tests', () => {
     });
 
     it('valueSelector test', () => {
-        const list = List.from('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const list = List.fromElements('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const lookup = list.toLookup(x => x[0], x => `${x}XXX`);
 
         expect(lookup.count()).to.be.equal(3);
