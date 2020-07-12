@@ -1,6 +1,6 @@
-import { Enumerable, OuterJoinElement } from '@sharp-collections';
+import { Enumerable, FullJoinElement } from '@sharp-collections';
 
-export class OuterJoinEnumerable<TLeft, TRight, TKey, TResult = OuterJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
+export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
         private readonly leftSource: Iterable<TLeft>,
         private readonly rightSource: Iterable<TRight>,
@@ -18,7 +18,7 @@ export class OuterJoinEnumerable<TLeft, TRight, TKey, TResult = OuterJoinElement
         const leftLookup = leftEnumerable.toLookup(this.leftKeySelector);
         const rightLookup = rightEnumerable.toLookup(this.rightKeySelector);
 
-        const selector = this.resultSelector ?? ((left, right) => new OuterJoinElement(left, right) as unknown as TResult);
+        const selector = this.resultSelector ?? ((left, right) => new FullJoinElement(left, right) as unknown as TResult);
 
         for (const leftGroup of leftLookup) {
             const rightGroup = rightLookup.getOrNull(leftGroup.key);
