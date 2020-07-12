@@ -448,12 +448,38 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Lookup(dict);
     }
 
+    public toMap<TKey, TValue = T>(
+        keySelector: (element: T, index: number) => TKey,
+        valueSelector?: (element: T, index: number) => TValue
+    ): Map<TKey, TValue> {
+        const selected = this.select<[TKey, TValue]>((x, idx) => [
+            keySelector(x, idx),
+            valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue]
+        );
+        return new Map<TKey, TValue>(selected);
+    }
+
     public toReadOnlyHashSet(): ReadOnlyHashSet<T> {
         return new ReadOnlyHashSet(this);
     }
 
     public toReadOnlyList(): ReadOnlyList<T> {
         return new ReadOnlyList(this);
+    }
+
+    public toReadOnlyMap<TKey, TValue = T>(
+        keySelector: (element: T, index: number) => TKey,
+        valueSelector?: (element: T, index: number) => TValue
+    ): ReadonlyMap<TKey, TValue> {
+        return this.toMap(keySelector, valueSelector);
+    }
+
+    public toReadOnlySet(): ReadonlySet<T> {
+        return this.toSet();
+    }
+
+    public toSet(): Set<T> {
+        return new Set(this);
     }
 
     public where(predicate: (element: T, index: number) => boolean): Enumerable<T> {
