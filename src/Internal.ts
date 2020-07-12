@@ -23,6 +23,7 @@ export * from '@src/enumerables/RepeatEnumerable';
 export * from '@src/enumerables/RightJoinEnumerable';
 export * from '@src/enumerables/SelectEnumerable';
 export * from '@src/enumerables/SelectManyEnumerable';
+export * from '@src/enumerables/SetEnumerable';
 export * from '@src/enumerables/SkipEnumerable';
 export * from '@src/enumerables/SkipWhileEnumerable';
 export * from '@src/enumerables/TakeEnumerable';
@@ -33,8 +34,10 @@ export * from '@src/enumerables/ZipEnumerable';
 // collections
 export * from '@src/collections/ReadOnlyDictionary';
 export * from '@src/collections/ReadOnlyList';
+export * from '@src/collections/ReadOnlyHashSet';
 export * from '@src/collections/Dictionary';
 export * from '@src/collections/List';
+export * from '@src/collections/HashSet';
 export * from '@src/collections/Pair';
 export * from '@src/collections/ZipElement';
 export * from '@src/collections/JoinElement';

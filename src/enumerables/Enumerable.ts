@@ -1,8 +1,8 @@
 import {
     ArrayEnumerable,
     ConcatEnumerable, Dictionary, EmptyEnumerable, EqualityComparer,
-    Errors, GroupByEnumerable, Grouping, JoinElement, JoinEnumerable, LeftJoinElement, LeftJoinEnumerable,
-    List, Lookup, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary,
+    Errors, GroupByEnumerable, Grouping, HashSet, JoinElement, JoinEnumerable, LeftJoinElement, LeftJoinEnumerable,
+    List, Lookup, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary, ReadOnlyHashSet,
     ReadOnlyList, RepeatEnumerable, RightJoinElement, RightJoinEnumerable,
     SelectEnumerable,
     SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
@@ -416,7 +416,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue
         ));
 
-        return new Dictionary<TKey, TValue>(pairs);
+        return new Dictionary(pairs);
     }
 
     public toDictionary<TKey, TValue = T>(
@@ -430,8 +430,12 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Dictionary<TKey, TValue>(pairs);
     }
 
+    public toHashSet(): HashSet<T> {
+        return new HashSet(this);
+    }
+
     public toList(): List<T> {
-        return new List<T>(this.toArray());
+        return new List(this);
     }
 
     public toLookup<TKey, TValue = T>(
@@ -441,11 +445,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         const dict = this
             .groupBy(keySelector, valueSelector)
             .toReadOnlyDictionary(x => x.key);
-        return new Lookup<TKey, TValue>(dict);
+        return new Lookup(dict);
+    }
+
+    public toReadOnlyHashSet(): ReadOnlyHashSet<T> {
+        return new ReadOnlyHashSet(this);
     }
 
     public toReadOnlyList(): ReadOnlyList<T> {
-        return new ReadOnlyList<T>(this.toArray());
+        return new ReadOnlyList(this);
     }
 
     public where(predicate: (element: T, index: number) => boolean): Enumerable<T> {
