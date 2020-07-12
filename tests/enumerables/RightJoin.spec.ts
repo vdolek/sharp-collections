@@ -1,5 +1,5 @@
 /* tslint:disable:max-classes-per-file */
-import { Enumerable, LeftJoinElement } from '@src/Internal';
+import { Enumerable, RightJoinElement } from '@src/Internal';
 import { expect } from 'chai';
 
 class Foo { public constructor(public readonly foo: number) { } }
@@ -22,13 +22,13 @@ describe('leftJoin tests', () => {
             .toArray();
 
         expect(joined).to.be.deep.equal([
-            new LeftJoinElement(list1.get(1), list2.get(0)),
-            new LeftJoinElement(list1.get(3), list2.get(1)),
-            new LeftJoinElement(list1.get(3), list2.get(1)),
-            new LeftJoinElement(list1.get(5), list2.get(2)),
-            new LeftJoinElement(list1.get(5), list2.get(2)),
-            new LeftJoinElement(null, list2.get(3)),
-            new LeftJoinElement(list1.get(4), list2.get(4))
+            new RightJoinElement(list1.get(1), list2.get(0)),
+            new RightJoinElement(list1.get(3), list2.get(1)),
+            new RightJoinElement(list1.get(3), list2.get(1)),
+            new RightJoinElement(list1.get(5), list2.get(2)),
+            new RightJoinElement(list1.get(5), list2.get(2)),
+            new RightJoinElement(null, list2.get(3)),
+            new RightJoinElement(list1.get(4), list2.get(4))
         ]);
     });
 });

@@ -9,6 +9,10 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
         return this.dict.values()[Symbol.iterator]();
     }
 
+    public containsKey(key: TKey): boolean {
+        return this.dict.containsKey(key);
+    }
+
     public count(): number {
         return this.dict.count();
     }
