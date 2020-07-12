@@ -1,9 +1,43 @@
 import {
-    ArrayEnumerable, ConcatEnumerable, Dictionary, DistinctByEnumerable, EmptyEnumerable, EqualityComparer, Errors, GroupByEnumerable,
-    Grouping, HashSet, IterableEnumerable, JoinElement, JoinEnumerable, LeftJoinElement, LeftJoinEnumerable, List, Lookup, OfTypeEnumerable,
-    OuterJoinElement, OuterJoinEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary, ReadOnlyHashSet, ReadOnlyList, RepeatEnumerable,
-    RightJoinElement, RightJoinEnumerable, SelectEnumerable, SelectManyEnumerable, SetEnumerable, SkipEnumerable, SkipWhileEnumerable,
-    TakeEnumerable, TakeWhileEnumerable, WhereEnumerable, ZipElement, ZipEnumerable
+    ArrayEnumerable,
+    ConcatEnumerable,
+    Dictionary,
+    DistinctByEnumerable,
+    EmptyEnumerable,
+    EqualityComparer,
+    Errors,
+    GroupByEnumerable,
+    Grouping,
+    HashSet,
+    IterableEnumerable,
+    JoinElement,
+    JoinEnumerable,
+    LeftJoinElement,
+    LeftJoinEnumerable,
+    List,
+    Lookup,
+    OfTypeEnumerable,
+    OuterJoinElement,
+    OuterJoinEnumerable,
+    Pair,
+    RangeEnumerable,
+    ReadOnlyDictionary,
+    ReadOnlyHashSet,
+    ReadOnlyList,
+    RepeatEnumerable,
+    ReverseEnumerable,
+    RightJoinElement,
+    RightJoinEnumerable,
+    SelectEnumerable,
+    SelectManyEnumerable,
+    SetEnumerable,
+    SkipEnumerable,
+    SkipWhileEnumerable,
+    TakeEnumerable,
+    TakeWhileEnumerable,
+    WhereEnumerable,
+    ZipElement,
+    ZipEnumerable
 } from '@src/Internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
@@ -319,6 +353,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         resultSelector?: (left: T | null, right: TRight | null) => TResult
     ): Enumerable<TResult> {
         return new OuterJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
+    }
+
+    public reverse(): Enumerable<T> {
+        return new ReverseEnumerable(this);
     }
 
     public rightJoin<TRight, TKey, TResult = RightJoinElement<T, TRight>>(
