@@ -36,6 +36,10 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     }
 
     public containsIndex(index: number): boolean {
+        if (Math.round(index) !== index) {
+            throw Errors.indexNotInteger();
+        }
+
         return index >= 0 && index < this.source.length;
     }
 

@@ -7,6 +7,10 @@ export class Errors {
         return new Error('Index was out of range');
     }
 
+    public static indexNotInteger(): Error {
+        return new Error('Index was not an integer');
+    }
+
     public static itemWithKeyAlreadyAdded(): Error {
         return new Error('An item with the same key has already been added');
     }
