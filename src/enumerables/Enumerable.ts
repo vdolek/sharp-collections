@@ -29,6 +29,7 @@ import {
     Lookup,
     OfTypeEnumerable,
     Pair,
+    PrependEnumerable,
     RangeEnumerable,
     ReadOnlyDictionary,
     ReadOnlyHashSet,
@@ -399,6 +400,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
     // tslint:disable-next-line:no-any
     public ofType<TResult>(type: new(...args: any[]) => TResult): Enumerable<TResult> {
         return new OfTypeEnumerable(this, type);
+    }
+
+    public prepend(value: T): Enumerable<T> {
+        return new PrependEnumerable(this, value);
     }
 
     public reverse(): Enumerable<T> {
