@@ -12,7 +12,7 @@ import {
     GroupByEnumerable,
     Grouping,
     GroupJoinElement,
-    GroupJoinEnumerable,
+    GroupJoinEnumerable, GroupLeftJoinElement, GroupLeftJoinEnumerable,
     HashSet,
     IntersectEnumerable,
     IterableEnumerable,
@@ -261,6 +261,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
         resultSelector?: (left: T, rightList: ReadOnlyList<TRight>) => TResult
     ): Enumerable<TResult> {
         return new GroupJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
+    }
+
+    public groupLeftJoin<TRight, TKey, TResult = GroupLeftJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T, rightList: ReadOnlyList<TRight> | null) => TResult
+    ): Enumerable<TResult> {
+        return new GroupLeftJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public intersect(second: Iterable<T>): Enumerable<T> {
