@@ -33,7 +33,7 @@ describe('Dictionary tests', () => {
         expect(dict.getOrNull('a2')).to.be.null;
     });
 
-    it('remove test', () => {
+    it('clear test', () => {
         const dict = Dictionary.from(Pair.from('a1', 1), Pair.from('a2', 2));
         dict.add('a3', 3);
         dict.clear();
