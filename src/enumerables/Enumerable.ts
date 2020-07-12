@@ -14,8 +14,8 @@ import {
     LeftJoinElement,
     LeftJoinEnumerable,
     List,
-    Lookup, MapEnumerable,
-    OfTypeEnumerable,
+    Lookup,
+    OfTypeEnumerable, OuterJoinElement, OuterJoinEnumerable,
     Pair,
     RangeEnumerable,
     ReadOnlyDictionary,
@@ -25,7 +25,8 @@ import {
     RightJoinElement,
     RightJoinEnumerable,
     SelectEnumerable,
-    SelectManyEnumerable, SetEnumerable,
+    SelectManyEnumerable,
+    SetEnumerable,
     SkipEnumerable,
     SkipWhileEnumerable,
     TakeEnumerable,
@@ -331,6 +332,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
     // tslint:disable-next-line:no-any
     public ofType<TResult>(type: new(...args: any[]) => TResult): Enumerable<TResult> {
         return new OfTypeEnumerable(this, type);
+    }
+
+    public outerJoin<TRight, TKey, TResult = OuterJoinElement<T, TRight>>(
+        rightSource: Iterable<TRight>,
+        leftKeySelector: (value: T, index: number) => TKey,
+        rightKeySelector: (value: TRight, index: number) => TKey,
+        resultSelector?: (left: T | null, right: TRight | null) => TResult
+    ): Enumerable<TResult> {
+        return new OuterJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
 
     public rightJoin<TRight, TKey, TResult = RightJoinElement<T, TRight>>(
