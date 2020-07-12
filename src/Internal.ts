@@ -15,6 +15,7 @@ export * from '@src/enumerables/IterableEnumerable';
 export * from '@src/enumerables/MapEnumerable';
 
 export * from '@src/enumerables/ConcatEnumerable';
+export * from '@src/enumerables/DistinctByEnumerable';
 export * from '@src/enumerables/GroupByEnumerable';
 export * from '@src/enumerables/JoinEnumerable';
 export * from '@src/enumerables/LeftJoinEnumerable';
@@ -48,4 +49,3 @@ export * from '@src/collections/RightJoinElement';
 export * from '@src/collections/OuterJoinElement';
 export * from '@src/collections/Grouping';
 export * from '@src/collections/Lookup';
-

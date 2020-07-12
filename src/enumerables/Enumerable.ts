@@ -1,39 +1,9 @@
 import {
-    ArrayEnumerable,
-    ConcatEnumerable,
-    Dictionary,
-    EmptyEnumerable,
-    EqualityComparer,
-    Errors,
-    GroupByEnumerable,
-    Grouping,
-    HashSet,
-    IterableEnumerable,
-    JoinElement,
-    JoinEnumerable,
-    LeftJoinElement,
-    LeftJoinEnumerable,
-    List,
-    Lookup,
-    OfTypeEnumerable, OuterJoinElement, OuterJoinEnumerable,
-    Pair,
-    RangeEnumerable,
-    ReadOnlyDictionary,
-    ReadOnlyHashSet,
-    ReadOnlyList,
-    RepeatEnumerable,
-    RightJoinElement,
-    RightJoinEnumerable,
-    SelectEnumerable,
-    SelectManyEnumerable,
-    SetEnumerable,
-    SkipEnumerable,
-    SkipWhileEnumerable,
-    TakeEnumerable,
-    TakeWhileEnumerable,
-    WhereEnumerable,
-    ZipElement,
-    ZipEnumerable
+    ArrayEnumerable, ConcatEnumerable, Dictionary, DistinctByEnumerable, EmptyEnumerable, EqualityComparer, Errors, GroupByEnumerable,
+    Grouping, HashSet, IterableEnumerable, JoinElement, JoinEnumerable, LeftJoinElement, LeftJoinEnumerable, List, Lookup, OfTypeEnumerable,
+    OuterJoinElement, OuterJoinEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary, ReadOnlyHashSet, ReadOnlyList, RepeatEnumerable,
+    RightJoinElement, RightJoinEnumerable, SelectEnumerable, SelectManyEnumerable, SetEnumerable, SkipEnumerable, SkipWhileEnumerable,
+    TakeEnumerable, TakeWhileEnumerable, WhereEnumerable, ZipElement, ZipEnumerable
 } from '@src/Internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
@@ -157,6 +127,14 @@ export abstract class Enumerable<T> implements Iterable<T> {
             ++index;
         }
         return index;
+    }
+
+    public distinct(): Enumerable<T> {
+        return new DistinctByEnumerable(this);
+    }
+
+    public distinctBy<TKey = T>(keySelector: (element: T, index: number) => TKey): Enumerable<T> {
+        return new DistinctByEnumerable(this, keySelector);
     }
 
     public elementAt(index: number): T {
