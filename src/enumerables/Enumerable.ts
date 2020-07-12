@@ -190,7 +190,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw Errors.indexOutOfRange();
     }
 
-    public elementAtOrDefault(index: number): T | null {
+    public elementAtOrNull(index: number): T | null {
         if (index < 0) {
             return null;
         }
@@ -236,7 +236,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    public firstOrDefault(predicate?: (x: T, index: number) => boolean): T | null {
+    public firstOrNull(predicate?: (x: T, index: number) => boolean): T | null {
         let index = 0;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -282,7 +282,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    public lastOrDefault(predicate?: (x: T, index: number) => boolean): T | null {
+    public lastOrNull(predicate?: (x: T, index: number) => boolean): T | null {
         let index = 0;
         let lastItem: T | null = null;
         let lastItemSet = false;
@@ -438,7 +438,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return value;
     }
 
-    public singleOrDefault(predicate?: (x: T, index: number) => boolean): T | null {
+    public singleOrNull(predicate?: (x: T, index: number) => boolean): T | null {
         let value: T | null = null;
         let found = false;
         let index = 0;

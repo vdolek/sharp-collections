@@ -13,14 +13,14 @@ describe('elementAt tests', () => {
         expect(() => list.elementAt(3)).to.throw('Index was out of range');
     });
 
-    it('elementAtOrDefault test', () => {
+    it('elementAtOrNull test', () => {
         const list = List.fromElements(2, 4, 6);
 
-        expect(list.elementAtOrDefault(0)).to.be.equal(2);
-        expect(list.elementAtOrDefault(1)).to.be.equal(4);
-        expect(list.elementAtOrDefault(2)).to.be.equal(6);
+        expect(list.elementAtOrNull(0)).to.be.equal(2);
+        expect(list.elementAtOrNull(1)).to.be.equal(4);
+        expect(list.elementAtOrNull(2)).to.be.equal(6);
 
-        expect(list.elementAtOrDefault(-1)).to.be.null;
-        expect(list.elementAtOrDefault(3)).to.be.null;
+        expect(list.elementAtOrNull(-1)).to.be.null;
+        expect(list.elementAtOrNull(3)).to.be.null;
     });
 });
