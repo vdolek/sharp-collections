@@ -5,7 +5,7 @@ import {
     DistinctByEnumerable,
     EmptyEnumerable,
     EqualityComparer,
-    Errors,
+    Errors, ExceptEnumerable,
     GroupByEnumerable,
     Grouping,
     HashSet,
@@ -205,6 +205,14 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public empty(): boolean {
         return this.no();
+    }
+
+    public except(except: Iterable<T>): Enumerable<T> {
+        return new ExceptEnumerable(this, except);
+    }
+
+    public exceptElements(...except: T[]): Enumerable<T> {
+        return new ExceptEnumerable(this, except);
     }
 
     public first(predicate?: (x: T, index: number) => boolean): T {
