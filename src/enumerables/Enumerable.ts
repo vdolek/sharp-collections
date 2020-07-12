@@ -44,7 +44,7 @@ import {
     WhereEnumerable,
     ZipElement,
     ZipEnumerable
-} from '@src/Internal';
+} from '@sharp-collections';
 
 export abstract class Enumerable<T> implements Iterable<T> {
     public static empty<T>(): Enumerable<T> {

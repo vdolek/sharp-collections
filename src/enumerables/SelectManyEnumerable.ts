@@ -1,4 +1,4 @@
-import { Enumerable } from '@src/Internal';
+import { Enumerable } from '@sharp-collections';
 
 export class SelectManyEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(

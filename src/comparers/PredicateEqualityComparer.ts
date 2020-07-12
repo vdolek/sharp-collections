@@ -1,4 +1,4 @@
-import { EqualityComparer } from '@src/Internal';
+import { EqualityComparer } from '@sharp-collections';
 
 export class PredicateEqualityComparer<T> extends EqualityComparer<T> {
     public constructor(private readonly predicate: (value1: T, value2: T) => boolean) {

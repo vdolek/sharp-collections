@@ -1,4 +1,4 @@
-import { EqualityComparer, List } from '@src/Internal';
+import { EqualityComparer, List } from '@sharp-collections';
 import { expect } from 'chai';
 
 describe('contains tests', () => {

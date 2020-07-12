@@ -1,4 +1,4 @@
-import { Enumerable, Errors, List } from '@src/Internal';
+import { Enumerable, Errors, List } from '@sharp-collections';
 
 export enum ElementsAtNotFoundBehavior {
     throw,

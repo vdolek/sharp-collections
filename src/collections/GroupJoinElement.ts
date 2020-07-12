@@ -1,4 +1,4 @@
-import { ReadOnlyList } from '@src/Internal';
+import { ReadOnlyList } from '@sharp-collections';
 
 export class GroupJoinElement<TLeft, TRight> {
     public constructor(

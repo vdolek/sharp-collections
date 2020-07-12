@@ -1,4 +1,4 @@
-import { Enumerable, JoinElement, LeftJoinElement } from '@src/Internal';
+import { Enumerable, JoinElement, LeftJoinElement } from '@sharp-collections';
 
 export class LeftJoinEnumerable<TLeft, TRight, TKey, TResult = LeftJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

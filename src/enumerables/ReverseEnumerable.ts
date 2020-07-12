@@ -1,4 +1,4 @@
-import { Enumerable } from '@src/Internal';
+import { Enumerable } from '@sharp-collections';
 
 export class ReverseEnumerable<T> extends Enumerable<T> {
     public constructor(private readonly source: Iterable<T>) {

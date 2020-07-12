@@ -1,4 +1,4 @@
-import { Enumerable } from '@src/Internal';
+import { Enumerable } from '@sharp-collections';
 
 export class EmptyEnumerable<T> extends Enumerable<T> {
     // tslint:disable-next-line:no-empty

@@ -1,4 +1,4 @@
-import { Enumerable, List } from '@src/Internal';
+import { Enumerable, List } from '@sharp-collections';
 import { expect } from 'chai';
 
 describe('intersect tests', () => {

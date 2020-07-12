@@ -1,4 +1,4 @@
-import { Enumerable } from '@src/Internal';
+import { Enumerable } from '@sharp-collections';
 
 export class SkipWhileEnumerable<T> extends Enumerable<T> {
     public constructor(

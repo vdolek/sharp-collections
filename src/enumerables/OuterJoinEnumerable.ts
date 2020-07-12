@@ -1,4 +1,4 @@
-import { Enumerable, OuterJoinElement } from '@src/Internal';
+import { Enumerable, OuterJoinElement } from '@sharp-collections';
 
 export class OuterJoinEnumerable<TLeft, TRight, TKey, TResult = OuterJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
