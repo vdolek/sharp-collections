@@ -5,7 +5,7 @@ export abstract class EqualityComparer<T> {
         return new DefaultEqualityComparer<T>();
     }
 
-    public static from<T>(predicate: (value1: T, value2: T) => boolean): EqualityComparer<T> {
+    public static fromElements<T>(predicate: (value1: T, value2: T) => boolean): EqualityComparer<T> {
         return new PredicateEqualityComparer<T>(predicate);
     }
 

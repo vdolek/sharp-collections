@@ -3,7 +3,7 @@ import { expect } from 'chai';
 
 describe('skip tests', () => {
     it('simple test', () => {
-        const list = List.from(2, 4, 6, 8, 10);
+        const list = List.fromElements(2, 4, 6, 8, 10);
 
         expect(list.skip(0).toArray()).to.be.deep.equal([2, 4, 6, 8, 10]);
         expect(list.skip(1).toArray()).to.be.deep.equal([4, 6, 8, 10]);

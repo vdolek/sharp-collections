@@ -5,7 +5,7 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         return new ReadOnlyList<T>();
     }
 
-    public static from<T>(...elements: T[]): ReadOnlyList<T> {
+    public static fromElements<T>(...elements: T[]): ReadOnlyList<T> {
         return new ReadOnlyList<T>(elements);
     }
 
@@ -22,7 +22,7 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     }
 
     public static single<T>(element: T): ReadOnlyList<T> {
-        return ReadOnlyList.from(element);
+        return ReadOnlyList.fromElements(element);
     }
 
     // readonly [index: number]: T; // TODO

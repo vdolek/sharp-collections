@@ -5,7 +5,7 @@ class Foo { public constructor(public readonly value: number) { } }
 
 describe('average tests', () => {
     it('simple test', () => {
-        const list = List.from(2, 4, 6);
+        const list = List.fromElements(2, 4, 6);
         const avg = list.average();
 
         expect(avg).to.be.equal(4);
@@ -19,7 +19,7 @@ describe('average tests', () => {
 
     it('not a number throws test', () => {
         const list = List
-            .from(2, 4, 6)
+            .fromElements(2, 4, 6)
             .select(x => new Foo(x))
             .toList();
 
@@ -28,7 +28,7 @@ describe('average tests', () => {
 
     it('selector test', () => {
         const list = List
-            .from(2, 4, 6)
+            .fromElements(2, 4, 6)
             .select(x => new Foo(x))
             .toList();
         const avg = list.sum(x => x.value);

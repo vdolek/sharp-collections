@@ -3,14 +3,14 @@ import { expect } from 'chai';
 
 describe('select tests', () => {
     it('simple test', () => {
-        const list = List.from(2, 4, 6)
+        const list = List.fromElements(2, 4, 6)
             .select(x => x * 2);
 
         expect(list.toArray()).to.be.deep.equal([4, 8, 12]);
     });
 
     it('indexed test', () => {
-        const list = List.from(2, 4, 6)
+        const list = List.fromElements(2, 4, 6)
             .select((x, idx) => [idx, x * 2]);
 
         expect(list.toArray()).to.be.deep.equal([ [0, 4], [1, 8], [2, 12] ]);

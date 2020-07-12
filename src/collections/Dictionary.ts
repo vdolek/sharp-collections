@@ -5,12 +5,12 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
         return new Dictionary<TKey, TValue>();
     }
 
-    public static from<TKey, TValue>(...elements: Pair<TKey, TValue>[]): Dictionary<TKey, TValue> {
+    public static fromElements<TKey, TValue>(...elements: Pair<TKey, TValue>[]): Dictionary<TKey, TValue> {
         return new Dictionary(elements);
     }
 
     public static single<TKey, TValue>(key: TKey, value: TValue): Dictionary<TKey, TValue> {
-        return Dictionary.from(Pair.from(key, value));
+        return Dictionary.fromElements(Pair.fromElements(key, value));
     }
 
     // [key: TKey]: T; // TODO

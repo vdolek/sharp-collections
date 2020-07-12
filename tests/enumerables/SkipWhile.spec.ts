@@ -3,14 +3,14 @@ import { expect } from 'chai';
 
 describe('skipWhile tests', () => {
     it('simple test', () => {
-        const list = List.from(2, 4, 6, 8, 2)
+        const list = List.fromElements(2, 4, 6, 8, 2)
             .skipWhile(x => x < 5);
 
         expect(list.toArray()).to.be.deep.equal([6, 8, 2]);
     });
 
     it('simple indexed test', () => {
-        const list = List.from(2, 4, 6, 8, 2)
+        const list = List.fromElements(2, 4, 6, 8, 2)
             .skipWhile((x, idx) => idx < 3);
 
         expect(list.toArray()).to.be.deep.equal([8, 2]);
@@ -24,7 +24,7 @@ describe('skipWhile tests', () => {
     });
 
     it('empty result test', () => {
-        const list = List.from(2, 4, 6, 8, 2)
+        const list = List.fromElements(2, 4, 6, 8, 2)
             .skipWhile(x => x < 10);
 
         expect(list.toArray()).to.be.empty;

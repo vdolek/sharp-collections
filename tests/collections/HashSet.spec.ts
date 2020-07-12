@@ -3,7 +3,7 @@ import { expect } from 'chai';
 
 describe('HashSet tests', () => {
     it('contains test', () => {
-        const set = HashSet.from(1, 2);
+        const set = HashSet.fromElements(1, 2);
         set.add(3);
         set.add(2);
 
@@ -15,7 +15,7 @@ describe('HashSet tests', () => {
     });
 
     it('toArray test', () => {
-        const set = HashSet.from(1, 2);
+        const set = HashSet.fromElements(1, 2);
         set.add(3);
 
         const asArray = set.toArray();
@@ -25,7 +25,7 @@ describe('HashSet tests', () => {
     });
 
     it('remove test', () => {
-        const set = HashSet.from(1, 2);
+        const set = HashSet.fromElements(1, 2);
         set.add(3);
         set.remove(2);
 
@@ -37,7 +37,7 @@ describe('HashSet tests', () => {
     });
 
     it('clear test', () => {
-        const set = HashSet.from(1, 2);
+        const set = HashSet.fromElements(1, 2);
         set.add(3);
         set.clear();
 

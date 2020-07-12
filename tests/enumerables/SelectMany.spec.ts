@@ -3,11 +3,11 @@ import { expect } from 'chai';
 
 describe('selectMany tests', () => {
     it('simple test', () => {
-        const list1 = List.from(
-            { dummy: List.from(2, 4, 6) },
+        const list1 = List.fromElements(
+            { dummy: List.fromElements(2, 4, 6) },
             { dummy: List.empty<number>() },
-            { dummy: List.from(3, 5) },
-            { dummy:  List.from(9) }
+            { dummy: List.fromElements(3, 5) },
+            { dummy:  List.fromElements(9) }
         );
 
         const list2 = list1.selectMany(x => x.dummy);

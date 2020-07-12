@@ -13,7 +13,7 @@ describe('any, no, empty tests', () => {
     });
 
     it('list test', () => {
-        const list = List.from(2, 4, 6);
+        const list = List.fromElements(2, 4, 6);
 
         expect(list.empty()).to.be.false;
         expect(list.any()).to.be.true;
