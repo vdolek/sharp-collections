@@ -1,8 +1,12 @@
-import { Enumerable, ReadOnlyList } from '@src/Internal';
+import { Enumerable, Pair, ReadOnlyList } from '@src/Internal';
 
 export class List<T> extends ReadOnlyList<T> {
     public static empty<T>(): List<T> {
         return new List<T>();
+    }
+
+    public static from<T>(source: Iterable<T>): List<T> {
+        return new List<T>(source);
     }
 
     public static fromElements<T>(...elements: T[]): List<T> {

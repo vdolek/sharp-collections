@@ -5,6 +5,10 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         return new ReadOnlyList<T>();
     }
 
+    public static from<T>(source: Iterable<T>): ReadOnlyList<T> {
+        return new ReadOnlyList<T>(source);
+    }
+
     public static fromElements<T>(...elements: T[]): ReadOnlyList<T> {
         return new ReadOnlyList<T>(elements);
     }

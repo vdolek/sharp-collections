@@ -1,18 +1,57 @@
 import {
     ArrayEnumerable,
-    ConcatEnumerable, Dictionary, EmptyEnumerable, EqualityComparer,
-    Errors, GroupByEnumerable, Grouping, HashSet, JoinElement, JoinEnumerable, LeftJoinElement, LeftJoinEnumerable,
-    List, Lookup, OfTypeEnumerable, Pair, RangeEnumerable, ReadOnlyDictionary, ReadOnlyHashSet,
-    ReadOnlyList, RepeatEnumerable, RightJoinElement, RightJoinEnumerable,
+    ConcatEnumerable,
+    Dictionary,
+    EmptyEnumerable,
+    EqualityComparer,
+    Errors,
+    GroupByEnumerable,
+    Grouping,
+    HashSet,
+    IterableEnumerable,
+    JoinElement,
+    JoinEnumerable,
+    LeftJoinElement,
+    LeftJoinEnumerable,
+    List,
+    Lookup, MapEnumerable,
+    OfTypeEnumerable,
+    Pair,
+    RangeEnumerable,
+    ReadOnlyDictionary,
+    ReadOnlyHashSet,
+    ReadOnlyList,
+    RepeatEnumerable,
+    RightJoinElement,
+    RightJoinEnumerable,
     SelectEnumerable,
-    SelectManyEnumerable, SkipEnumerable, SkipWhileEnumerable,
-    TakeEnumerable, TakeWhileEnumerable,
-    WhereEnumerable, ZipElement, ZipEnumerable
+    SelectManyEnumerable, SetEnumerable,
+    SkipEnumerable,
+    SkipWhileEnumerable,
+    TakeEnumerable,
+    TakeWhileEnumerable,
+    WhereEnumerable,
+    ZipElement,
+    ZipEnumerable
 } from '@src/Internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
     public static empty<T>(): Enumerable<T> {
         return new EmptyEnumerable();
+    }
+
+    public static from<T>(source: Iterable<T>): Enumerable<T> {
+        if (Array.isArray(source)) {
+            return new ArrayEnumerable(source);
+        }
+
+        if (source instanceof Set) {
+            return new SetEnumerable(source);
+        }
+
+        // TODO MV map
+
+        return new IterableEnumerable(source);
     }
 
     public static fromElements<T>(...elements: T[]): Enumerable<T> {

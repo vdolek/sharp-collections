@@ -5,6 +5,10 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
         return new HashSet<T>();
     }
 
+    public static from<T>(source: Iterable<T>): HashSet<T> {
+        return new HashSet<T>(source);
+    }
+
     public static fromElements<T>(...elements: T[]): HashSet<T> {
         return new HashSet<T>(elements);
     }
