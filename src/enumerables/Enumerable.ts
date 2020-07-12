@@ -222,10 +222,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new ExceptEnumerable(this, except);
     }
 
-    public exceptElements(...except: T[]): Enumerable<T> {
-        return new ExceptEnumerable(this, except);
-    }
-
     public first(predicate?: (x: T, index: number) => boolean): T {
         let index = 0;
         for (const element of this) {
