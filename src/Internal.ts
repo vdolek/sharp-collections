@@ -23,6 +23,7 @@ export * from '@src/enumerables/OfTypeEnumerable';
 export * from '@src/enumerables/OuterJoinEnumerable';
 export * from '@src/enumerables/RangeEnumerable';
 export * from '@src/enumerables/RepeatEnumerable';
+export * from '@src/enumerables/ReverseEnumerable';
 export * from '@src/enumerables/RightJoinEnumerable';
 export * from '@src/enumerables/SelectEnumerable';
 export * from '@src/enumerables/SelectManyEnumerable';
