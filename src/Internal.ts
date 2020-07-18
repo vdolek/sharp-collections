@@ -4,6 +4,11 @@ export * from '@src/Errors';
 export * from '@src/comparers/EqualityComparer';
 export * from '@src/comparers/DefaultEqualityComparer';
 export * from '@src/comparers/PredicateEqualityComparer';
+export * from '@src/comparers/Comparer';
+export * from '@src/comparers/DefaultComparer';
+export * from '@src/comparers/InverseComparer';
+export * from '@src/comparers/CombinedComparer';
+export * from '@src/comparers/SelectorComparer';
 
 // enumerables
 export * from '@src/enumerables/Enumerable';
@@ -27,6 +32,8 @@ export * from '@src/enumerables/JoinEnumerable';
 export * from '@src/enumerables/LeftGroupJoinEnumerable';
 export * from '@src/enumerables/LeftJoinEnumerable';
 export * from '@src/enumerables/OfTypeEnumerable';
+export * from '@src/enumerables/OrderedEnumerable';
+export * from '@src/enumerables/OrderedEnumerableInner';
 export * from '@src/enumerables/PrependEnumerable';
 export * from '@src/enumerables/RangeEnumerable';
 export * from '@src/enumerables/RepeatEnumerable';
