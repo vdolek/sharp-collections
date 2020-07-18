@@ -11,7 +11,7 @@ describe('contains tests', () => {
 
     it('predicate comparer test', () => {
         const list = List.fromElements(2, 4, 6);
-        const comparer = EqualityComparer.fromElements<number>((a, b) => a * 2 === b);
+        const comparer = EqualityComparer.fromPredicate<number>((a, b) => a * 2 === b);
 
         expect(list.contains(3, comparer)).to.be.true;
         expect(list.contains(4, comparer)).to.be.false;
