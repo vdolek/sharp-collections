@@ -405,8 +405,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new OfTypeEnumerable(this, type);
     }
 
-    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>(), descending: boolean = false): OrderedEnumerable<T> {
-        return new OrderedEnumerableInner(this, keySelector, comparer.invert(descending));
+    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer?: Comparer<TKey>, descending: boolean = false): OrderedEnumerable<T> {
+        const newComparer = (comparer ?? Comparer.default()).invert(descending);
+        return new OrderedEnumerableInner(this, keySelector, newComparer);
     }
 
     public orderByDescending<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>()): OrderedEnumerable<T> {
