@@ -1,13 +1,17 @@
-import { DefaultComparer, InverseComparer } from '@sharp-collections';
+import { CombinedComparer, DefaultComparer, InverseComparer } from '@sharp-collections';
 
 export abstract class Comparer<T> {
     public static default<T>(): Comparer<T> {
         return new DefaultComparer<T>();
     }
 
+    public static combine<T>(firstComparer: Comparer<T>, secondComparer: Comparer<T>): Comparer<T> {
+        return new CombinedComparer(firstComparer, secondComparer);
+    }
+
     public abstract compare(value1: T, value2: T): number;
 
-    public invert(): Comparer<T> {
-        return new InverseComparer(this);
+    public invert(invert: boolean = true): Comparer<T> {
+        return invert ? new InverseComparer(this) : this;
     }
 }

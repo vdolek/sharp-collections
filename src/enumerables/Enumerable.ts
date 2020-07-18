@@ -1,6 +1,7 @@
 import {
     AppendEnumerable,
-    ArrayEnumerable, Comparer,
+    ArrayEnumerable,
+    Comparer,
     ConcatEnumerable,
     Dictionary,
     DistinctByEnumerable,
@@ -27,7 +28,9 @@ import {
     LeftJoinEnumerable,
     List,
     Lookup,
-    OfTypeEnumerable, OrderedEnumerable, OrderedEnumerableInner,
+    OfTypeEnumerable,
+    OrderedEnumerable,
+    OrderedEnumerableInner,
     Pair,
     PrependEnumerable,
     RangeEnumerable,
@@ -402,11 +405,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new OfTypeEnumerable(this, type);
     }
 
-    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer?: Comparer<TKey>, descending: boolean = false): OrderedEnumerable<T> {
-        return new OrderedEnumerableInner(this, keySelector, comparer, descending);
+    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>(), descending: boolean = false): OrderedEnumerable<T> {
+        return new OrderedEnumerableInner(this, keySelector, comparer.invert(descending));
     }
 
-    public orderByDescending<TKey>(keySelector: (element: T) => TKey, comparer?: Comparer<TKey>): OrderedEnumerable<T> {
+    public orderByDescending<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>()): OrderedEnumerable<T> {
         return this.orderBy(keySelector, comparer, true);
     }
 
