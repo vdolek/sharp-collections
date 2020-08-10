@@ -24,6 +24,7 @@ export * from '@src/enumerables/ConcatEnumerable';
 export * from '@src/enumerables/DistinctByEnumerable';
 export * from '@src/enumerables/ElementsAtEnumerable';
 export * from '@src/enumerables/ExceptEnumerable';
+export * from '@src/enumerables/ExtremaEnumerable';
 export * from '@src/enumerables/FullJoinEnumerable';
 export * from '@src/enumerables/GroupByEnumerable';
 export * from '@src/enumerables/GroupJoinEnumerable';
