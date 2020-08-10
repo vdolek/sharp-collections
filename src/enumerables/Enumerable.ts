@@ -509,6 +509,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new SkipWhileEnumerable(this, predicate);
     }
 
+    public slice(startIndex: number, count: number): Enumerable<T> {
+        return this.skip(startIndex).take(count);
+    }
+
     public sum(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let sum = 0;
