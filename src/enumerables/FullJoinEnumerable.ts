@@ -34,22 +34,6 @@ export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<T
             }
         }
 
-        // for (const leftGroup of leftLookup) {
-        //     const rightGroup = rightLookup.getOrNull(leftGroup.key);
-        //     if (rightGroup == null) {
-        //         for (const left of leftGroup) {
-        //             yield selector(left, null);
-        //         }
-        //         continue;
-        //     }
-        //
-        //     for (const left of leftGroup) {
-        //         for (const right of rightGroup) {
-        //             yield selector(left, right);
-        //         }
-        //     }
-        // }
-
         for (const rightGroup of rightLookup) {
             if (!leftLookup.containsKey(rightGroup.key)) {
                 for (const right of rightGroup) {
