@@ -11,6 +11,7 @@ import {
     EqualityComparer,
     Errors,
     ExceptEnumerable,
+    ExtremaEnumerable,
     FullJoinElement,
     FullJoinEnumerable,
     GroupByEnumerable,
@@ -373,6 +374,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return maxValue;
     }
 
+    public maxBy<TKey>(keySelector: (element: T, index: number) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>()): Enumerable<T> {
+        return new ExtremaEnumerable(this, keySelector, comparer);
+    }
+
     public min(selector?: (element: T, index: number) => number): number {
         let index = 0;
         let minValue = Number.NaN;
@@ -396,6 +401,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return minValue;
     }
 
+    public minBy<TKey>(keySelector: (element: T, index: number) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>()): Enumerable<T> {
+        return new ExtremaEnumerable(this, keySelector, comparer.invert());
+    }
+
     public no(predicate?: (x: T, index: number) => boolean): boolean {
         return !this.any(predicate);
     }
@@ -405,8 +414,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new OfTypeEnumerable(this, type);
     }
 
-    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer?: Comparer<TKey>, descending: boolean = false): OrderedEnumerable<T> {
-        const newComparer = (comparer ?? Comparer.default()).invert(descending);
+    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>(), descending: boolean = false): OrderedEnumerable<T> {
+        const newComparer = comparer.invert(descending);
         return new OrderedEnumerableInner(this, keySelector, newComparer);
     }
 
