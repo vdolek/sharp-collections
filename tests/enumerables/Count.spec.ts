@@ -1,5 +1,6 @@
-import { Enumerable, List } from '../../src/internal';
 import { expect } from 'chai';
+
+import { Enumerable, List } from '../../src/internal';
 
 describe('count tests', () => {
     it('enumerable simple test', () => {

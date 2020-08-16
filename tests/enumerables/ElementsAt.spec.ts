@@ -1,5 +1,6 @@
-import { ElementsAtNotFoundBehavior, List } from '../../src/internal';
 import { expect } from 'chai';
+
+import { ElementsAtNotFoundBehavior, List } from '../../src/internal';
 
 describe('elementsAt tests', () => {
     it('elementsAt test', () => {

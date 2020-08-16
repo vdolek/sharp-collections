@@ -1,5 +1,6 @@
-import { ArrayEnumerable } from '../../src/internal';
 import { expect } from 'chai';
+
+import { ArrayEnumerable } from '../../src/internal';
 
 describe('ArrayEnumerable tests', () => {
     it('toArray test', () => {

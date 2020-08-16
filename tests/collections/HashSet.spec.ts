@@ -1,5 +1,6 @@
-import { HashSet } from '../../src/internal';
 import { expect } from 'chai';
+
+import { HashSet } from '../../src/internal';
 
 describe('HashSet tests', () => {
     it('contains test', () => {

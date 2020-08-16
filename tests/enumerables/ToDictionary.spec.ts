@@ -1,5 +1,6 @@
-import { ArrayEnumerable, Enumerable, List, Pair } from '../../src/internal';
 import { expect } from 'chai';
+
+import { Enumerable, Pair } from '../../src/internal';
 
 describe('toDictionary tests', () => {
     it('toDictionary test', () => {
