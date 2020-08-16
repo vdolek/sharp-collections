@@ -1,4 +1,4 @@
-import { Dictionary, Pair } from '@sharp-collections';
+import { Dictionary, Pair } from '../../src/internal';
 import { expect } from 'chai';
 
 describe('Dictionary tests', () => {

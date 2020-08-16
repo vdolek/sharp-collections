@@ -1,4 +1,4 @@
-import { Enumerable, Errors, MapEnumerable, Pair } from '@sharp-collections';
+import { Enumerable, Errors, MapEnumerable, Pair } from '../internal';
 
 // @ts-ignore
 export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue> {

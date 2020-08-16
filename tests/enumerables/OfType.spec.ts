@@ -1,5 +1,5 @@
 /* tslint:disable:max-classes-per-file */
-import { List } from '@sharp-collections';
+import { List } from '../../src/internal';
 import { expect } from 'chai';
 
 class Base { public constructor(public readonly value: number) { }}

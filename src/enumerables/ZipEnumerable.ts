@@ -1,4 +1,4 @@
-import { Enumerable } from '@sharp-collections';
+import { Enumerable } from '../internal';
 
 export class ZipEnumerable<TFirst, TSecond, TResult> extends Enumerable<TResult> {
     public constructor(

@@ -1,4 +1,4 @@
-import { Enumerable, HashSet } from '@sharp-collections';
+import { Enumerable, HashSet } from '../internal';
 
 export class IntersectEnumerable<T> extends Enumerable<T> {
     public constructor(

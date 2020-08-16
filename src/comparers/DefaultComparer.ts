@@ -1,4 +1,4 @@
-import { Comparer } from '@sharp-collections';
+import { Comparer } from '../internal';
 
 export class DefaultComparer<T> extends Comparer<T> {
     public compare(value1: T, value2: T): number {

@@ -1,4 +1,4 @@
-import { DefaultEqualityComparer, PredicateEqualityComparer } from '@sharp-collections';
+import { DefaultEqualityComparer, PredicateEqualityComparer } from '../internal';
 
 export abstract class EqualityComparer<T> {
     public static default<T>(): EqualityComparer<T> {

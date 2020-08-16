@@ -1,4 +1,4 @@
-import { Enumerable, Pair } from '@sharp-collections';
+import { Enumerable, Pair } from '../internal';
 
 export class MapEnumerable<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> {
     public constructor(protected readonly map: Map<TKey, Pair<TKey, TValue>>) {

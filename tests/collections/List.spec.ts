@@ -1,4 +1,4 @@
-import { ArrayEnumerable, List } from '@sharp-collections';
+import { ArrayEnumerable, List } from '../../src/internal';
 import { assert, expect } from 'chai';
 
 describe('List tests', () => {

@@ -1,4 +1,4 @@
-import { Errors, Pair, ReadOnlyDictionary } from '@sharp-collections';
+import { Errors, Pair, ReadOnlyDictionary } from '../internal';
 
 export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     public static empty<TKey, TValue>(): Dictionary<TKey, TValue> {

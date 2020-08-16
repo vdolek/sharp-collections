@@ -1,4 +1,4 @@
-import { EqualityComparer } from '@sharp-collections';
+import { EqualityComparer } from '../internal';
 
 export class DefaultEqualityComparer<T> extends EqualityComparer<T> {
     public equals(value1: T, value2: T): boolean {

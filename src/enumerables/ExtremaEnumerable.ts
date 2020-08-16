@@ -1,4 +1,4 @@
-import { Comparer, Enumerable, List } from '@sharp-collections';
+import { Comparer, Enumerable, List } from '../internal';
 
 export class ExtremaEnumerable<T, TKey> extends Enumerable<T> {
     public constructor(
@@ -15,7 +15,7 @@ export class ExtremaEnumerable<T, TKey> extends Enumerable<T> {
             .select<[T, TKey]>((element, idx) => [element, this.keySelector(element, idx)]);
 
         for (const pair of sourceWithKeys) {
-            if (buffer.empty()) {
+            if (buffer.isEmpty()) {
                 buffer.add(pair);
             } else {
                 const cmp = this.comparer.compare(buffer.first()[1], pair[1]);

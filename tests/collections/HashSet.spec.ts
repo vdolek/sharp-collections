@@ -1,4 +1,4 @@
-import { HashSet } from '@sharp-collections';
+import { HashSet } from '../../src/internal';
 import { expect } from 'chai';
 
 describe('HashSet tests', () => {

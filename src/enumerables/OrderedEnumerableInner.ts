@@ -1,4 +1,4 @@
-import { Comparer, Enumerable, OrderedEnumerable, SelectorComparer } from '@sharp-collections';
+import { Comparer, Enumerable, OrderedEnumerable, SelectorComparer } from '../internal';
 
 export class OrderedEnumerableInner<T, TKey> extends OrderedEnumerable<T> {
     public constructor(

@@ -1,4 +1,4 @@
-import { ReadOnlyList } from '@src/collections/ReadOnlyList';
+import { ReadOnlyList } from '../internal';
 
 export class LeftGroupJoinElement<TLeft, TRight> {
     public constructor(

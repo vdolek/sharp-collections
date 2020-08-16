@@ -1,4 +1,4 @@
-import { CombinedComparer, DefaultComparer, InverseComparer } from '@sharp-collections';
+import { CombinedComparer, DefaultComparer, InverseComparer } from '../internal';
 
 export abstract class Comparer<T> {
     public static default<T>(): Comparer<T> {

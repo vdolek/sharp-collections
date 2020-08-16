@@ -1,4 +1,4 @@
-import { Enumerable, ReadOnlyHashSet } from '@sharp-collections';
+import { Enumerable, ReadOnlyHashSet } from '../internal';
 
 export class HashSet<T> extends ReadOnlyHashSet<T> {
     public static empty<T>(): HashSet<T> {

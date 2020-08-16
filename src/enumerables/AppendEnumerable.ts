@@ -1,4 +1,4 @@
-import { Enumerable } from '@sharp-collections';
+import { Enumerable } from '../internal';
 
 export class AppendEnumerable<T> extends Enumerable<T> {
     public constructor(

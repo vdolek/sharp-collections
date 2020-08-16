@@ -1,4 +1,4 @@
-import { Enumerable, ReadOnlyList } from '@sharp-collections';
+import { Enumerable, ReadOnlyList } from '../internal';
 
 export class List<T> extends ReadOnlyList<T> {
     public static empty<T>(): List<T> {

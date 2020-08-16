@@ -1,4 +1,4 @@
-import { Comparer } from '@sharp-collections';
+import { Comparer } from '../internal';
 
 export class InverseComparer<T> extends Comparer<T> {
     public constructor(private readonly innerComparer: Comparer<T>) {
