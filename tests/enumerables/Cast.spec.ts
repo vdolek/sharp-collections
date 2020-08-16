@@ -1,5 +1,6 @@
-import { Enumerable, List } from '../../src/internal';
 import { expect } from 'chai';
+
+import { Enumerable } from '../../src/internal';
 
 interface Foo { value: number; }
 class Bar implements Foo { public constructor(public readonly value: number) { } }

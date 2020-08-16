@@ -1,6 +1,7 @@
 /* tslint:disable:max-classes-per-file */
-import { List } from '../../src/internal';
 import { expect } from 'chai';
+
+import { List } from '../../src/internal';
 
 class Base { public constructor(public readonly value: number) { }}
 class FooA extends Base { }

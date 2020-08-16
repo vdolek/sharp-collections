@@ -1,5 +1,6 @@
-import { List } from '../../src/internal';
 import { expect } from 'chai';
+
+import { List } from '../../src/internal';
 
 describe('union tests', () => {
     it('simple test', () => {

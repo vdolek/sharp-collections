@@ -1,5 +1,6 @@
-import { ArrayEnumerable, List } from '../../src/internal';
 import { assert, expect } from 'chai';
+
+import { ArrayEnumerable, List } from '../../src/internal';
 
 describe('List tests', () => {
     it('containsIndex test', () => {

@@ -1,5 +1,6 @@
-import { Dictionary, Pair } from '../../src/internal';
 import { expect } from 'chai';
+
+import { Dictionary, Pair } from '../../src/internal';
 
 describe('Dictionary tests', () => {
     it('get test', () => {
