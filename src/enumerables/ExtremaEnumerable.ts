@@ -9,7 +9,7 @@ export class ExtremaEnumerable<T, TKey> extends Enumerable<T> {
     }
 
     public *[Symbol.iterator](): Iterator<T> {
-        let buffer = List.empty<[T, TKey]>();
+        const buffer = List.empty<[T, TKey]>();
 
         const sourceWithKeys = Enumerable.from(this.source)
             .select<[T, TKey]>((element, idx) => [element, this.keySelector(element, idx)]);
@@ -22,7 +22,7 @@ export class ExtremaEnumerable<T, TKey> extends Enumerable<T> {
                 if (cmp === 0) {
                     buffer.add(pair);
                 } else if (cmp < 0) {
-                    buffer = List.empty<[T, TKey]>();
+                    buffer.clear();
                     buffer.add(pair);
                 }
             }

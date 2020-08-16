@@ -42,4 +42,8 @@ export class List<T> extends ReadOnlyList<T> {
 
         this.source[index] = value;
     }
+
+    public clear(): void {
+        this.source.length = 0;
+    }
 }

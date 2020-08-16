@@ -1,5 +1,5 @@
 import { ArrayEnumerable, List } from '@sharp-collections';
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 
 describe('List tests', () => {
     it('containsIndex test', () => {
@@ -23,5 +23,16 @@ describe('List tests', () => {
         const list = new List(new ArrayEnumerable([2, 4, 6]));
 
         expect(list.toArray()).to.be.deep.equal([2, 4, 6]);
+    });
+
+    it('clear test', () => {
+        const list = List.fromElements(2, 4, 6);
+        list.clear();
+
+        expect(list.count()).to.be.equal(0);
+
+        for (const item of list) {
+            assert.fail();
+        }
     });
 });
