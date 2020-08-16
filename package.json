@@ -1,7 +1,7 @@
 {
   "name": "sharp-collections",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Linq like collection library for TypeScript and JavaScript.",
   "main": "index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,9 +10,15 @@
     "prepublish": "npm run build",
     "test": "ts-mocha --paths -p tsconfig.tests.json 'tests/**/*.spec.ts'"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "collections",
+    "linq",
+    "list",
+    "dictionary"
+  ],
+  "author": "Martin Volek",
   "license": "MIT",
+  "homepage": "https://github.com/vdolek/sharp-collections",
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
