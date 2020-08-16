@@ -552,7 +552,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
     ): ReadOnlyDictionary<TKey, TValue> {
-        const pairs = this.select((x, idx) => Pair.fromElements(
+        const pairs = this.select((x, idx) => Pair.from(
             keySelector(x, idx),
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue
         ));
@@ -564,7 +564,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
     ): Dictionary<TKey, TValue> {
-        const pairs = this.select((x, idx) => Pair.fromElements(
+        const pairs = this.select((x, idx) => Pair.from(
             keySelector(x, idx),
             valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue));
 

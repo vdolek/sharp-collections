@@ -1,5 +1,5 @@
 export class Pair<TKey, TValue> {
-    public static fromElements<TKey, TValue>(key: TKey, value: TValue): Pair<TKey, TValue> {
+    public static from<TKey, TValue>(key: TKey, value: TValue): Pair<TKey, TValue> {
         return new Pair<TKey, TValue>(key, value);
     }
 

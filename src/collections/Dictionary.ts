@@ -14,7 +14,7 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     }
 
     public static single<TKey, TValue>(key: TKey, value: TValue): Dictionary<TKey, TValue> {
-        return Dictionary.fromElements(Pair.fromElements(key, value));
+        return Dictionary.fromElements(Pair.from(key, value));
     }
 
     // [key: TKey]: T; // TODO
