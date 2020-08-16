@@ -1,4 +1,4 @@
-import { Enumerable } from '@sharp-collections';
+import { Enumerable } from '../internal';
 
 // TODO MV maybe delete this
 export class IteratorEnumerable<T> extends Enumerable<T> {

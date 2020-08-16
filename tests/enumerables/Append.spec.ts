@@ -1,4 +1,4 @@
-import { Enumerable } from '@sharp-collections';
+import { Enumerable } from '../../src/internal';
 import { expect } from 'chai';
 
 describe('append tests', () => {

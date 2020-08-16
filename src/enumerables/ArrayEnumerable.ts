@@ -1,4 +1,4 @@
-import { Enumerable } from '@sharp-collections';
+import { Enumerable } from '../internal';
 
 export class ArrayEnumerable<T> extends Enumerable<T> {
     public constructor(protected readonly source: T[]) {

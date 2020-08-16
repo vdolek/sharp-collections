@@ -1,4 +1,4 @@
-import { Comparer } from '@sharp-collections';
+import { Comparer } from '../internal';
 
 export class SelectorComparer<T, TKey> extends Comparer<T> {
     public constructor(

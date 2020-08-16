@@ -1,4 +1,4 @@
-import { List } from '@sharp-collections';
+import { List } from '../../src/internal';
 import { expect } from 'chai';
 
 class Foo { public constructor(public readonly value: number) { } }

@@ -8,10 +8,6 @@
     "downlevelIteration": true,
     "strict": true,
     "baseUrl": "./",
-    "paths": {
-      "@src/*": ["src/*"],
-      "@sharp-collections": ["src/Internal"]
-    },
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

@@ -1,4 +1,4 @@
-import { ArrayEnumerable, Enumerable, Errors } from '@sharp-collections';
+import { ArrayEnumerable, Enumerable, Errors } from '../internal';
 
 export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     public static empty<T>(): ReadOnlyList<T> {

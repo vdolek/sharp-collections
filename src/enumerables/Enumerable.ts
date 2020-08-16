@@ -52,7 +52,7 @@ import {
     WhereEnumerable,
     ZipElement,
     ZipEnumerable
-} from '@sharp-collections';
+} from '../internal';
 
 export abstract class Enumerable<T> implements Iterable<T> {
     public static empty<T>(): Enumerable<T> {
@@ -228,10 +228,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new ElementsAtEnumerable(this, indexes, behavior);
     }
 
-    public empty(): boolean {
-        return this.no();
-    }
-
     public except(except: Iterable<T>): Enumerable<T> {
         return new ExceptEnumerable(this, except);
     }
@@ -286,6 +282,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public intersect(second: Iterable<T>): Enumerable<T> {
         return new IntersectEnumerable(this, second);
+    }
+
+    public isEmpty(): boolean {
+        return this.no();
     }
 
     public join<TRight, TKey, TResult = JoinElement<T, TRight>>(

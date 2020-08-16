@@ -1,4 +1,4 @@
-import { ElementsAtNotFoundBehavior, List } from '@sharp-collections';
+import { ElementsAtNotFoundBehavior, List } from '../../src/internal';
 import { expect } from 'chai';
 
 describe('elementsAt tests', () => {

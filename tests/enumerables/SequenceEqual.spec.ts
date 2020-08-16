@@ -1,4 +1,4 @@
-import { Enumerable, List } from '@sharp-collections';
+import { Enumerable, List } from '../../src/internal';
 import { expect } from 'chai';
 
 describe('sequenceEqual tests', () => {

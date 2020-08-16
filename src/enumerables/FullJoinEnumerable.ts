@@ -1,4 +1,4 @@
-import { Enumerable, FullJoinElement } from '@sharp-collections';
+import { Enumerable, FullJoinElement } from '../internal';
 
 export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
