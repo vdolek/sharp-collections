@@ -1,6 +1,6 @@
 {
   "name": "sharp-collections",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Linq like collection library for TypeScript and JavaScript.",
   "main": "index.js",
   "types": "dist/index.d.ts",
@@ -10,6 +10,7 @@
     "prepublish": "npm run build",
     "test": "ts-mocha --paths -p tsconfig.tests.json 'tests/**/*.spec.ts'"
   },
+  "files": ["dist/src/**/*"],
   "keywords": [
     "collections",
     "linq",
