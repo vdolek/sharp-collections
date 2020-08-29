@@ -2,7 +2,20 @@
 [![npm version](https://badge.fury.io/js/sharp-collections.svg)](https://www.npmjs.com/package/sharp-collections)
 
 # sharp-collections
-.NET Linq like collection library for TypeScript and JavaScript. This is the library that you want to use for collections in TypeScript. It implements **most of .NET Linq methods** (select, where, single, join etc.). **Lazy execution** supported.
+.NET Linq like collection library for TypeScript and JavaScript. This is the library that you want to use for collections in TypeScript. It implements **most of .NET Linq methods** (select, where, single, join etc.).
+
+## Features
+
+- Lazy execution
+- Implemented using ES6 generators and iterators
+- ForOf compatible
+- Supports ES5 targeting (with `es2015.iterable` and `es2015.collection` libraries)
+
+## How to install
+
+```
+npm install sharp-collections
+```
 
 ## Example
 
@@ -22,7 +35,16 @@ const enumerable = Enumerable.from(data); // or List.from(data)
 const adults = enumerable.where(x => x.age >= 18);
 const adultsGroupedBySex = adults.groupBy(x => x.sex); // nothing is executed so far
 
+// use any collection (Enumerable, List, ...) in ForOf cycle
+for (const group of adultsGroupedBySex) {
+  console.debug(`Sex: ${group.key}, count: ${group.count()}`);
+}
+
+// project Enumerable to List
 const adultsGroupedBySexList = adultsGroupedBySex.toList(); // or toReadOnlyList()
+
+// project Enumerable to JS Array
+const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 ```
 
 ## Collections
