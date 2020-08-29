@@ -54,6 +54,9 @@ import {
     ZipEnumerable
 } from '../internal';
 
+/**
+ * Represents a collection which supports a simple iteration.
+ */
 export abstract class Enumerable<T> implements Iterable<T> {
     public static empty<T>(): Enumerable<T> {
         return new EmptyEnumerable();

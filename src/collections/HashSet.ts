@@ -1,5 +1,8 @@
 import { Enumerable, ReadOnlyHashSet } from '../internal';
 
+/**
+ * Represents a set of values.
+ */
 export class HashSet<T> extends ReadOnlyHashSet<T> {
     public static empty<T>(): HashSet<T> {
         return new HashSet<T>();

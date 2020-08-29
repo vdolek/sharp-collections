@@ -1,5 +1,8 @@
 import { ArrayEnumerable, Enumerable, Errors } from '../internal';
 
+/**
+ * Represents a read-only list of objects that can be accessed by index.
+ */
 export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     public static empty<T>(): ReadOnlyList<T> {
         return new ReadOnlyList<T>();
