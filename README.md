@@ -27,12 +27,7 @@ const adultsGroupedBySexList = adultsGroupedBySex.toList(); // or toReadOnlyList
 
 ## Collections
 
-- `Enumerable`
-- `List` (and `ReadOnlyList`)
-- `Dictionary` (and `ReadOnlyDictionary`)
-- `HashSet` (and `ReadOnlyHashSet`)
-
-| Collection | Read Only alternative | Description                                                                 |
+| Collection | Read-Only alternative | Description                                                                 |
 |------------|-----------------------|-----------------------------------------------------------------------------|
 | Enumerable | -                     | Represents a collection which supports a simple iteration.                  |
 | List       | ReadOnlyList          | Represents a list of objects that can be accessed by index.                 |
