@@ -1,13 +1,13 @@
 {
   "name": "sharp-collections",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Linq like collection library for TypeScript and JavaScript.",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project .",
     "prepublish": "npm run build",
     "test": "ts-mocha --paths -p tsconfig.tests.json 'tests/**/*.spec.ts'",
-    "postbuild": "sed -i '1 a // @ts-ignore' dist/collections/ReadOnlyDictionary.d.ts"
+    "postbuild": "sed -i '4 a // @ts-ignore' dist/collections/ReadOnlyDictionary.d.ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
