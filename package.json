@@ -1,7 +1,7 @@
 {
   "name": "sharp-collections",
   "version": "0.1.7",
-  "description": "Linq like collection library for TypeScript and JavaScript.",
+  "description": ".NET Linq like collection library for TypeScript and JavaScript.",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project .",
