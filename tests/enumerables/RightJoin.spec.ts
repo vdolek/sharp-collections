@@ -28,7 +28,7 @@ describe('leftJoin tests', () => {
             new RightJoinElement(list1.get(3), list2.get(1)),
             new RightJoinElement(list1.get(5), list2.get(2)),
             new RightJoinElement(list1.get(5), list2.get(2)),
-            new RightJoinElement(null, list2.get(3)),
+            new RightJoinElement(undefined, list2.get(3)),
             new RightJoinElement(list1.get(4), list2.get(4))
         ]);
     });

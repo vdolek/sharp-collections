@@ -20,7 +20,7 @@ export class JoinEnumerable<TLeft, TRight, TKey, TResult = JoinElement<TLeft, TR
         let index = 0;
         for (const left of this.leftSource) {
             const key = this.leftKeySelector(left, index++);
-            const rightGroup = rightLookup.getOrNull(key);
+            const rightGroup = rightLookup.getOrDefault(key);
             if (rightGroup == null) {
                 continue;
             }

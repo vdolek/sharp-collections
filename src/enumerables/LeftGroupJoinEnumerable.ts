@@ -6,7 +6,7 @@ export class LeftGroupJoinEnumerable<TLeft, TRight, TKey, TResult = LeftGroupJoi
         private readonly rightSource: Iterable<TRight>,
         private readonly leftKeySelector: (value: TLeft, index: number) => TKey,
         private readonly rightKeySelector: (value: TRight, index: number) => TKey,
-        private readonly resultSelector?: (left: TLeft, rightList: ReadOnlyList<TRight> | null) => TResult
+        private readonly resultSelector?: (left: TLeft, rightList: ReadOnlyList<TRight> | undefined) => TResult
     ) {
         super();
     }
@@ -20,11 +20,11 @@ export class LeftGroupJoinEnumerable<TLeft, TRight, TKey, TResult = LeftGroupJoi
         let index = 0;
         for (const left of this.leftSource) {
             const key = this.leftKeySelector(left, index++);
-            const rightGroup = rightLookup.getOrNull(key);
+            const rightGroup = rightLookup.getOrDefault(key);
             if (rightGroup != null) {
                 yield selector(left, rightGroup);
             } else {
-                yield selector(left, null);
+                yield selector(left, undefined);
             }
         }
     }

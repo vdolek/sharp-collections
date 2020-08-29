@@ -46,9 +46,9 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
         return this.map.get(key)!.value;
     }
 
-    public getOrNull(key: TKey): TValue | null {
+    public getOrDefault(key: TKey): TValue | undefined {
         if (!this.map.has(key)) {
-            return null;
+            return undefined;
         }
 
         // tslint:disable-next-line:no-non-null-assertion // TODO MV remove

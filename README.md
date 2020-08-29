@@ -70,11 +70,11 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 - `distinct`
 - `distinctBy`
 - `elementAt`
-- `elementAtOrNull`
+- `elementAtOrDefault`
 - `elementsAt`
 - `except`
 - `first`
-- `firstOrNull`
+- `firstOrDefault`
 - `fullJoin`
 - `groupBy`
 - `groupJoin`
@@ -82,7 +82,7 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 - `isEmpty`
 - `join`
 - `last`
-- `lastOrNull`
+- `lastOrDefault`
 - `leftGroupJoin`
 - `leftJoin`
 - `max`
@@ -100,7 +100,7 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 - `selectMany`
 - `sequenceEqual`
 - `single`
-- `singleOrNull`
+- `singleOrDefault`
 - `skip`
 - `skipWhile`
 - `slice`

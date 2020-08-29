@@ -13,7 +13,7 @@ describe('Dictionary tests', () => {
         expect(dict.get('a2')).to.be.equal(22);
         expect(dict.get('a3')).to.be.equal(3);
         expect(() => dict.get('dummy')).throws('The given key was not present in the dictionary');
-        expect(dict.getOrNull('dummy')).to.be.null;
+        expect(dict.getOrDefault('dummy')).to.be.undefined;
     });
 
     it('add test', () => {
@@ -31,7 +31,7 @@ describe('Dictionary tests', () => {
         expect(dict.get('a1')).to.be.equal(1);
         expect(dict.get('a3')).to.be.equal(3);
         expect(() => dict.get('a2')).throws('The given key was not present in the dictionary');
-        expect(dict.getOrNull('a2')).to.be.null;
+        expect(dict.getOrDefault('a2')).to.be.undefined;
     });
 
     it('clear test', () => {
@@ -40,9 +40,9 @@ describe('Dictionary tests', () => {
         dict.clear();
 
         expect(dict.count()).to.be.equal(0);
-        expect(dict.getOrNull('a1')).to.null;
-        expect(dict.getOrNull('a2')).to.null;
-        expect(dict.getOrNull('a3')).to.null;
+        expect(dict.getOrDefault('a1')).to.be.undefined;
+        expect(dict.getOrDefault('a2')).to.be.undefined;
+        expect(dict.getOrDefault('a3')).to.be.undefined;
     });
 
     it('keys test', () => {

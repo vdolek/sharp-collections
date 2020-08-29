@@ -20,7 +20,7 @@ export class GroupJoinEnumerable<TLeft, TRight, TKey, TResult = GroupJoinElement
         let index = 0;
         for (const left of this.leftSource) {
             const key = this.leftKeySelector(left, index++);
-            const rightGroup = rightLookup.getOrNull(key);
+            const rightGroup = rightLookup.getOrDefault(key);
             if (rightGroup != null) {
                 yield selector(left, rightGroup);
             }

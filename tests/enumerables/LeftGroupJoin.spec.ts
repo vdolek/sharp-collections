@@ -20,13 +20,13 @@ describe('leftGroupJoin tests', () => {
 
         const joined = list1
             .leftGroupJoin(list2, x => x.foo, x => x.bar)
-            .select(x => [x.left, x.rightList === null ? null : x.rightList.toArray()])
+            .select(x => [x.left, x.rightList == null ? undefined : x.rightList.toArray()])
             .toArray();
 
         expect(joined).to.be.deep.equal([
             [
                 list1.get(0),
-                null
+                undefined
             ],
             [
                 list1.get(1),
@@ -36,7 +36,7 @@ describe('leftGroupJoin tests', () => {
             ],
             [
                 list1.get(2),
-                null
+                undefined
             ],
             [
                 list1.get(3),

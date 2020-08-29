@@ -90,7 +90,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     /** Generates a sequence of integral numbers within a specified range. */
     public static range(count: number): Enumerable<number>;
+    /** Generates a sequence of integral numbers within a specified range. */
     public static range(start: number, count: number): Enumerable<number>;
+    /** Generates a sequence of integral numbers within a specified range. */
     public static range(start: number, count: number, increment: number): Enumerable<number>;
     public static range(a: number, b?: number, c?: number): Enumerable<number> {
         const start = b == null ? 0 : a;
@@ -231,9 +233,9 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     /** Returns the element at a specified index in a sequence or a default value if the index is out of range. */
-    public elementAtOrNull(index: number): T | null {
+    public elementAtOrDefault(index: number): T | undefined {
         if (index < 0) {
-            return null;
+            return undefined;
         }
 
         let idx = 0;
@@ -244,14 +246,16 @@ export abstract class Enumerable<T> implements Iterable<T> {
             ++idx;
         }
 
-        return null;
+        return undefined;
     }
 
     /** Returns elements at a specified indexes in a sequence. */
     public elementsAt(indexes: Iterable<number>): Enumerable<T>;
-    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.returnNull): Enumerable<T | null>;
+    /** Returns elements at a specified indexes in a sequence. */
+    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.returnDefault): Enumerable<T | undefined>;
+    /** Returns elements at a specified indexes in a sequence. */
     public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.throw | ElementsAtNotFoundBehavior.ignore): Enumerable<T>;
-    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior = ElementsAtNotFoundBehavior.throw): Enumerable<T | null> {
+    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior = ElementsAtNotFoundBehavior.throw): Enumerable<T | undefined> {
         return new ElementsAtEnumerable(this, indexes, behavior);
     }
 
@@ -272,8 +276,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    /** Returns the first element of a sequence, or null value if the sequence contains no elements. */
-    public firstOrNull(predicate?: (x: T, index: number) => boolean): T | null {
+    /** Returns the first element of a sequence, or undefined if the sequence contains no elements. */
+    public firstOrDefault(predicate?: (x: T, index: number) => boolean): T | undefined {
         let index = 0;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -281,7 +285,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
             }
         }
 
-        return null;
+        return undefined;
     }
 
     /** Performs a full outer join on two homogeneous sequences. */
@@ -289,7 +293,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         rightSource: Iterable<TRight>,
         leftKeySelector: (value: T, index: number) => TKey,
         rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T | null, right: TRight | null) => TResult
+        resultSelector?: (left: T | undefined, right: TRight | undefined) => TResult
     ): Enumerable<TResult> {
         return new FullJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
@@ -336,7 +340,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
     /** Returns the last element of a sequence that satisfies a specified condition. */
     public last(predicate?: (x: T, index: number) => boolean): T {
         let index = 0;
-        let lastItem: T | null = null;
+        let lastItem: T | undefined;
         let lastItemSet = false;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -352,10 +356,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    /** Returns the last element of a sequence that satisfies a condition or null value if no such element is found. */
-    public lastOrNull(predicate?: (x: T, index: number) => boolean): T | null {
+    /** Returns the last element of a sequence that satisfies a condition or undefined if no such element is found. */
+    public lastOrDefault(predicate?: (x: T, index: number) => boolean): T | undefined {
         let index = 0;
-        let lastItem: T | null = null;
+        let lastItem: T | undefined;
         let lastItemSet = false;
         for (const element of this) {
             if (predicate == null || predicate(element, index++)) {
@@ -368,15 +372,15 @@ export abstract class Enumerable<T> implements Iterable<T> {
             return lastItem;
         }
 
-        return null;
+        return undefined;
     }
 
-    /* Correlates the elements of two sequences based on equality of keys and groups the results. */
+    /** Correlates the elements of two sequences based on equality of keys and groups the results. */
     public leftGroupJoin<TRight, TKey, TResult = LeftGroupJoinElement<T, TRight>>(
         rightSource: Iterable<TRight>,
         leftKeySelector: (value: T, index: number) => TKey,
         rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T, rightList: ReadOnlyList<TRight> | null) => TResult
+        resultSelector?: (left: T, rightList: ReadOnlyList<TRight> | undefined) => TResult
     ): Enumerable<TResult> {
         return new LeftGroupJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
@@ -386,7 +390,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         rightSource: Iterable<TRight>,
         leftKeySelector: (value: T, index: number) => TKey,
         rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T, right: TRight | null) => TResult
+        resultSelector?: (left: T, right: TRight | undefined) => TResult
     ): Enumerable<TResult> {
         return new LeftJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
@@ -486,7 +490,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         rightSource: Iterable<TRight>,
         leftKeySelector: (value: T, index: number) => TKey,
         rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T | null, right: TRight) => TResult
+        resultSelector?: (left: T | undefined, right: TRight) => TResult
     ): Enumerable<TResult> {
         return new RightJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
     }
@@ -549,11 +553,11 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     /**
      *  Returns the only element of a sequence that satisfies a specified condition or
-     *  null value if no such element exists; this method throws an exception if
+     *  undefined if no such element exists; this method throws an exception if
      *  more than one element satisfies the condition.
      */
-    public singleOrNull(predicate?: (x: T, index: number) => boolean): T | null {
-        let value: T | null = null;
+    public singleOrDefault(predicate?: (x: T, index: number) => boolean): T | undefined {
+        let value: T | undefined;
         let found = false;
         let index = 0;
         for (const element of this) {
