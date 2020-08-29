@@ -12,7 +12,7 @@ describe('toLookup tests', () => {
         expect(lookup.get('G').toArray()).to.be.deep.equal(['Good morning', 'Good evening']);
         expect(lookup.get('B').toArray()).to.be.deep.equal(['Bye']);
         expect(() => lookup.get('dummy')).throws(Error, 'The given key was not present in the dictionary');
-        expect(lookup.getOrNull('dummy')).to.be.null;
+        expect(lookup.getOrDefault('dummy')).to.be.undefined;
     });
 
     it('valueSelector test', () => {
@@ -24,6 +24,6 @@ describe('toLookup tests', () => {
         expect(lookup.get('G').toArray()).to.be.deep.equal(['Good morningXXX', 'Good eveningXXX']);
         expect(lookup.get('B').toArray()).to.be.deep.equal(['ByeXXX']);
         expect(() => lookup.get('dummy')).throws(Error, 'The given key was not present in the dictionary');
-        expect(lookup.getOrNull('dummy')).to.be.null;
+        expect(lookup.getOrDefault('dummy')).to.be.undefined;
     });
 });

@@ -54,9 +54,9 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         return this.source[index];
     }
 
-    public getOrNull(index: number): T | null {
+    public getOrDefault(index: number): T | undefined {
         if (!this.containsIndex(index)) {
-            return null;
+            return undefined;
         }
 
         return this.source[index];

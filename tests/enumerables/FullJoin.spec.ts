@@ -24,15 +24,15 @@ describe('fullJoin tests', () => {
 
         expect(joined.length).to.be.equal(9);
         expect(joined).to.have.deep.members([
-            new FullJoinElement(list1.get(0), null),
+            new FullJoinElement(list1.get(0), undefined),
             new FullJoinElement(list1.get(1), list2.get(0)),
-            new FullJoinElement(list1.get(2), null),
+            new FullJoinElement(list1.get(2), undefined),
             new FullJoinElement(list1.get(3), list2.get(1)),
             new FullJoinElement(list1.get(3), list2.get(2)),
             new FullJoinElement(list1.get(4), list2.get(4)),
             new FullJoinElement(list1.get(5), list2.get(1)),
             new FullJoinElement(list1.get(5), list2.get(2)),
-            new FullJoinElement(null, list2.get(3))
+            new FullJoinElement(undefined, list2.get(3))
         ]);
     });
 });

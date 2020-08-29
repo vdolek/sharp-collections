@@ -6,7 +6,7 @@ export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<T
         private readonly rightSource: Iterable<TRight>,
         private readonly leftKeySelector: (value: TLeft, index: number) => TKey,
         private readonly rightKeySelector: (value: TRight, index: number) => TKey,
-        private readonly resultSelector?: (left: TLeft | null, right: TRight | null) => TResult
+        private readonly resultSelector?: (left: TLeft | undefined, right: TRight | undefined) => TResult
     ) {
         super();
     }
@@ -21,7 +21,7 @@ export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<T
         const selector = this.resultSelector ?? ((left, right) => new FullJoinElement(left, right) as unknown as TResult);
 
         for (const leftGroup of leftLookup) {
-            const rightGroup = rightLookup.getOrNull(leftGroup.key);
+            const rightGroup = rightLookup.getOrDefault(leftGroup.key);
 
             for (const left of leftGroup) {
                 if (rightGroup != null) {
@@ -29,7 +29,7 @@ export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<T
                         yield selector(left, right);
                     }
                 } else {
-                    yield selector(left, null);
+                    yield selector(left, undefined);
                 }
             }
         }
@@ -37,7 +37,7 @@ export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<T
         for (const rightGroup of rightLookup) {
             if (!leftLookup.containsKey(rightGroup.key)) {
                 for (const right of rightGroup) {
-                    yield selector(null, right);
+                    yield selector(undefined, right);
                 }
             }
         }

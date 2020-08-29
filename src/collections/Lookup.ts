@@ -21,7 +21,7 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
         return this.dict.get(key);
     }
 
-    public getOrNull(key: TKey): Grouping<TKey, TElement> | null {
-        return this.dict.getOrNull(key);
+    public getOrDefault(key: TKey): Grouping<TKey, TElement> | undefined {
+        return this.dict.getOrDefault(key);
     }
 }

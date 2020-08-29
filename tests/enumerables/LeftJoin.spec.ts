@@ -23,15 +23,15 @@ describe('leftJoin tests', () => {
             .toArray();
 
         expect(joined).to.be.deep.equal([
-            new LeftJoinElement(list1.get(0), null),
+            new LeftJoinElement(list1.get(0), undefined),
             new LeftJoinElement(list1.get(1), list2.get(0)),
-            new LeftJoinElement(list1.get(2), null),
+            new LeftJoinElement(list1.get(2), undefined),
             new LeftJoinElement(list1.get(3), list2.get(1)),
             new LeftJoinElement(list1.get(3), list2.get(2)),
             new LeftJoinElement(list1.get(4), list2.get(4)),
             new LeftJoinElement(list1.get(5), list2.get(1)),
             new LeftJoinElement(list1.get(5), list2.get(2)),
-            new LeftJoinElement(list1.get(6), null)
+            new LeftJoinElement(list1.get(6), undefined)
         ]);
     });
 });
