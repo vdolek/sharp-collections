@@ -1,5 +1,8 @@
 import { Enumerable, Errors, MapEnumerable, Pair } from '../internal';
 
+/**
+ * Represents a read-only collection of keys and values. Values can be accessed by keys.
+ */
 // @ts-ignore
 export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue> {
     public static empty<TKey, TValue>(): ReadOnlyDictionary<TKey, TValue> {

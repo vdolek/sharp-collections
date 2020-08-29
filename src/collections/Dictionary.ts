@@ -1,5 +1,8 @@
 import { Errors, Pair, ReadOnlyDictionary } from '../internal';
 
+/**
+ * Represents a collection of keys and values. Values can be accessed by keys.
+ */
 export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     public static empty<TKey, TValue>(): Dictionary<TKey, TValue> {
         return new Dictionary<TKey, TValue>();

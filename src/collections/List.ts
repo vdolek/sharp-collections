@@ -1,5 +1,8 @@
 import { Enumerable, ReadOnlyList } from '../internal';
 
+/**
+ * Represents a list of objects that can be accessed by index.
+ */
 export class List<T> extends ReadOnlyList<T> {
     public static empty<T>(): List<T> {
         return new List<T>();

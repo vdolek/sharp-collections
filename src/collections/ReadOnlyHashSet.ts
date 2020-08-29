@@ -1,5 +1,8 @@
 import { Enumerable, SetEnumerable } from '../internal';
 
+/**
+ * Represents a read-only set of values.
+ */
 export class ReadOnlyHashSet<T> extends SetEnumerable<T> {
     public static empty<T>(): ReadOnlyHashSet<T> {
         return new ReadOnlyHashSet<T>();
