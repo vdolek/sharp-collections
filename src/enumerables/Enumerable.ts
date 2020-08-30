@@ -106,6 +106,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public abstract [Symbol.iterator](): Iterator<T>;
 
+    /** Returns the sequence typed as Enumerable. */
     public asEnumerable(): Enumerable<T> {
         return Enumerable.from(this);
     }
