@@ -256,7 +256,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new ElementsAtEnumerable(this, indexes);
     }
 
-    /** Returns elements at a specified indexes in a sequence. */
+    /** Returns elements at a specified indexes in a rest sequence. */
     public elementsAtRest(...indexes: number[]): Enumerable<T> {
         return this.elementsAt(indexes);
     }
