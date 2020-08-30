@@ -107,6 +107,10 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public abstract [Symbol.iterator](): Iterator<T>;
 
+    public asEnumerable(): Enumerable<T> {
+        return Enumerable.from(this);
+    }
+
     /** Applies an accumulator function over a sequence. */
     public aggregate<TAccumulate = T, TResult = T>(
         seed: TAccumulate,
