@@ -1,3 +1,6 @@
+# sharp-collections
+.NET Linq like collection library for TypeScript and JavaScript. This is the library that you want to use for collections in TypeScript. It implements **most of .NET Linq methods** (select, where, single, join etc.).
+
 [![github version](https://img.shields.io/github/package-json/v/vdolek/sharp-collections/master?label=github)](https://github.com/vdolek/sharp-collections)
 [![npm version](https://img.shields.io/npm/v/sharp-collections)](https://www.npmjs.com/package/sharp-collections)
 [![build status](https://img.shields.io/github/workflow/status/vdolek/sharp-collections/CI/master)](https://github.com/vdolek/sharp-collections/actions?query=workflow%3ACI)
@@ -6,9 +9,6 @@
 [![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/vdolek/sharp-collections)](https://snyk.io/test/github/vdolek/sharp-collections)
 
 <!---[![downloads](https://img.shields.io/npm/dt/sharp-collections)](https://www.npmjs.com/package/sharp-collections)--->
-
-# sharp-collections
-.NET Linq like collection library for TypeScript and JavaScript. This is the library that you want to use for collections in TypeScript. It implements **most of .NET Linq methods** (select, where, single, join etc.).
 
 ## Features
 
@@ -69,10 +69,11 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 
 ## Implemented methods
 
-- `append`
+- `asEnumerable`
 - `aggregate`
 - `all`
 - `any`
+- `append`
 - `average`
 - `cast`
 - `concat`
@@ -83,6 +84,7 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 - `elementAt`
 - `elementAtOrDefault`
 - `elementsAt`
+- `elementsAtRest`
 - `except`
 - `first`
 - `firstOrDefault`
