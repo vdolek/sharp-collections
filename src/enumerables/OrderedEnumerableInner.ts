@@ -39,7 +39,7 @@ export class OrderedEnumerableInner<T, TKey> extends OrderedEnumerable<T> {
         const secondComparer = OrderedEnumerableInner.getComparer(keySelector, newComparer);
 
         const combinedComparer = Comparer.combine(firstComparer, secondComparer);
-        return new OrderedEnumerableInner(this.source, x => x, combinedComparer); // TODO MV x => x
+        return new OrderedEnumerableInner(this.source, x => x, combinedComparer);
     }
 
     public thenByDescending<TInnerKey>(keySelector: (element: T) => TInnerKey, comparer?: Comparer<TInnerKey>): OrderedEnumerable<T> {

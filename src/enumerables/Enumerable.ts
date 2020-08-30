@@ -73,8 +73,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
             return new SetEnumerable(source);
         }
 
-        // TODO MV map
-
         return new IterableEnumerable(source);
     }
 
@@ -206,7 +204,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     /** Returns distinct elements from a sequence. */
-    public distinct(): Enumerable<T> {
+    public distinct(): Enumerable<T> { // TODO MV EqualityComparer
         return new DistinctByEnumerable(this);
     }
 
@@ -705,7 +703,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Set(this);
     }
 
-    /** Produces the set union of two sequences by using the default equality comparer. */
+    /** Produces the set union of two sequences. */
     public union(second: Enumerable<T>): Enumerable<T> { // TODO MV Equality Comparer
         return this.concat(second).distinct();
     }

@@ -20,8 +20,6 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
         return Dictionary.fromElements(Pair.from(key, value));
     }
 
-    // [key: TKey]: T; // TODO
-
     public add(key: TKey, value: TValue): this {
         if (this.map.has(key)) {
             throw Errors.itemWithKeyAlreadyAdded();

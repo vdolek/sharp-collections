@@ -32,8 +32,6 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         return ReadOnlyList.fromElements(element);
     }
 
-    // readonly [index: number]: T; // TODO
-
     public constructor(source?: Iterable<T>) {
         super(Array.from(source ?? []));
     }

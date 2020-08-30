@@ -21,8 +21,6 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
         return ReadOnlyDictionary.fromElements(Pair.from(key, value));
     }
 
-    // readonly [key: TKey]: T; // TODO
-
     public constructor(source?: Iterable<Pair<TKey, TValue>>) {
         super(ReadOnlyDictionary.getSourceMap(source));
     }

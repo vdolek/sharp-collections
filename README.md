@@ -1,15 +1,22 @@
-[![CI](https://github.com/vdolek/sharp-collections/workflows/CI/badge.svg)](https://github.com/vdolek/sharp-collections/actions?query=workflow%3ACI)
-[![npm version](https://badge.fury.io/js/sharp-collections.svg)](https://www.npmjs.com/package/sharp-collections)
+[![github version](https://img.shields.io/github/package-json/v/vdolek/sharp-collections/master?label=github)](https://github.com/vdolek/sharp-collections)
+[![npm version](https://img.shields.io/npm/v/sharp-collections)](https://www.npmjs.com/package/sharp-collections)
+[![build status](https://img.shields.io/github/workflow/status/vdolek/sharp-collections/CI/master)](https://github.com/vdolek/sharp-collections/actions?query=workflow%3ACI)
+![dependencies](https://img.shields.io/david/vdolek/sharp-collections)
+![dev dependencies](https://img.shields.io/david/dev/vdolek/sharp-collections)
+[![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/vdolek/sharp-collections)](https://snyk.io/test/github/vdolek/sharp-collections)
+
+<!---[![downloads](https://img.shields.io/npm/dt/sharp-collections)](https://www.npmjs.com/package/sharp-collections)--->
 
 # sharp-collections
 .NET Linq like collection library for TypeScript and JavaScript. This is the library that you want to use for collections in TypeScript. It implements **most of .NET Linq methods** (select, where, single, join etc.).
 
 ## Features
 
-- Lazy execution
+- Deferred (lazy) execution
+- Intellisense friendly
 - Implemented using ES6 generators and iterators
 - ForOf compatible
-- Supports ES5 targeting (with `es2015.iterable` and `es2015.collection` libraries)
+- Supports ES5 targeting
 
 ## How to install
 
@@ -55,6 +62,8 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 | List       | ReadOnlyList          | Represents a list of objects that can be accessed by index.                 |
 | Dictionary | ReadOnlyDictionary    | Represents a collection of keys and values. Values can be accessed by keys. |
 | HashSet    | ReadOnlyHashSet       | Represents a set of values.                                                 |
+
+![class diagram](https://yuml.me/vdolek/fde6e830.svg)
 
 ## Implemented methods
 
