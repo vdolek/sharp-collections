@@ -4,7 +4,7 @@ import { HashSet } from '../../src/internal';
 
 describe('HashSet tests', () => {
     it('contains test', () => {
-        const set = HashSet.fromElements(1, 2);
+        const set = HashSet.fromRest(1, 2);
         set.add(3);
         set.add(2);
 
@@ -16,7 +16,7 @@ describe('HashSet tests', () => {
     });
 
     it('toArray test', () => {
-        const set = HashSet.fromElements(1, 2);
+        const set = HashSet.fromRest(1, 2);
         set.add(3);
 
         const asArray = set.toArray();
@@ -26,7 +26,7 @@ describe('HashSet tests', () => {
     });
 
     it('remove test', () => {
-        const set = HashSet.fromElements(1, 2);
+        const set = HashSet.fromRest(1, 2);
         set.add(3);
         set.remove(2);
 
@@ -38,7 +38,7 @@ describe('HashSet tests', () => {
     });
 
     it('clear test', () => {
-        const set = HashSet.fromElements(1, 2);
+        const set = HashSet.fromRest(1, 2);
         set.add(3);
         set.clear();
 

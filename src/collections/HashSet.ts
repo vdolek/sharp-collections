@@ -12,7 +12,7 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
         return new HashSet<T>(source);
     }
 
-    public static fromElements<T>(...elements: T[]): HashSet<T> {
+    public static fromRest<T>(...elements: T[]): HashSet<T> {
         return new HashSet<T>(elements);
     }
 
@@ -25,7 +25,7 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
     }
 
     public static single<T>(element: T): HashSet<T> {
-        return HashSet.fromElements(element);
+        return HashSet.fromRest(element);
     }
 
     public constructor(source?: Iterable<T>) {

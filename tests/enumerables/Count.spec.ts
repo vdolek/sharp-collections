@@ -4,7 +4,7 @@ import { Enumerable, List } from '../../src/internal';
 
 describe('count tests', () => {
     it('enumerable simple test', () => {
-        const list = Enumerable.fromElements(2, 4, 6);
+        const list = Enumerable.fromRest(2, 4, 6);
         const count = list.count();
 
         expect(count).to.be.equal(3);
@@ -18,7 +18,7 @@ describe('count tests', () => {
     });
 
     it('list simple test', () => {
-        const list = List.fromElements(2, 4, 6);
+        const list = List.fromRest(2, 4, 6);
         const count = list.count();
 
         expect(count).to.be.equal(3);

@@ -13,12 +13,12 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
         return new ReadOnlyDictionary(source);
     }
 
-    public static fromElements<TKey, TValue>(...elements: Pair<TKey, TValue>[]): ReadOnlyDictionary<TKey, TValue> {
+    public static fromRest<TKey, TValue>(...elements: Pair<TKey, TValue>[]): ReadOnlyDictionary<TKey, TValue> {
         return new ReadOnlyDictionary(elements);
     }
 
     public static single<TKey, TValue>(key: TKey, value: TValue): ReadOnlyDictionary<TKey, TValue> {
-        return ReadOnlyDictionary.fromElements(Pair.from(key, value));
+        return ReadOnlyDictionary.fromRest(Pair.from(key, value));
     }
 
     public constructor(source?: Iterable<Pair<TKey, TValue>>) {

@@ -12,7 +12,7 @@ export class List<T> extends ReadOnlyList<T> {
         return new List<T>(source);
     }
 
-    public static fromElements<T>(...elements: T[]): List<T> {
+    public static fromRest<T>(...elements: T[]): List<T> {
         return new List<T>(elements);
     }
 
@@ -29,7 +29,7 @@ export class List<T> extends ReadOnlyList<T> {
     }
 
     public static single<T>(element: T): List<T> {
-        return List.fromElements(element);
+        return List.fromRest(element);
     }
 
     public add(value: T): void {

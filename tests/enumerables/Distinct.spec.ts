@@ -4,7 +4,7 @@ import { List } from '../../src/internal';
 
 describe('distinct tests', () => {
     it('distinct test', () => {
-        const list = List.fromElements(1, 3, 2, 3, 1, 4, 2);
+        const list = List.fromRest(1, 3, 2, 3, 1, 4, 2);
         const distinct = list
             .distinct()
             .toArray();
@@ -13,7 +13,7 @@ describe('distinct tests', () => {
     });
 
     it('distinctBy test', () => {
-        const list = List.fromElements(1, 10, 9, 12, 2, 23, 5, 10);
+        const list = List.fromRest(1, 10, 9, 12, 2, 23, 5, 10);
         const distinct = list
             .distinctBy(x => x % 5)
             .toArray();

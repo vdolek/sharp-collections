@@ -10,7 +10,7 @@ class Bar extends Base { }
 
 describe('ofType tests', () => {
     it('simple test', () => {
-        const list = List.fromElements(new FooA(1), new FooB(2), new Bar(3), new FooB(4))
+        const list = List.fromRest(new FooA(1), new FooB(2), new Bar(3), new FooB(4))
             .ofType(FooA);
 
         expect(list.toArray()).to.be.deep.equal([new FooA(1), new FooB(2), new FooB(4)]);

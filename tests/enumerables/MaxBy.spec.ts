@@ -7,7 +7,7 @@ class Foo { public constructor(public readonly value: number) { } }
 describe('maxBy tests', () => {
     it('simple test', () => {
         const list = Enumerable
-            .fromElements(2, 6, 2, 4, 6)
+            .fromRest(2, 6, 2, 4, 6)
             .select(x => new Foo(x))
             .toList();
 

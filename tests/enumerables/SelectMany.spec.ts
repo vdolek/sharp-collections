@@ -4,11 +4,11 @@ import { List } from '../../src/internal';
 
 describe('selectMany tests', () => {
     it('simple test', () => {
-        const list1 = List.fromElements(
-            { dummy: List.fromElements(2, 4, 6) },
+        const list1 = List.fromRest(
+            { dummy: List.fromRest(2, 4, 6) },
             { dummy: List.empty<number>() },
-            { dummy: List.fromElements(3, 5) },
-            { dummy:  List.fromElements(9) }
+            { dummy: List.fromRest(3, 5) },
+            { dummy:  List.fromRest(9) }
         );
 
         const list2 = list1.selectMany(x => x.dummy);

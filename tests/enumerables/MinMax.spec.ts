@@ -6,7 +6,7 @@ class Foo { public constructor(public readonly value: number) { } }
 
 describe('min and max tests', () => {
     it('simple test', () => {
-        const list = List.fromElements(4, 2, 8, 6);
+        const list = List.fromRest(4, 2, 8, 6);
 
         expect(list.min()).to.be.equal(2);
         expect(list.max()).to.be.equal(8);
@@ -21,7 +21,7 @@ describe('min and max tests', () => {
 
     it('not a number throws test', () => {
         const list = List
-            .fromElements(2, 4, 6)
+            .fromRest(2, 4, 6)
             .select(x => new Foo(x))
             .toList();
 
@@ -31,7 +31,7 @@ describe('min and max tests', () => {
 
     it('selector test', () => {
         const list = List
-            .fromElements(4, 2, 8, 6)
+            .fromRest(4, 2, 8, 6)
             .select(x => new Foo(x))
             .toList();
 
