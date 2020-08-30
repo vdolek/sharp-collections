@@ -122,6 +122,8 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 | `sum`                 | Computes the sum of the sequence that are obtained by invoking a transform function on each element of the input sequence. |
 | `take`                | Returns a specified number of contiguous elements from the start of a sequence. |
 | `takeWhile`           | Returns elements from a sequence as long as a specified condition is true. |
+| `thenBy`              | Performs a subsequent ordering of the elements in a sequence according to a key. |
+| `thenByDescending`    | Performs a subsequent ordering of the elements in a sequence in descending order according to a key. |
 | `toArray`             | Converts sequence to an `Array`. |
 | `toReadOnlyDictionary`| Converts sequence to a `ReadOnlyDictionary`. |
 | `toDictionary`        | Converts sequence to a `Dictionary`. |
