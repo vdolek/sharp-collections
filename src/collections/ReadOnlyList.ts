@@ -12,7 +12,7 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
         return new ReadOnlyList<T>(source);
     }
 
-    public static fromElements<T>(...elements: T[]): ReadOnlyList<T> {
+    public static fromRest<T>(...elements: T[]): ReadOnlyList<T> {
         return new ReadOnlyList<T>(elements);
     }
 
@@ -29,7 +29,7 @@ export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     }
 
     public static single<T>(element: T): ReadOnlyList<T> {
-        return ReadOnlyList.fromElements(element);
+        return ReadOnlyList.fromRest(element);
     }
 
     public constructor(source?: Iterable<T>) {

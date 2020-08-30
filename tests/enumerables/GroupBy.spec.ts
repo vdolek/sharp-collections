@@ -4,7 +4,7 @@ import { List } from '../../src/internal';
 
 describe('groupBy tests', () => {
     it('simple test', () => {
-        const list = List.fromElements('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const list = List.fromRest('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const grouped = list
             .groupBy(x => x[0])
             .toList();
@@ -25,7 +25,7 @@ describe('groupBy tests', () => {
     });
 
     it('elementSelector test', () => {
-        const list = List.fromElements('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const list = List.fromRest('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const grouped = list
             .groupBy(x => x[0], x => x.toUpperCase())
             .toList();
@@ -42,7 +42,7 @@ describe('groupBy tests', () => {
     });
 
     it('resultSelector test', () => {
-        const list = List.fromElements('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const list = List.fromRest('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const groupedAsArray = list
             .groupBy(x => x[0], undefined, (key, group) => group.toArray())
             .toArray();
@@ -55,7 +55,7 @@ describe('groupBy tests', () => {
     });
 
     it('elementSelector and resultSelector test', () => {
-        const list = List.fromElements('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
+        const list = List.fromRest('Hello', 'Hi', 'Good morning', 'Bye', 'Good evening');
         const groupedAsArray = list
             .groupBy(x => x[0], x => x.toUpperCase(), (key, group) => group.toArray())
             .toArray();

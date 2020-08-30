@@ -6,7 +6,7 @@ class Foo { public constructor(public readonly val1: number, public readonly val
 
 describe('orderBy tests', () => {
     it('simple test', () => {
-        const list = List.fromElements(5, 7, 6, 2, 8, 5, 6);
+        const list = List.fromRest(5, 7, 6, 2, 8, 5, 6);
 
         expect(list.orderBy(x => x).toArray()).to.be.deep.equal([2, 5, 5, 6, 6, 7, 8]);
         expect(list.orderBy(x => x, undefined, true).toArray()).to.be.deep.equal([8, 7, 6, 6, 5, 5, 2]);
@@ -14,7 +14,7 @@ describe('orderBy tests', () => {
     });
 
     it('complex test', () => {
-        const list = List.fromElements(
+        const list = List.fromRest(
             new Foo(2, 1, 0),  // 0
             new Foo(1, 3, 1),  // 1
             new Foo(2, 1, 2),  // 2
@@ -52,7 +52,7 @@ describe('orderBy tests', () => {
     });
 
     it('complex descending first', () => {
-        const list = List.fromElements(
+        const list = List.fromRest(
             new Foo(2, 1, 0),  // 0
             new Foo(1, 3, 1),  // 1
             new Foo(2, 1, 2),  // 2
@@ -90,7 +90,7 @@ describe('orderBy tests', () => {
     });
 
     it('complex descending second', () => {
-        const list = List.fromElements(
+        const list = List.fromRest(
             new Foo(2, 1, 0),  // 0
             new Foo(1, 3, 1),  // 1
             new Foo(2, 1, 2),  // 2
@@ -128,7 +128,7 @@ describe('orderBy tests', () => {
     });
 
     it('complex descending both', () => {
-        const list = List.fromElements(
+        const list = List.fromRest(
             new Foo(2, 1, 0),  // 0
             new Foo(1, 3, 1),  // 1
             new Foo(2, 1, 2),  // 2

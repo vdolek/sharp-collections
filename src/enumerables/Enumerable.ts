@@ -76,7 +76,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     /** Returns an enumerable from parameters. */
-    public static fromElements<T>(...elements: T[]): Enumerable<T> {
+    public static fromRest<T>(...elements: T[]): Enumerable<T> {
         return new ArrayEnumerable(elements);
     }
 
@@ -101,7 +101,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     /** Returns a sequence containing exactly one value. */
     public static single<T>(element: T): Enumerable<T> {
-        return Enumerable.fromElements(element);
+        return Enumerable.fromRest(element);
     }
 
     public abstract [Symbol.iterator](): Iterator<T>;

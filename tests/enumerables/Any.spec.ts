@@ -14,7 +14,7 @@ describe('any, no, empty tests', () => {
     });
 
     it('list test', () => {
-        const list = List.fromElements(2, 4, 6);
+        const list = List.fromRest(2, 4, 6);
 
         expect(list.isEmpty()).to.be.false;
         expect(list.any()).to.be.true;

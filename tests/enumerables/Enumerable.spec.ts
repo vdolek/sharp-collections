@@ -15,8 +15,8 @@ describe('Enumerable tests', () => {
         expect(enumerable.toArray()).to.be.deep.equal([2, 4, 6]);
     });
 
-    it('fromElements', () => {
-        const enumerable = Enumerable.fromElements(2, 4, 6);
+    it('fromRest', () => {
+        const enumerable = Enumerable.fromRest(2, 4, 6);
 
         expect(enumerable.toArray()).to.be.deep.equal([2, 4, 6]);
     });

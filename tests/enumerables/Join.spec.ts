@@ -9,12 +9,12 @@ class Bar { public constructor(public readonly bar: number) { } }
 describe('join tests', () => {
     it('simple test', () => {
         const list1 = Enumerable
-            .fromElements(1, 2, 1, 3, 5, 3)
+            .fromRest(1, 2, 1, 3, 5, 3)
             .select(x => new Foo(x))
             .toList();
 
         const list2 = Enumerable
-            .fromElements(2, 3, 3, 6, 5)
+            .fromRest(2, 3, 3, 6, 5)
             .select(x => new Bar(x))
             .toList();
 
