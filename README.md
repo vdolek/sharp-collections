@@ -63,7 +63,7 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 | Dictionary | ReadOnlyDictionary    | Represents a collection of keys and values. Values can be accessed by keys. |
 | HashSet    | ReadOnlyHashSet       | Represents a set of values.                                                 |
 
-![class diagram](https://yuml.me/vdolek/fde6e830.svg)
+![class diagram](https://yuml.me/vdolek/sharp-collections.svg)
 
 ## Implemented methods
 
