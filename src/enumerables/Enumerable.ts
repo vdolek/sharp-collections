@@ -6,7 +6,6 @@ import {
     Dictionary,
     DistinctByEnumerable,
     ElementsAtEnumerable,
-    ElementsAtNotFoundBehavior,
     EmptyEnumerable,
     EqualityComparer,
     Errors,
@@ -252,13 +251,8 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     /** Returns elements at a specified indexes in a sequence. */
-    public elementsAt(indexes: Iterable<number>): Enumerable<T>;
-    /** Returns elements at a specified indexes in a sequence. */
-    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.returnDefault): Enumerable<T | undefined>;
-    /** Returns elements at a specified indexes in a sequence. */
-    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior.throw | ElementsAtNotFoundBehavior.ignore): Enumerable<T>;
-    public elementsAt(indexes: Iterable<number>, behavior: ElementsAtNotFoundBehavior = ElementsAtNotFoundBehavior.throw): Enumerable<T | undefined> {
-        return new ElementsAtEnumerable(this, indexes, behavior);
+    public elementsAt(indexes: Iterable<number>): Enumerable<T> {
+        return new ElementsAtEnumerable(this, indexes);
     }
 
     /** Produces the set difference of two sequences. */
