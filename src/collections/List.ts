@@ -32,8 +32,6 @@ export class List<T> extends ReadOnlyList<T> {
         return List.fromElements(element);
     }
 
-    // [index: number]: T; // TODO
-
     public add(value: T): void {
         this.source.push(value);
     }

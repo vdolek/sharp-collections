@@ -1,6 +1,5 @@
 import { Enumerable } from '../internal';
 
-// TODO MV maybe delete this
 export class IteratorEnumerable<T> extends Enumerable<T> {
     public constructor(private readonly source: Iterator<T>) {
         super();
