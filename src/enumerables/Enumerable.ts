@@ -620,7 +620,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Array.from(this);
     }
 
-    /** Converts sequence to ReadOnlyDictionary. */
+    /** Converts sequence to a ReadOnlyDictionary. */
     public toReadOnlyDictionary<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
@@ -633,7 +633,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Dictionary(pairs);
     }
 
-    /** Converts sequence to Dictionary. */
+    /** Converts sequence to a Dictionary. */
     public toDictionary<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
@@ -645,17 +645,17 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Dictionary<TKey, TValue>(pairs);
     }
 
-    /** Converts sequence to HashSet. */
+    /** Converts sequence to a HashSet. */
     public toHashSet(): HashSet<T> {
         return new HashSet(this);
     }
 
-    /** Converts sequence to List. */
+    /** Converts sequence to a List. */
     public toList(): List<T> {
         return new List(this);
     }
 
-    /** Converts sequence to Lookup. */
+    /** Converts sequence to a Lookup. */
     public toLookup<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
@@ -666,7 +666,7 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Lookup(dict);
     }
 
-    /** Converts sequence to Map. */
+    /** Converts sequence to a Map. */
     public toMap<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
@@ -678,17 +678,17 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return new Map<TKey, TValue>(selected);
     }
 
-    /** Converts sequence to ReadOnlyHashSet. */
+    /** Converts sequence to a ReadOnlyHashSet. */
     public toReadOnlyHashSet(): ReadOnlyHashSet<T> {
         return new ReadOnlyHashSet(this);
     }
 
-    /** Converts sequence to ReadOnlyList. */
+    /** Converts sequence to a ReadOnlyList. */
     public toReadOnlyList(): ReadOnlyList<T> {
         return new ReadOnlyList(this);
     }
 
-    /** Converts sequence to ReadOnlyMap. */
+    /** Converts sequence to a ReadOnlyMap. */
     public toReadOnlyMap<TKey, TValue = T>(
         keySelector: (element: T, index: number) => TKey,
         valueSelector?: (element: T, index: number) => TValue
@@ -696,12 +696,12 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return this.toMap(keySelector, valueSelector);
     }
 
-    /** Converts sequence to ReadOnlySet. */
+    /** Converts sequence to a ReadOnlySet. */
     public toReadOnlySet(): ReadonlySet<T> {
         return this.toSet();
     }
 
-    /** Converts sequence to Set. */
+    /** Converts sequence to a Set. */
     public toSet(): Set<T> {
         return new Set(this);
     }
