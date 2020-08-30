@@ -16,7 +16,7 @@
 - Intellisense friendly
 - Implemented using ES6 generators and iterators
 - ForOf compatible
-- Supports ES5 targeting
+- Supports ES5 targeting (with `es2015.iterable` and `es2015.collection` libraries)
 
 ## How to install
 
