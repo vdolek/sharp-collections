@@ -1,4 +1,4 @@
-import { Errors, Pair, ReadOnlyDictionary } from '../internal';
+import { Errors, Pair, ReadOnlyDictionary, ReadOnlyList } from '../internal';
 
 /**
  * Represents a collection of keys and values. Values can be accessed by keys.
@@ -26,6 +26,10 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
         }
 
         this.map.set(key, new Pair<TKey, TValue>(key, value));
+        return this;
+    }
+
+    public asReadOnly(): ReadOnlyDictionary<TKey, TValue> {
         return this;
     }
 

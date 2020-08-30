@@ -1,4 +1,4 @@
-import { Enumerable, ReadOnlyHashSet } from '../internal';
+import { Enumerable, ReadOnlyDictionary, ReadOnlyHashSet } from '../internal';
 
 /**
  * Represents a set of values.
@@ -34,6 +34,10 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
 
     public add(value: T): this {
         this.source.add(value);
+        return this;
+    }
+
+    public asReadOnly(): ReadOnlyHashSet<T> {
         return this;
     }
 
