@@ -1,5 +1,8 @@
-# sharp-collections
-.NET Linq like collection library for TypeScript and JavaScript. This is the library that you want to use for collections in TypeScript. It implements **most of .NET Linq methods** (select, where, single, join etc.).
+# Sharp Collections - TypeScript Linq library
+TypeScript Linq library (can be used with JavaScript also). This is the library 
+that you want to use for collections in TypeScript. It implements
+**most of .NET Linq methods** (first, groupBy, orderBy, select, singleOrDefault, join,
+where etc.).
 
 [![github version](https://img.shields.io/github/package-json/v/vdolek/sharp-collections/master?label=github)](https://github.com/vdolek/sharp-collections)
 [![npm version](https://img.shields.io/npm/v/sharp-collections)](https://www.npmjs.com/package/sharp-collections)
@@ -14,9 +17,13 @@
 
 - Deferred (lazy) execution
 - Intellisense friendly
-- Implemented using ES6 generators and iterators
-- ForOf compatible
-- Supports ES5 targeting (with `es2015.iterable` and `es2015.collection` libraries)
+- Implemented using generators and iterators
+- ForOf compatible (with `downlevelIteration` TS option set to `true`)
+- Supports ES5 targeting
+
+## Playground
+
+[StackBlitz playground](https://stackblitz.com/edit/sharp-collections-playground?devtoolsheight=33&file=index.ts)
 
 ## How to install
 
@@ -47,10 +54,10 @@ for (const group of adultsGroupedBySex) {
   console.debug(`Sex: ${group.key}, count: ${group.count()}`);
 }
 
-// project Enumerable to List
+// converts Enumerable to List
 const adultsGroupedBySexList = adultsGroupedBySex.toList(); // or toReadOnlyList()
 
-// project Enumerable to JS Array
+// converts Enumerable to JS Array
 const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 ```
 
@@ -139,3 +146,7 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 | `union`               | Produces the set union of two sequences. |
 | `where`               | Filters a sequence of values based on a predicate.  |
 | `zip`                 | Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results. |
+
+## License
+
+MIT © [Martin Volek](mailto:martin@vdolek.cz)
