@@ -25,6 +25,10 @@ export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue
         super(ReadOnlyDictionary.getSourceMap(source));
     }
 
+    public get size(): number {
+        return this.map.size;
+    }
+
     private static getSourceMap<TKey, TValue>(source?: Iterable<Pair<TKey, TValue>>): Map<TKey, Pair<TKey, TValue>> {
         const sourceEnumerable = Enumerable.from(source ?? []);
         const mapped = sourceEnumerable.select<[TKey, Pair<TKey, TValue>]>(pair => [pair.key, pair]);
