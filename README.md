@@ -1,8 +1,9 @@
-# Sharp Collections - TypeScript Linq library
-TypeScript Linq library (can be used with JavaScript also). This is the library 
+# Sharp Collections - TypeScript LINQ library
+Sharp Collections is new and modern LINQ library for TypeScript (can
+be used with JavaScript also). This is the library
 that you want to use for collections in TypeScript. It implements
-**most of .NET Linq methods** (first, groupBy, orderBy, select, singleOrDefault, join,
-where etc.).
+**all of .NET Linq methods and some more** (first, groupBy, groupJoin, orderBy, select,
+singleOrDefault, join, where etc.).
 
 [![github version](https://img.shields.io/github/package-json/v/vdolek/sharp-collections/master?label=github)](https://github.com/vdolek/sharp-collections)
 [![npm version](https://img.shields.io/npm/v/sharp-collections)](https://www.npmjs.com/package/sharp-collections)
@@ -15,10 +16,11 @@ where etc.).
 
 ## Features
 
+- All .NET LINQ methods available and some more
 - Deferred (lazy) execution
 - Intellisense friendly
 - Implemented using generators and iterators
-- ForOf compatible (with `downlevelIteration` TS option set to `true`)
+- ForOf cycle compatible (with `downlevelIteration` TS option set to `true`)
 - Supports ES5 targeting
 
 ## Playground
