@@ -15,10 +15,12 @@
     "dist/**/*"
   ],
   "keywords": [
-    "collections",
     "linq",
+    "typescript",
+    "collections",
     "list",
-    "dictionary"
+    "dictionary",
+    "hashset"
   ],
   "author": "Martin Volek",
   "license": "MIT",
