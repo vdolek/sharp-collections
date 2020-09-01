@@ -44,7 +44,7 @@ const data = [
   { name: 'Thomas', sex: 'M', age: 15 },
   { name: 'William', sex: 'M', age: 78 },
   { name: 'Kelly', sex: 'F', age: 30 },
-]
+];
 
 const enumerable = Enumerable.from(data); // or List.from(data)
 
