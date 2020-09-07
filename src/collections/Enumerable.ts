@@ -106,46 +106,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public abstract [Symbol.iterator](): Iterator<T>;
 
-    /** Bypasses a specified number of elements in a sequence and then returns the remaining elements. */
-    public skip(count: number): Enumerable<T> {
-        return new SkipEnumerable(this, count);
-    }
-
-    /** Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements. */
-    public skipWhile(predicate: (element: T, index: number) => boolean): Enumerable<T> {
-        return new SkipWhileEnumerable(this, predicate);
-    }
-
-    /** Returns subsequence of a sequence. */
-    public slice(startIndex: number, count: number): Enumerable<T> {
-        return this.skip(startIndex).take(count);
-    }
-
-    /** Computes the sum of the sequence that are obtained by invoking a transform function on each element of the input sequence. */
-    public sum(selector?: (element: T, index: number) => number): number {
-        let index = 0;
-        let sum = 0;
-        for (const element of this) {
-            const value: unknown = selector != null ? selector(element, index++) : element;
-            if (typeof value !== 'number') {
-                throw Errors.valueIsNotNumber();
-            }
-
-            sum += value;
-        }
-        return sum;
-    }
-
-    /** Returns a specified number of contiguous elements from the start of a sequence. */
-    public take(count: number): Enumerable<T> {
-        return new TakeEnumerable(this, count);
-    }
-
-    /** Returns elements from a sequence as long as a specified condition is true. */
-    public takeWhile(predicate: (element: T, index: number) => boolean): Enumerable<T> {
-        return new TakeWhileEnumerable(this, predicate);
-    }
-
     /** Converts sequence to an Array. */
     public toArray(): T[] {
         return Array.from(this);
