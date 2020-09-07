@@ -106,10 +106,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public abstract [Symbol.iterator](): Iterator<T>;
 
-    /** Returns the sequence typed as Enumerable. */
-    public asEnumerable(): Enumerable<T> {
-        return Enumerable.from(this);
-    }
 
     /** Correlates the elements of two sequences based on matching keys. */
     public join<TRight, TKey, TResult = JoinElement<T, TRight>>(

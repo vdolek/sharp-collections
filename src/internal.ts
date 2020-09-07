@@ -73,6 +73,7 @@ import './extensions/Aggregate';
 import './extensions/All';
 import './extensions/Any';
 import './extensions/Append';
+import './extensions/AsEnumerable';
 import './extensions/Average';
 import './extensions/Cast';
 import './extensions/Concat';
