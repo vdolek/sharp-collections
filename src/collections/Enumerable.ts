@@ -111,11 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Produces the set difference of two sequences. */
-    public except(except: Iterable<T>): Enumerable<T> { // TODO MV EqualityComparer
-        return new ExceptEnumerable(this, except);
-    }
-
     /** Returns the first element of a sequence. */
     public first(predicate?: (x: T, index: number) => boolean): T {
         let index = 0;
