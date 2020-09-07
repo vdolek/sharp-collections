@@ -111,17 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Determines whether all elements of a sequence satisfy a condition. */
-    public all(predicate: (x: T, idx: number) => boolean): boolean {
-        let index = 0;
-        for (const element of this) {
-            if (!predicate(element, index++)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     /** Determines whether a sequence contains any elements. */
     public any(predicate?: (x: T, index: number) => boolean): boolean {
         let index = 0;
