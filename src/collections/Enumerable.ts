@@ -111,30 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Determines whether a sequence contains a specified element by using an equality comparer. */
-    public contains(value: T, comparer?: EqualityComparer<T>): boolean {
-        const cmp = comparer ?? EqualityComparer.default<T>();
-        for (const element of this) {
-            if (cmp.equals(value, element)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /** Returns a number that represents how many elements in the specified sequence satisfy a condition. */
-    public count(predicate?: (element: T, index: number) => boolean): number {
-        let index = 0;
-        let count = 0;
-        for (const element of this) {
-            if (predicate == null || predicate(element, index)) {
-                ++count;
-            }
-            ++index;
-        }
-        return count;
-    }
-
     /** Returns distinct elements from a sequence. */
     public distinct(): Enumerable<T> { // TODO MV EqualityComparer
         return new DistinctByEnumerable(this);
