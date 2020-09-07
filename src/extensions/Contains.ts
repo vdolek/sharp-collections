@@ -4,7 +4,7 @@ import { EqualityComparer } from '../comparers/EqualityComparer';
 declare module '../collections/Enumerable' {
     interface Enumerable<T> {
         /** Determines whether a sequence contains a specified element by using an equality comparer. */
-        contains<T>(value: T, comparer?: EqualityComparer<T>): boolean;
+        contains(value: T, comparer?: EqualityComparer<T>): boolean;
     }
 }
 

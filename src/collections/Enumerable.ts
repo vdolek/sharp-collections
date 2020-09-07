@@ -111,40 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Returns the element at a specified index in a sequence. */
-    public elementAt(index: number): T {
-        if (index < 0) {
-            throw Errors.indexOutOfRange();
-        }
-
-        let idx = 0;
-        for (const element of this) {
-            if (idx === index) {
-                return element;
-            }
-            ++idx;
-        }
-
-        throw Errors.indexOutOfRange();
-    }
-
-    /** Returns the element at a specified index in a sequence or a default value if the index is out of range. */
-    public elementAtOrDefault(index: number): T | undefined {
-        if (index < 0) {
-            return undefined;
-        }
-
-        let idx = 0;
-        for (const element of this) {
-            if (idx === index) {
-                return element;
-            }
-            ++idx;
-        }
-
-        return undefined;
-    }
-
     /** Returns elements at a specified indexes in a sequence. */
     public elementsAt(indexes: Iterable<number>): Enumerable<T> {
         return new ElementsAtEnumerable(this, indexes);

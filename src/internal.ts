@@ -80,3 +80,5 @@ import './extensions/Contains';
 import './extensions/Count';
 import './extensions/Distinct';
 import './extensions/DistinctBy';
+import './extensions/ElementAt';
+import './extensions/ElementAtOrDefault';
