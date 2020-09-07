@@ -69,6 +69,7 @@ export * from './collections/LeftGroupJoinElement';
 export * from './collections/Grouping';
 export * from './collections/Lookup';
 
+// extensions
 import './extensions/Aggregate';
 import './extensions/All';
 import './extensions/Any';
