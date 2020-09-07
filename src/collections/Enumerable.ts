@@ -111,12 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-
-    /** Concatenates two sequences. */
-    public concat(second: Enumerable<T>): Enumerable<T> {
-        return new ConcatEnumerable(this, second);
-    }
-
     /** Determines whether a sequence contains a specified element by using an equality comparer. */
     public contains(value: T, comparer?: EqualityComparer<T>): boolean {
         const cmp = comparer ?? EqualityComparer.default<T>();
