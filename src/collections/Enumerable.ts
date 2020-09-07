@@ -111,27 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Computes the average of a sequence that are obtained by invoking a transform function on each element of the input sequence. */
-    public average(selector?: (element: T, index: number) => number): number {
-        let index = 0;
-        let sum = 0;
-        for (const element of this) {
-            const value = selector != null ? selector(element, index) : element;
-            if (typeof value !== 'number') {
-                throw Errors.valueIsNotNumber();
-            }
-
-            sum += value;
-            index++;
-        }
-
-        if (index === 0) {
-            throw Errors.noElements();
-        }
-
-        return sum / index;
-    }
-
     /** Casts the elements to the specified type. */
     public cast<TResult>(): Enumerable<TResult> {
         return this as unknown as Enumerable<TResult>; // TODO MV throw?

@@ -73,3 +73,4 @@ import './extensions/Aggregate';
 import './extensions/All';
 import './extensions/Any';
 import './extensions/Append';
+import './extensions/Average';
