@@ -111,35 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. */
-    public groupBy<TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
-        keySelector: (x: T, index: number) => TKey,
-        elementSelector?: (value: T, index: number) => TElement,
-        resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult
-    ): Enumerable<TResult> {
-        return new GroupByEnumerable(this, keySelector, elementSelector, resultSelector);
-    }
-
-    /** Correlates the elements of two sequences based on equality of keys and groups the results. */
-    public groupJoin<TRight, TKey, TResult = GroupJoinElement<T, TRight>>(
-        rightSource: Iterable<TRight>,
-        leftKeySelector: (value: T, index: number) => TKey,
-        rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T, rightList: ReadOnlyList<TRight>) => TResult
-    ): Enumerable<TResult> {
-        return new GroupJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
-    }
-
-    /** Produces the set intersection of two sequences. */
-    public intersect(second: Iterable<T>): Enumerable<T> {
-        return new IntersectEnumerable(this, second);
-    }
-
-    /** Determines whether the sequence is empty. */
-    public isEmpty(): boolean {
-        return this.no();
-    }
-
     /** Correlates the elements of two sequences based on matching keys. */
     public join<TRight, TKey, TResult = JoinElement<T, TRight>>(
         rightSource: Iterable<TRight>,

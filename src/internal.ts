@@ -88,3 +88,7 @@ import './extensions/Except';
 import './extensions/First';
 import './extensions/FirstOrDefault';
 import './extensions/FullJoin';
+import './extensions/GroupBy';
+import './extensions/GroupJoin';
+import './extensions/Intersect';
+import './extensions/IsEmpty';
