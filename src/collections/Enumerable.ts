@@ -111,11 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Appends a value to the end of the sequence. */
-    public append(value: T): Enumerable<T> {
-        return new AppendEnumerable(this, value);
-    }
-
     /** Computes the average of a sequence that are obtained by invoking a transform function on each element of the input sequence. */
     public average(selector?: (element: T, index: number) => number): number {
         let index = 0;
