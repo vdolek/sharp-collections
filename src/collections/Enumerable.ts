@@ -105,24 +105,4 @@ export abstract class Enumerable<T> implements Iterable<T> {
     }
 
     public abstract [Symbol.iterator](): Iterator<T>;
-
-    /** Produces the set union of two sequences. */
-    public union(second: Enumerable<T>): Enumerable<T> { // TODO MV Equality Comparer
-        return this.concat(second).distinct();
-    }
-
-    /** Filters a sequence of values based on a predicate. */
-    public where(predicate: (element: T, index: number) => boolean): Enumerable<T> {
-        return new WhereEnumerable(this, predicate);
-    }
-
-    /** Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results. */
-    public zip<TSecond, TResult = ZipElement<T, TSecond>>(
-        second: Enumerable<TSecond>,
-        resultSelector?: (first: T, second: TSecond, index: number) => TResult
-    ): Enumerable<TResult> {
-        const selector = resultSelector ?? ((f, s) => new ZipElement(f, s));
-        // @ts-ignore
-        return new ZipEnumerable(this, second, selector);
-    }
 }

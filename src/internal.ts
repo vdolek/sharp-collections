@@ -131,3 +131,6 @@ import './extensions/ToReadOnlyList';
 import './extensions/ToReadOnlyMap';
 import './extensions/ToReadOnlySet';
 import './extensions/ToSet';
+import './extensions/Union';
+import './extensions/Where';
+import './extensions/Zip';
