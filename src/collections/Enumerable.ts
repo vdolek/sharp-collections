@@ -111,16 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Performs a full outer join on two homogeneous sequences. */
-    public fullJoin<TRight, TKey, TResult = FullJoinElement<T, TRight>>(
-        rightSource: Iterable<TRight>,
-        leftKeySelector: (value: T, index: number) => TKey,
-        rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T | undefined, right: TRight | undefined) => TResult
-    ): Enumerable<TResult> {
-        return new FullJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
-    }
-
     /** Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. */
     public groupBy<TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
         keySelector: (x: T, index: number) => TKey,

@@ -87,3 +87,4 @@ import './extensions/ElementsAtRest';
 import './extensions/Except';
 import './extensions/First';
 import './extensions/FirstOrDefault';
+import './extensions/FullJoin';
