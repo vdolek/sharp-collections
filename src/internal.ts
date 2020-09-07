@@ -85,3 +85,5 @@ import './extensions/ElementAtOrDefault';
 import './extensions/ElementsAt';
 import './extensions/ElementsAtRest';
 import './extensions/Except';
+import './extensions/First';
+import './extensions/FirstOrDefault';

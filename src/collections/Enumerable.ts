@@ -111,30 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Returns the first element of a sequence. */
-    public first(predicate?: (x: T, index: number) => boolean): T {
-        let index = 0;
-        for (const element of this) {
-            if (predicate == null || predicate(element, index++)) {
-                return element;
-            }
-        }
-
-        throw predicate != null ? Errors.noMatch() : Errors.noElements();
-    }
-
-    /** Returns the first element of a sequence, or undefined if the sequence contains no elements. */
-    public firstOrDefault(predicate?: (x: T, index: number) => boolean): T | undefined {
-        let index = 0;
-        for (const element of this) {
-            if (predicate == null || predicate(element, index++)) {
-                return element;
-            }
-        }
-
-        return undefined;
-    }
-
     /** Performs a full outer join on two homogeneous sequences. */
     public fullJoin<TRight, TKey, TResult = FullJoinElement<T, TRight>>(
         rightSource: Iterable<TRight>,
