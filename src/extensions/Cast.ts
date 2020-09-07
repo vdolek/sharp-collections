@@ -7,7 +7,7 @@ declare module '../collections/Enumerable' {
     }
 }
 
-function cast<T, TResult>(this: Enumerable<T>): Enumerable<TResult> {
+function cast<T, TResult>(this: Enumerable<T>): Enumerable<TResult> { // TODO MV similar to ofType
     return this as unknown as Enumerable<TResult>; // TODO MV throw?
 }
 
