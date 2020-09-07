@@ -111,11 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Returns distinct elements from a sequence. */
-    public distinct(): Enumerable<T> { // TODO MV EqualityComparer
-        return new DistinctByEnumerable(this);
-    }
-
     /** Returns distinct elements from a sequence by using key selector to compare values. */
     public distinctBy<TKey = T>(keySelector: (element: T, index: number) => TKey): Enumerable<T> {
         return new DistinctByEnumerable(this, keySelector);

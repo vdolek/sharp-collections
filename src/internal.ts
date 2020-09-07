@@ -78,3 +78,4 @@ import './extensions/Cast';
 import './extensions/Concat';
 import './extensions/Contains';
 import './extensions/Count';
+import './extensions/Distinct';
