@@ -13,7 +13,7 @@ export * from './comparers/CombinedComparer';
 export * from './comparers/SelectorComparer';
 
 // enumerables
-export * from './enumerables/Enumerable';
+export * from './collections/Enumerable';
 
 export * from './enumerables/ArrayEnumerable';
 export * from './enumerables/EmptyEnumerable';
