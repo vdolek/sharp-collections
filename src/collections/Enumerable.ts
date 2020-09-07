@@ -106,37 +106,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
 
     public abstract [Symbol.iterator](): Iterator<T>;
 
-    /** Sorts the elements of a sequence according to a key. */
-    public orderBy<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>(), descending: boolean = false): OrderedEnumerable<T> {
-        const newComparer = comparer.invert(descending);
-        return new OrderedEnumerableInner(this, keySelector, newComparer);
-    }
-
-    /** Sorts the elements of a sequence in descending order according to a key. */
-    public orderByDescending<TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>()): OrderedEnumerable<T> {
-        return this.orderBy(keySelector, comparer, true);
-    }
-
-    /** Adds a value to the beginning of the sequence. */
-    public prepend(value: T): Enumerable<T> {
-        return new PrependEnumerable(this, value);
-    }
-
-    /** Inverts the order of the elements in a sequence. */
-    public reverse(): Enumerable<T> {
-        return new ReverseEnumerable(this);
-    }
-
-    /** Performs a right outer join on two homogeneous sequences. */
-    public rightJoin<TRight, TKey, TResult = RightJoinElement<T, TRight>>(
-        rightSource: Iterable<TRight>,
-        leftKeySelector: (value: T, index: number) => TKey,
-        rightKeySelector: (value: TRight, index: number) => TKey,
-        resultSelector?: (left: T | undefined, right: TRight) => TResult
-    ): Enumerable<TResult> {
-        return new RightJoinEnumerable(this, rightSource, leftKeySelector, rightKeySelector, resultSelector);
-    }
-
     /** Projects each element of a sequence into a new form. */
     public select<TResult>(selector: (x: T, index: number) => TResult): Enumerable<TResult> {
         return new SelectEnumerable(this, selector);

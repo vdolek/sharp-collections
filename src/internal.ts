@@ -104,3 +104,8 @@ import './extensions/Min';
 import './extensions/MinBy';
 import './extensions/No';
 import './extensions/OfType';
+import './extensions/OrderBy';
+import './extensions/OrderByDescending';
+import './extensions/Prepend';
+import './extensions/Reverse';
+import './extensions/RightJoin';
