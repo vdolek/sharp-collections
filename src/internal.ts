@@ -74,3 +74,4 @@ import './extensions/All';
 import './extensions/Any';
 import './extensions/Append';
 import './extensions/Average';
+import './extensions/Cast';

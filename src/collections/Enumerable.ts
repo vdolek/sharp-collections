@@ -111,10 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Casts the elements to the specified type. */
-    public cast<TResult>(): Enumerable<TResult> {
-        return this as unknown as Enumerable<TResult>; // TODO MV throw?
-    }
 
     /** Concatenates two sequences. */
     public concat(second: Enumerable<T>): Enumerable<T> {
