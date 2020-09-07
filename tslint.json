@@ -125,6 +125,7 @@
                 "chai"
             ]
         ],
+        "no-import-side-effect": false,
         "no-inferrable-types": [
             true,
             "ignore-params"

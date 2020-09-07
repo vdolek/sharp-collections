@@ -111,20 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Applies an accumulator function over a sequence. */
-    public aggregate<TAccumulate = T, TResult = T>(
-        seed: TAccumulate,
-        func: (acc: TAccumulate, value: T, index: number) => TAccumulate,
-        resultSelector?: (a: TAccumulate) => TResult
-    ): TAccumulate | TResult {
-        let index = 0;
-        let result = seed;
-        for (const element of this) {
-            result = func(result, element, index++);
-        }
-        return resultSelector != null ? resultSelector(result) : result;
-    }
-
     /** Determines whether all elements of a sequence satisfy a condition. */
     public all(predicate: (x: T, idx: number) => boolean): boolean {
         let index = 0;

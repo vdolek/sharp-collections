@@ -14,7 +14,6 @@ export * from './comparers/SelectorComparer';
 
 // enumerables
 export * from './collections/Enumerable';
-
 export * from './enumerables/ArrayEnumerable';
 export * from './enumerables/EmptyEnumerable';
 export * from './enumerables/IteratorEnumerable';
@@ -69,3 +68,5 @@ export * from './collections/GroupJoinElement';
 export * from './collections/LeftGroupJoinElement';
 export * from './collections/Grouping';
 export * from './collections/Lookup';
+
+import './extensions/Aggregate';
