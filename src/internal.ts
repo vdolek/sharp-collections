@@ -71,3 +71,4 @@ export * from './collections/Lookup';
 
 import './extensions/Aggregate';
 import './extensions/All';
+import './extensions/Any';

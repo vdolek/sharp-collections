@@ -111,17 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Determines whether a sequence contains any elements. */
-    public any(predicate?: (x: T, index: number) => boolean): boolean {
-        let index = 0;
-        for (const element of this) {
-            if (predicate == null || predicate(element, index++)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /** Appends a value to the end of the sequence. */
     public append(value: T): Enumerable<T> {
         return new AppendEnumerable(this, value);
