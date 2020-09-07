@@ -109,3 +109,8 @@ import './extensions/OrderByDescending';
 import './extensions/Prepend';
 import './extensions/Reverse';
 import './extensions/RightJoin';
+import './extensions/Select';
+import './extensions/SelectMany';
+import './extensions/SequenceEqual';
+import './extensions/Single';
+import './extensions/SingleOrDefault';
