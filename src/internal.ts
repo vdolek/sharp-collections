@@ -93,3 +93,8 @@ import './extensions/GroupBy';
 import './extensions/GroupJoin';
 import './extensions/Intersect';
 import './extensions/IsEmpty';
+import './extensions/Join';
+import './extensions/Last';
+import './extensions/LastOrDefault';
+import './extensions/LeftGroupJoin';
+import './extensions/LeftJoin';
