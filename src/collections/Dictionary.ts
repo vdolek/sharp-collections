@@ -1,4 +1,4 @@
-import { Errors, Pair, ReadOnlyDictionary, ReadOnlyList } from '../internal';
+import { Errors, Pair, ReadOnlyDictionary } from '../internal';
 
 /**
  * Represents a collection of keys and values. Values can be accessed by keys.
