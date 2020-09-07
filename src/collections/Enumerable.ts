@@ -111,16 +111,6 @@ export abstract class Enumerable<T> implements Iterable<T> {
         return Enumerable.from(this);
     }
 
-    /** Returns elements at a specified indexes in a sequence. */
-    public elementsAt(indexes: Iterable<number>): Enumerable<T> {
-        return new ElementsAtEnumerable(this, indexes);
-    }
-
-    /** Returns elements at a specified indexes in a rest sequence. */
-    public elementsAtRest(...indexes: number[]): Enumerable<T> {
-        return this.elementsAt(indexes);
-    }
-
     /** Produces the set difference of two sequences. */
     public except(except: Iterable<T>): Enumerable<T> { // TODO MV EqualityComparer
         return new ExceptEnumerable(this, except);
