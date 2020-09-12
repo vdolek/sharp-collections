@@ -69,6 +69,12 @@ export * from './collections/LeftGroupJoinElement';
 export * from './collections/Grouping';
 export * from './collections/Lookup';
 
+// static extensions - Dictionary
+import './extensions/static/dictionary/Empty';
+import './extensions/static/dictionary/From';
+import './extensions/static/dictionary/FromRest';
+import './extensions/static/dictionary/Single';
+
 // static extensions - Enumerable
 import './extensions/static/enumerable/Empty';
 import './extensions/static/enumerable/From';
@@ -76,6 +82,13 @@ import './extensions/static/enumerable/FromRest';
 import './extensions/static/enumerable/Range';
 import './extensions/static/enumerable/Repeat';
 import './extensions/static/enumerable/Single';
+
+// static extensions - HashSet
+import './extensions/static/hashSet/Empty';
+import './extensions/static/hashSet/From';
+import './extensions/static/hashSet/FromRest';
+import './extensions/static/hashSet/Range';
+import './extensions/static/hashSet/Single';
 
 // static extensions - List
 import './extensions/static/list/Empty';
@@ -85,6 +98,19 @@ import './extensions/static/list/Range';
 import './extensions/static/list/Repeat';
 import './extensions/static/list/Single';
 
+// static extensions - ReadOnlyDictionary
+import './extensions/static/readOnlyDictionary/Empty';
+import './extensions/static/readOnlyDictionary/From';
+import './extensions/static/readOnlyDictionary/FromRest';
+import './extensions/static/readOnlyDictionary/Single';
+
+// static extensions - ReadOnlyHashSet
+import './extensions/static/readOnlyHashSet/Empty';
+import './extensions/static/readOnlyHashSet/From';
+import './extensions/static/readOnlyHashSet/FromRest';
+import './extensions/static/readOnlyHashSet/Range';
+import './extensions/static/readOnlyHashSet/Single';
+
 // static extensions - ReadOnlyList
 import './extensions/static/readOnlyList/Empty';
 import './extensions/static/readOnlyList/From';
@@ -92,18 +118,6 @@ import './extensions/static/readOnlyList/FromRest';
 import './extensions/static/readOnlyList/Range';
 import './extensions/static/readOnlyList/Repeat';
 import './extensions/static/readOnlyList/Single';
-
-// static extensions - Dictionary
-import './extensions/static/dictionary/Empty';
-import './extensions/static/dictionary/From';
-import './extensions/static/dictionary/FromRest';
-import './extensions/static/dictionary/Single';
-
-// static extensions - ReadOnlyDictionary
-import './extensions/static/readOnlyDictionary/Empty';
-import './extensions/static/readOnlyDictionary/From';
-import './extensions/static/readOnlyDictionary/FromRest';
-import './extensions/static/readOnlyDictionary/Single';
 
 // extensions
 import './extensions/Aggregate';
