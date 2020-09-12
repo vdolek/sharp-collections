@@ -9,7 +9,7 @@ declare module '../../collections/Enumerable' {
 }
 
 function sequenceEqual<T>(this: Enumerable<T>, secondSource: Enumerable<T>, comparer?: EqualityComparer<T>): boolean {
-    const cmp = comparer ?? EqualityComparer.defaultComparer<T>();
+    const cmp = comparer ?? EqualityComparer.getDefault<T>();
 
     const iterator1 = this[Symbol.iterator]();
     const iterator2 = secondSource[Symbol.iterator]();

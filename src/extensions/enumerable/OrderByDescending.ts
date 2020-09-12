@@ -9,7 +9,7 @@ declare module '../../collections/Enumerable' {
     }
 }
 
-function orderByDescending<T, TKey>(this: Enumerable<T>, keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.defaultComparer<TKey>()): OrderedEnumerable<T> {
+function orderByDescending<T, TKey>(this: Enumerable<T>, keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.getDefault<TKey>()): OrderedEnumerable<T> {
     return this.orderBy(keySelector, comparer, true);
 }
 

@@ -3,12 +3,12 @@ import { EqualityComparer } from '../../../comparers/EqualityComparer';
 
 declare module '../../../comparers/EqualityComparer' {
     namespace EqualityComparer {
-        function defaultComparer<T>(): EqualityComparer<T>;
+        function getDefault<T>(): EqualityComparer<T>;
     }
 }
 
-function defaultComparer<T>(): EqualityComparer<T> {
+function getDefault<T>(): EqualityComparer<T> {
     return new DefaultEqualityComparer<T>();
 }
 
-EqualityComparer.defaultComparer = defaultComparer;
+EqualityComparer.getDefault = getDefault;
