@@ -3,7 +3,7 @@ import { EmptyEnumerable } from '../../../enumerables/EmptyEnumerable';
 
 declare module '../../../collections/Enumerable' {
     namespace Enumerable {
-        /** Returns an empty enumerable. */
+        /** Returns an empty Enumerable. */
         function empty<T>(): Enumerable<T>;
     }
 }

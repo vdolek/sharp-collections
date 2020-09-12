@@ -3,7 +3,7 @@ import { ArrayEnumerable } from '../../../enumerables/ArrayEnumerable';
 
 declare module '../../../collections/Enumerable' {
     namespace Enumerable {
-        /** Returns an enumerable from parameters. */
+        /** Returns an Enumerable from rest parameters. */
         function fromRest<T>(...elements: T[]): Enumerable<T>;
     }
 }

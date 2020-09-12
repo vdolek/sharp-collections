@@ -1,16 +1,13 @@
 import { Enumerable } from '../../../collections/Enumerable';
-import { ArrayEnumerable } from '../../../enumerables/ArrayEnumerable';
-import { IterableEnumerable } from '../../../enumerables/IterableEnumerable';
 import { RangeEnumerable } from '../../../enumerables/RangeEnumerable';
-import { SetEnumerable } from '../../../enumerables/SetEnumerable';
 
 declare module '../../../collections/Enumerable' {
     namespace Enumerable {
-        /** Generates a sequence of integral numbers within a specified range. */
+        /** Generates an Enumerable sequence of integral numbers within a specified range. */
         function range(count: number): Enumerable<number>;
-        /** Generates a sequence of integral numbers within a specified range. */
+        /** Generates an Enumerable sequence of integral numbers within a specified range. */
         function range(start: number, count: number): Enumerable<number>;
-        /** Generates a sequence of integral numbers within a specified range. */
+        /** Generates an Enumerable sequence of integral numbers within a specified range. */
         function range(start: number, count: number, increment: number): Enumerable<number>;
     }
 }

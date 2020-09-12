@@ -75,7 +75,7 @@ import './extensions/static/enumerable/From';
 import './extensions/static/enumerable/FromRest';
 import './extensions/static/enumerable/Range';
 import './extensions/static/enumerable/Repeat';
-import './extensions/static/enumerable/Sinle';
+import './extensions/static/enumerable/Single';
 
 // extensions
 import './extensions/Aggregate';
