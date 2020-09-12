@@ -1,5 +1,6 @@
-import { Enumerable } from '../collections/Enumerable';
 import { Comparer } from '../comparers/Comparer';
+
+import { Enumerable } from './Enumerable';
 
 export abstract class OrderedEnumerable<T> extends Enumerable<T> {
     /**  Performs a subsequent ordering of the elements in a sequence according to a key. */

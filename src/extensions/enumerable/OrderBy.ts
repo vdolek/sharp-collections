@@ -1,6 +1,6 @@
 import { Enumerable } from '../../collections/Enumerable';
+import { OrderedEnumerable } from '../../collections/OrderedEnumerable';
 import { Comparer } from '../../comparers/Comparer';
-import { OrderedEnumerable } from '../../enumerables/OrderedEnumerable';
 import { OrderedEnumerableInner } from '../../enumerables/OrderedEnumerableInner';
 
 declare module '../../collections/Enumerable' {

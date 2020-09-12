@@ -1,6 +1,6 @@
 import { Enumerable } from '../../collections/Enumerable';
+import { OrderedEnumerable } from '../../collections/OrderedEnumerable';
 import { Comparer } from '../../comparers/Comparer';
-import { OrderedEnumerable } from '../../enumerables/OrderedEnumerable';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

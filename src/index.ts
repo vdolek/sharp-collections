@@ -30,6 +30,7 @@ export { GroupJoinElement } from './collections/GroupJoinElement';
 export { LeftGroupJoinElement } from './collections/LeftGroupJoinElement';
 export { Grouping } from './collections/Grouping';
 export { Lookup } from './collections/Lookup';
+export { OrderedEnumerable } from './collections/OrderedEnumerable';
 
 // static extensions - Comparer
 import './extensions/comparer/static/Combine';

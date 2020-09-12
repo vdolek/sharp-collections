@@ -1,8 +1,7 @@
 import { Enumerable } from '../collections/Enumerable';
+import { OrderedEnumerable } from '../collections/OrderedEnumerable';
 import { Comparer } from '../comparers/Comparer';
 import { SelectorComparer } from '../comparers/SelectorComparer';
-
-import { OrderedEnumerable } from './OrderedEnumerable';
 
 export class OrderedEnumerableInner<T, TKey> extends OrderedEnumerable<T> {
     public constructor(
