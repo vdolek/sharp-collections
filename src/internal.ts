@@ -72,6 +72,7 @@ export * from './collections/Lookup';
 // static extensions - Comparer
 import './extensions/comparer/static/Combine';
 import './extensions/comparer/static/DefaultComparer';
+import './extensions/comparer/static/Invert';
 
 // static extensions - Dictionary
 import './extensions/dictionary/static/Empty';

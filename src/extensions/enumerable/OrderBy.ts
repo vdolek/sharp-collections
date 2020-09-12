@@ -11,7 +11,7 @@ declare module '../../collections/Enumerable' {
 }
 
 function orderBy<T, TKey>(this: Enumerable<T>, keySelector: (element: T) => TKey, comparer: Comparer<TKey> = Comparer.defaultComparer<TKey>(), descending: boolean = false): OrderedEnumerable<T> {
-    const newComparer = comparer.invert(descending);
+    const newComparer = Comparer.invert(comparer, descending);
     return new OrderedEnumerableInner(this, keySelector, newComparer);
 }
 

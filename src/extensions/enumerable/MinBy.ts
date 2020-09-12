@@ -10,7 +10,7 @@ declare module '../../collections/Enumerable' {
 }
 
 function minBy<T, TKey>(this: Enumerable<T>, keySelector: (element: T, index: number) => TKey, comparer: Comparer<TKey> = Comparer.defaultComparer<TKey>()): Enumerable<T> {
-    return new ExtremaEnumerable(this, keySelector, comparer.invert());
+    return new ExtremaEnumerable(this, keySelector, Comparer.invert(comparer));
 }
 
 Enumerable.prototype.minBy = minBy;
