@@ -175,6 +175,10 @@
             true,
             "ignore-for-loop"
         ],
+        "only-arrow-functions": [
+            true,
+            "allow-declarations"
+        ],
         "prefer-conditional-expression": [
             true,
             "check-else-if"

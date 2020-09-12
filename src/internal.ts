@@ -1,4 +1,4 @@
-/* tslint:disable:file-name-casing */
+/* tslint:disable:file-name-casing ordered-imports */
 
 export * from './Errors';
 
@@ -68,6 +68,14 @@ export * from './collections/GroupJoinElement';
 export * from './collections/LeftGroupJoinElement';
 export * from './collections/Grouping';
 export * from './collections/Lookup';
+
+// static extensions
+import './extensions/static/enumerable/Empty';
+import './extensions/static/enumerable/From';
+import './extensions/static/enumerable/FromRest';
+import './extensions/static/enumerable/Range';
+import './extensions/static/enumerable/Repeat';
+import './extensions/static/enumerable/Sinle';
 
 // extensions
 import './extensions/Aggregate';
