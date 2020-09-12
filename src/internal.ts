@@ -178,6 +178,7 @@ import './extensions/ToList';
 import './extensions/ToLookup';
 import './extensions/ToMap';
 import './extensions/ToReadOnlyDictionary';
+import './extensions/ToReadOnlyHashSet';
 import './extensions/ToReadOnlyList';
 import './extensions/ToReadOnlyMap';
 import './extensions/ToReadOnlySet';
