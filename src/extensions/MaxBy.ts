@@ -9,7 +9,7 @@ declare module '../collections/Enumerable' {
     }
 }
 
-function maxBy<T, TKey>(this: Enumerable<T>, keySelector: (element: T, index: number) => TKey, comparer: Comparer<TKey> = Comparer.default<TKey>()): Enumerable<T> {
+function maxBy<T, TKey>(this: Enumerable<T>, keySelector: (element: T, index: number) => TKey, comparer: Comparer<TKey> = Comparer.defaultComparer<TKey>()): Enumerable<T> {
     return new ExtremaEnumerable(this, keySelector, comparer);
 }
 

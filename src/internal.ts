@@ -69,6 +69,10 @@ export * from './collections/LeftGroupJoinElement';
 export * from './collections/Grouping';
 export * from './collections/Lookup';
 
+// static extensions - Comparer
+import './extensions/static/comparer/Combine';
+import './extensions/static/comparer/DefaultComparer';
+
 // static extensions - Dictionary
 import './extensions/static/dictionary/Empty';
 import './extensions/static/dictionary/From';
