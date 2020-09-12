@@ -5,22 +5,6 @@ import { Enumerable, Errors, MapEnumerable, Pair } from '../internal';
  */
 // @ts-ignore
 export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue> {
-    public static empty<TKey, TValue>(): ReadOnlyDictionary<TKey, TValue> {
-        return new ReadOnlyDictionary<TKey, TValue>();
-    }
-
-    public static from<TKey, TValue>(source: Iterable<Pair<TKey, TValue>>): ReadOnlyDictionary<TKey, TValue> {
-        return new ReadOnlyDictionary(source);
-    }
-
-    public static fromRest<TKey, TValue>(...elements: Pair<TKey, TValue>[]): ReadOnlyDictionary<TKey, TValue> {
-        return new ReadOnlyDictionary(elements);
-    }
-
-    public static single<TKey, TValue>(key: TKey, value: TValue): ReadOnlyDictionary<TKey, TValue> {
-        return ReadOnlyDictionary.fromRest(Pair.from(key, value));
-    }
-
     public constructor(source?: Iterable<Pair<TKey, TValue>>) {
         super(ReadOnlyDictionary.getSourceMap(source));
     }

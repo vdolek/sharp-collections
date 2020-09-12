@@ -93,6 +93,18 @@ import './extensions/static/readOnlyList/Range';
 import './extensions/static/readOnlyList/Repeat';
 import './extensions/static/readOnlyList/Single';
 
+// static extensions - Dictionary
+import './extensions/static/dictionary/Empty';
+import './extensions/static/dictionary/From';
+import './extensions/static/dictionary/FromRest';
+import './extensions/static/dictionary/Single';
+
+// static extensions - ReadOnlyDictionary
+import './extensions/static/readOnlyDictionary/Empty';
+import './extensions/static/readOnlyDictionary/From';
+import './extensions/static/readOnlyDictionary/FromRest';
+import './extensions/static/readOnlyDictionary/Single';
+
 // extensions
 import './extensions/Aggregate';
 import './extensions/All';
