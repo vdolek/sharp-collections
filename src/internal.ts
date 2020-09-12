@@ -69,13 +69,29 @@ export * from './collections/LeftGroupJoinElement';
 export * from './collections/Grouping';
 export * from './collections/Lookup';
 
-// static extensions
+// static extensions - Enumerable
 import './extensions/static/enumerable/Empty';
 import './extensions/static/enumerable/From';
 import './extensions/static/enumerable/FromRest';
 import './extensions/static/enumerable/Range';
 import './extensions/static/enumerable/Repeat';
 import './extensions/static/enumerable/Single';
+
+// static extensions - List
+import './extensions/static/list/Empty';
+import './extensions/static/list/From';
+import './extensions/static/list/FromRest';
+import './extensions/static/list/Range';
+import './extensions/static/list/Repeat';
+import './extensions/static/list/Single';
+
+// static extensions - ReadOnlyList
+import './extensions/static/readOnlyList/Empty';
+import './extensions/static/readOnlyList/From';
+import './extensions/static/readOnlyList/FromRest';
+import './extensions/static/readOnlyList/Range';
+import './extensions/static/readOnlyList/Repeat';
+import './extensions/static/readOnlyList/Single';
 
 // extensions
 import './extensions/Aggregate';
