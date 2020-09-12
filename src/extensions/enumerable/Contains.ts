@@ -9,7 +9,7 @@ declare module '../../collections/Enumerable' {
 }
 
 function contains<T>(this: Enumerable<T>, value: T, comparer?: EqualityComparer<T>): boolean {
-    const cmp = comparer ?? EqualityComparer.default<T>();
+    const cmp = comparer ?? EqualityComparer.defaultComparer<T>();
     for (const element of this) {
         if (cmp.equals(value, element)) {
             return true;

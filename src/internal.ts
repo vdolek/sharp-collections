@@ -88,6 +88,10 @@ import './extensions/enumerable/static/Range';
 import './extensions/enumerable/static/Repeat';
 import './extensions/enumerable/static/Single';
 
+// static extensions - EqualityComparer
+import './extensions/equalityComparer/static/Combine';
+import './extensions/equalityComparer/static/FromPredicate';
+
 // static extensions - HashSet
 import './extensions/hashSet/static/Empty';
 import './extensions/hashSet/static/From';
