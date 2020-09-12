@@ -1,7 +1,4 @@
 import { Enumerable } from '../../../collections/Enumerable';
-import { ArrayEnumerable } from '../../../enumerables/ArrayEnumerable';
-import { IterableEnumerable } from '../../../enumerables/IterableEnumerable';
-import { SetEnumerable } from '../../../enumerables/SetEnumerable';
 
 declare module '../../../collections/Enumerable' {
     namespace Enumerable {
@@ -11,7 +8,7 @@ declare module '../../../collections/Enumerable' {
 }
 
 function single<T>(element: T): Enumerable<T> {
-    return Enumerable.fromRest(element);
+    return Enumerable.fromRest(element); // TODO SingleEnumerable
 }
 
 Enumerable.single = single;
