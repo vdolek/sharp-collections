@@ -1,4 +1,4 @@
-import { ReadOnlyList } from '../internal';
+import { ReadOnlyList } from './ReadOnlyList';
 
 /**
  * Represents a list of objects that can be accessed by index.

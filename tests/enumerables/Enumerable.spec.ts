@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Dictionary, Enumerable } from '../../src/internal';
+import { Dictionary, Enumerable } from '../../src/index';
 
 describe('Enumerable tests', () => {
     it('empty', () => {

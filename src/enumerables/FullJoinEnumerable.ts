@@ -1,4 +1,5 @@
-import { Enumerable, FullJoinElement } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { FullJoinElement } from '../collections/FullJoinElement';
 
 export class FullJoinEnumerable<TLeft, TRight, TKey, TResult = FullJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

@@ -1,4 +1,5 @@
-import { ArrayEnumerable, Errors } from '../internal';
+import { ArrayEnumerable } from '../enumerables/ArrayEnumerable';
+import { Errors } from '../Errors';
 
 /**
  * Represents a read-only list of objects that can be accessed by index.

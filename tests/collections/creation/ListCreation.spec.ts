@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { List } from '../../../src/internal';
+import { List } from '../../../src/index';
 
 describe('List creation tests', () => {
     it('empty test', () => {

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Enumerable, List } from '../../src/internal';
+import { Enumerable, List } from '../../src/index';
 
 describe('intersect tests', () => {
     it('simple test', () => {

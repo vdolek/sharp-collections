@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Enumerable, List, ZipElement } from '../../src/internal';
+import { Enumerable, List, ZipElement } from '../../src/index';
 
 describe('zip tests', () => {
     it('simple test', () => {

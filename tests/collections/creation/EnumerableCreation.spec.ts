@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Enumerable } from '../../../src/internal';
+import { Enumerable } from '../../../src/index';
 
 describe('Enumerable creation tests', () => {
     it('empty test', () => {

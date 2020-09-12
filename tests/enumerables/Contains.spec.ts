@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { EqualityComparer, List } from '../../src/internal';
+import { EqualityComparer, List } from '../../src/index';
 
 describe('contains tests', () => {
     it('simple test', () => {

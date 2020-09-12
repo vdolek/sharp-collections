@@ -1,7 +1,7 @@
 /* tslint:disable:max-classes-per-file */
 import { expect } from 'chai';
 
-import { Enumerable, RightJoinElement } from '../../src/internal';
+import { Enumerable, RightJoinElement } from '../../src/index';
 
 class Foo { public constructor(public readonly foo: number) { } }
 class Bar { public constructor(public readonly bar: number) { } }

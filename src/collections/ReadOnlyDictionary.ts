@@ -1,4 +1,8 @@
-import { Enumerable, Errors, MapEnumerable, Pair } from '../internal';
+import { MapEnumerable } from '../enumerables/MapEnumerable';
+import { Errors } from '../Errors';
+
+import { Enumerable } from './Enumerable';
+import { Pair } from './Pair';
 
 /**
  * Represents a read-only collection of keys and values. Values can be accessed by keys.

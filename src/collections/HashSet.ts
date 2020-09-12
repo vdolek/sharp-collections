@@ -1,4 +1,4 @@
-import { Enumerable, ReadOnlyDictionary, ReadOnlyHashSet } from '../internal';
+import { ReadOnlyHashSet } from './ReadOnlyHashSet';
 
 /**
  * Represents a set of values.

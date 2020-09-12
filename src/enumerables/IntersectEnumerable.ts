@@ -1,4 +1,5 @@
-import { Enumerable, HashSet } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { HashSet } from '../collections/HashSet';
 
 export class IntersectEnumerable<T> extends Enumerable<T> {
     public constructor(

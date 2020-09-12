@@ -1,4 +1,4 @@
-import { Enumerable, SetEnumerable } from '../internal';
+import { SetEnumerable } from '../enumerables/SetEnumerable';
 
 /**
  * Represents a read-only set of values.

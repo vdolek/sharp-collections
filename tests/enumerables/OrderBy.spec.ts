@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { List } from '../../src/internal';
+import { List } from '../../src/index';
 
 class Foo { public constructor(public readonly val1: number, public readonly val2: number, public readonly val3: number) { } }
 

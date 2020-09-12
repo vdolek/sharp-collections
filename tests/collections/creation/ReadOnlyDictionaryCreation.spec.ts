@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Pair, ReadOnlyDictionary } from '../../../src/internal';
+import { Pair, ReadOnlyDictionary } from '../../../src/index';
 
 describe('ReadOnlyDictionary creation tests', () => {
     it('empty test', () => {

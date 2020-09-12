@@ -1,4 +1,4 @@
-import { Enumerable } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
 
 export class RangeEnumerable extends Enumerable<number> {
     public constructor(

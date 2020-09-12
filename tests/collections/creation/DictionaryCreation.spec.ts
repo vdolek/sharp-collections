@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Dictionary, Pair } from '../../../src/internal';
+import { Dictionary, Pair } from '../../../src/index';
 
 describe('Dictionary creation tests', () => {
     it('empty test', () => {

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Enumerable, Pair } from '../../src/internal';
+import { Enumerable, Pair } from '../../src/index';
 
 describe('toDictionary tests', () => {
     it('toDictionary test', () => {

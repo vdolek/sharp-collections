@@ -1,4 +1,4 @@
-import { Enumerable } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
 
 export class SelectEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(

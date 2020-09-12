@@ -1,4 +1,6 @@
-import { Enumerable, JoinElement, RightJoinElement } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { JoinElement } from '../collections/JoinElement';
+import { RightJoinElement } from '../collections/RightJoinElement';
 
 export class RightJoinEnumerable<TLeft, TRight, TKey, TResult = RightJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(
@@ -15,7 +17,7 @@ export class RightJoinEnumerable<TLeft, TRight, TKey, TResult = RightJoinElement
         const leftEnumerable = Enumerable.from(this.leftSource);
         const leftLookup = leftEnumerable.toLookup(this.leftKeySelector);
 
-        const selector = this.resultSelector ?? ((left, right) => new JoinElement(left, right) as unknown as TResult);
+        const selector = this.resultSelector ?? ((left, right) => new RightJoinElement(left, right) as unknown as TResult);
 
         let index = 0;
         for (const right of this.rightSource) {

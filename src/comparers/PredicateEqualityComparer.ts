@@ -1,4 +1,4 @@
-import { EqualityComparer } from '../internal';
+import { EqualityComparer } from './EqualityComparer';
 
 export class PredicateEqualityComparer<T> extends EqualityComparer<T> {
     public constructor(private readonly predicate: (value1: T, value2: T) => boolean) {

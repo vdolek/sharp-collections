@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { ReadOnlyHashSet } from '../../../src/internal';
+import { ReadOnlyHashSet } from '../../../src/index';
 
 describe('ReadOnlyHashSet creation tests', () => {
     it('empty test', () => {

@@ -1,4 +1,6 @@
-import { Enumerable, GroupJoinElement, ReadOnlyList } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { GroupJoinElement } from '../collections/GroupJoinElement';
+import { ReadOnlyList } from '../collections/ReadOnlyList';
 
 export class GroupJoinEnumerable<TLeft, TRight, TKey, TResult = GroupJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

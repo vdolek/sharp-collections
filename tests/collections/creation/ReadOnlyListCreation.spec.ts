@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { ReadOnlyList } from '../../../src/internal';
+import { ReadOnlyList } from '../../../src/index';
 
 describe('ReadOnlyList creation tests', () => {
     it('empty test', () => {
