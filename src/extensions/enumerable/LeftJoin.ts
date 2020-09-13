@@ -1,5 +1,5 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { LeftJoinElement } from '../../collections/LeftJoinElement';
+import { LeftJoinElement } from '../../collections/models/LeftJoinElement';
 import { LeftJoinEnumerable } from '../../enumerables/LeftJoinEnumerable';
 
 declare module '../../collections/Enumerable' {

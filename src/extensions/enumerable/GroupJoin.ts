@@ -1,5 +1,5 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { GroupJoinElement } from '../../collections/GroupJoinElement';
+import { GroupJoinElement } from '../../collections/models/GroupJoinElement';
 import { ReadOnlyList } from '../../collections/ReadOnlyList';
 import { GroupJoinEnumerable } from '../../enumerables/GroupJoinEnumerable';
 

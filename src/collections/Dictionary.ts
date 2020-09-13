@@ -1,6 +1,6 @@
 import { Errors } from '../Errors';
 
-import { Pair } from './Pair';
+import { Pair } from './models/Pair';
 import { ReadOnlyDictionary } from './ReadOnlyDictionary';
 
 /**

@@ -1,5 +1,5 @@
 import { Dictionary } from '../../../collections/Dictionary';
-import { Pair } from '../../../collections/Pair';
+import { Pair } from '../../../collections/models/Pair';
 
 declare module '../../../collections/Dictionary' {
     namespace Dictionary {

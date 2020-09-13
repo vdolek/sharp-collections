@@ -1,5 +1,5 @@
 import { Enumerable } from '../collections/Enumerable';
-import { LeftGroupJoinElement } from '../collections/LeftGroupJoinElement';
+import { LeftGroupJoinElement } from '../collections/models/LeftGroupJoinElement';
 import { ReadOnlyList } from '../collections/ReadOnlyList';
 
 export class LeftGroupJoinEnumerable<TLeft, TRight, TKey, TResult = LeftGroupJoinElement<TLeft, TRight>> extends Enumerable<TResult> {

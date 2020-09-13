@@ -2,7 +2,7 @@ import { MapEnumerable } from '../enumerables/MapEnumerable';
 import { Errors } from '../Errors';
 
 import { Enumerable } from './Enumerable';
-import { Pair } from './Pair';
+import { Pair } from './models/Pair';
 
 /**
  * Represents a read-only collection of keys and values. Values can be accessed by keys.

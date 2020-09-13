@@ -1,6 +1,6 @@
 import { Enumerable } from '../collections/Enumerable';
-import { JoinElement } from '../collections/JoinElement';
-import { LeftJoinElement } from '../collections/LeftJoinElement';
+import { JoinElement } from '../collections/models/JoinElement';
+import { LeftJoinElement } from '../collections/models/LeftJoinElement';
 
 export class LeftJoinEnumerable<TLeft, TRight, TKey, TResult = LeftJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

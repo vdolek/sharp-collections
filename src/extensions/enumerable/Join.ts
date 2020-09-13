@@ -1,5 +1,5 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { JoinElement } from '../../collections/JoinElement';
+import { JoinElement } from '../../collections/models/JoinElement';
 import { JoinEnumerable } from '../../enumerables/JoinEnumerable';
 
 declare module '../../collections/Enumerable' {
