@@ -1,4 +1,4 @@
-/* tslint:disable:file-name-casing ordered-imports */
+/* tslint:disable:file-name-casing ordered-imports no-import-side-effect */
 
 // comparers
 export { CombinedComparer } from './comparers/CombinedComparer';
