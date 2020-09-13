@@ -31,6 +31,7 @@ export { LeftGroupJoinElement } from './collections/models/LeftGroupJoinElement'
 export { Grouping } from './collections/Grouping';
 export { Lookup } from './collections/Lookup';
 export { OrderedEnumerable } from './collections/OrderedEnumerable';
+export { IndexedPair } from './collections/models/IndexedPair';
 
 // static extensions - Comparer
 import './extensions/comparer/static/Combine';
@@ -97,6 +98,7 @@ import './extensions/enumerable/All';
 import './extensions/enumerable/Any';
 import './extensions/enumerable/Append';
 import './extensions/enumerable/AsEnumerable';
+import './extensions/enumerable/AsIdexed';
 import './extensions/enumerable/Average';
 import './extensions/enumerable/Cast';
 import './extensions/enumerable/Concat';
