@@ -1,5 +1,5 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { LeftGroupJoinElement } from '../../collections/models/LeftGroupJoinElement';
+import { LeftGroupJoinElement } from '../../models/LeftGroupJoinElement';
 import { ReadOnlyList } from '../../collections/ReadOnlyList';
 import { LeftGroupJoinEnumerable } from '../../enumerables/LeftGroupJoinEnumerable';
 

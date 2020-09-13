@@ -1,5 +1,5 @@
 import { Enumerable } from '../collections/Enumerable';
-import { Pair } from '../collections/models/Pair';
+import { Pair } from '../models/Pair';
 
 export class MapEnumerable<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> {
     public constructor(protected readonly map: Map<TKey, Pair<TKey, TValue>>) {

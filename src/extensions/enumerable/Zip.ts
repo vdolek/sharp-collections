@@ -1,5 +1,5 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { ZipElement } from '../../collections/models/ZipElement';
+import { ZipElement } from '../../models/ZipElement';
 import { ZipEnumerable } from '../../enumerables/ZipEnumerable';
 
 declare module '../../collections/Enumerable' {

@@ -1,37 +1,40 @@
 /* tslint:disable:file-name-casing ordered-imports */
 
 // comparers
-export { EqualityComparer } from './comparers/EqualityComparer';
-export { DefaultEqualityComparer } from './comparers/DefaultEqualityComparer';
-export { PredicateEqualityComparer } from './comparers/PredicateEqualityComparer';
+export { CombinedComparer } from './comparers/CombinedComparer';
 export { Comparer } from './comparers/Comparer';
 export { DefaultComparer } from './comparers/DefaultComparer';
+export { DefaultEqualityComparer } from './comparers/DefaultEqualityComparer';
+export { EqualityComparer } from './comparers/EqualityComparer';
 export { InverseComparer } from './comparers/InverseComparer';
-export { CombinedComparer } from './comparers/CombinedComparer';
+export { PredicateEqualityComparer } from './comparers/PredicateEqualityComparer';
 export { SelectorComparer } from './comparers/SelectorComparer';
 
+
 // enumerables
-export { Enumerable } from './collections/Enumerable';
 
 // collections
-export { ReadOnlyDictionary } from './collections/ReadOnlyDictionary';
-export { ReadOnlyList } from './collections/ReadOnlyList';
-export { ReadOnlyHashSet } from './collections/ReadOnlyHashSet';
 export { Dictionary } from './collections/Dictionary';
-export { List } from './collections/List';
-export { HashSet } from './collections/HashSet';
-export { Pair } from './collections/models/Pair';
-export { ZipElement } from './collections/models/ZipElement';
-export { JoinElement } from './collections/models/JoinElement';
-export { LeftJoinElement } from './collections/models/LeftJoinElement';
-export { RightJoinElement } from './collections/models/RightJoinElement';
-export { FullJoinElement } from './collections/models/FullJoinElement';
-export { GroupJoinElement } from './collections/models/GroupJoinElement';
-export { LeftGroupJoinElement } from './collections/models/LeftGroupJoinElement';
+export { Enumerable } from './collections/Enumerable';
 export { Grouping } from './collections/Grouping';
+export { HashSet } from './collections/HashSet';
+export { List } from './collections/List';
 export { Lookup } from './collections/Lookup';
 export { OrderedEnumerable } from './collections/OrderedEnumerable';
-export { IndexedPair } from './collections/models/IndexedPair';
+export { ReadOnlyDictionary } from './collections/ReadOnlyDictionary';
+export { ReadOnlyHashSet } from './collections/ReadOnlyHashSet';
+export { ReadOnlyList } from './collections/ReadOnlyList';
+
+// models
+export { FullJoinElement } from './models/FullJoinElement';
+export { GroupJoinElement } from './models/GroupJoinElement';
+export { IndexedPair } from './models/IndexedPair';
+export { JoinElement } from './models/JoinElement';
+export { LeftGroupJoinElement } from './models/LeftGroupJoinElement';
+export { LeftJoinElement } from './models/LeftJoinElement';
+export { Pair } from './models/Pair';
+export { RightJoinElement } from './models/RightJoinElement';
+export { ZipElement } from './models/ZipElement';
 
 // static extensions - Comparer
 import './extensions/comparer/static/Combine';

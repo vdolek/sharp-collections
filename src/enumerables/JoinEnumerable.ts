@@ -1,5 +1,5 @@
 import { Enumerable } from '../collections/Enumerable';
-import { JoinElement } from '../collections/models/JoinElement';
+import { JoinElement } from '../models/JoinElement';
 
 export class JoinEnumerable<TLeft, TRight, TKey, TResult = JoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

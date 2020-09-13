@@ -1,5 +1,5 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { IndexedPair } from '../../collections/models/IndexedPair';
+import { IndexedPair } from '../../models/IndexedPair';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {
