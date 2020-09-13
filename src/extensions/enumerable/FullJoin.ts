@@ -1,6 +1,6 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { FullJoinElement } from '../../models/FullJoinElement';
 import { FullJoinEnumerable } from '../../enumerables/FullJoinEnumerable';
+import { FullJoinElement } from '../../models/FullJoinElement';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

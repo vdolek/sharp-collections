@@ -1,6 +1,6 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { ZipElement } from '../../models/ZipElement';
 import { ZipEnumerable } from '../../enumerables/ZipEnumerable';
+import { ZipElement } from '../../models/ZipElement';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

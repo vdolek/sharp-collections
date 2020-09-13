@@ -1,6 +1,6 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { RightJoinElement } from '../../models/RightJoinElement';
 import { RightJoinEnumerable } from '../../enumerables/RightJoinEnumerable';
+import { RightJoinElement } from '../../models/RightJoinElement';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

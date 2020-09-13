@@ -1,7 +1,7 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { GroupJoinElement } from '../../models/GroupJoinElement';
 import { ReadOnlyList } from '../../collections/ReadOnlyList';
 import { GroupJoinEnumerable } from '../../enumerables/GroupJoinEnumerable';
+import { GroupJoinElement } from '../../models/GroupJoinElement';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

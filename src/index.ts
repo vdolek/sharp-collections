@@ -10,9 +10,6 @@ export { InverseComparer } from './comparers/InverseComparer';
 export { PredicateEqualityComparer } from './comparers/PredicateEqualityComparer';
 export { SelectorComparer } from './comparers/SelectorComparer';
 
-
-// enumerables
-
 // collections
 export { Dictionary } from './collections/Dictionary';
 export { Enumerable } from './collections/Enumerable';

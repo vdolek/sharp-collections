@@ -1,7 +1,7 @@
 import { Dictionary } from '../../collections/Dictionary';
 import { Enumerable } from '../../collections/Enumerable';
-import { Pair } from '../../models/Pair';
 import { ReadOnlyDictionary } from '../../collections/ReadOnlyDictionary';
+import { Pair } from '../../models/Pair';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

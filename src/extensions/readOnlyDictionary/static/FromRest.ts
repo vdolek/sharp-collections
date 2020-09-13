@@ -1,5 +1,5 @@
-import { Pair } from '../../../models/Pair';
 import { ReadOnlyDictionary } from '../../../collections/ReadOnlyDictionary';
+import { Pair } from '../../../models/Pair';
 
 declare module '../../../collections/ReadOnlyDictionary' {
     namespace ReadOnlyDictionary {

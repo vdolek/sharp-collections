@@ -1,7 +1,7 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { LeftGroupJoinElement } from '../../models/LeftGroupJoinElement';
 import { ReadOnlyList } from '../../collections/ReadOnlyList';
 import { LeftGroupJoinEnumerable } from '../../enumerables/LeftGroupJoinEnumerable';
+import { LeftGroupJoinElement } from '../../models/LeftGroupJoinElement';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

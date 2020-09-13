@@ -1,6 +1,6 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { LeftJoinElement } from '../../models/LeftJoinElement';
 import { LeftJoinEnumerable } from '../../enumerables/LeftJoinEnumerable';
+import { LeftJoinElement } from '../../models/LeftJoinElement';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {
