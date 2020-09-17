@@ -1,4 +1,6 @@
-import { Enumerable, LeftGroupJoinElement, ReadOnlyList } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { ReadOnlyList } from '../collections/ReadOnlyList';
+import { LeftGroupJoinElement } from '../models/LeftGroupJoinElement';
 
 export class LeftGroupJoinEnumerable<TLeft, TRight, TKey, TResult = LeftGroupJoinElement<TLeft, TRight>> extends Enumerable<TResult> {
     public constructor(

@@ -1,4 +1,6 @@
-import { Comparer, Enumerable, List } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { List } from '../collections/List';
+import { Comparer } from '../comparers/Comparer';
 
 export class ExtremaEnumerable<T, TKey> extends Enumerable<T> {
     public constructor(

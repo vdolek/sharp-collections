@@ -80,11 +80,12 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 
 | Method                | Description |
 |-----------------------|-------------|
-| `asEnumerable`        | Returns the sequence typed as an `Enumerable`. |
 | `aggregate`           | Applies an accumulator function over a sequence. |
 | `all`                 | Determines whether all elements of a sequence satisfy a condition. |
 | `any`                 | Determines whether a sequence contains any elements. |
 | `append`              | Appends a value to the end of the sequence. |
+| `asEnumerable`        | Returns the sequence typed as an `Enumerable`. |
+| `asIndexed`           | Returns indexed sequence. |
 | `average`             | Computes the average of a sequence that are obtained by invoking a transform function on each element of the input sequence. |
 | `cast`                | Casts the elements to the specified type. |
 | `concat`              | Concatenates two sequences. |

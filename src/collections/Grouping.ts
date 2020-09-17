@@ -1,4 +1,4 @@
-import { List } from '../internal';
+import { List } from './List';
 
 export class Grouping<TKey, TElement> extends List<TElement> {
     public readonly key: TKey;

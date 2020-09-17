@@ -1,4 +1,7 @@
-import { Dictionary, Enumerable, Grouping, List } from '../internal';
+import { Dictionary } from '../collections/Dictionary';
+import { Enumerable } from '../collections/Enumerable';
+import { Grouping } from '../collections/Grouping';
+import { List } from '../collections/List';
 
 export class GroupByEnumerable<TKey, TValue, TElement = TValue, TResult = Grouping<TKey, TElement>> extends Enumerable<TResult> {
     public constructor(

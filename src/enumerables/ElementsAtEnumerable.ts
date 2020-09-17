@@ -1,4 +1,6 @@
-import { Enumerable, Errors, List } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
+import { List } from '../collections/List';
+import { Errors } from '../Errors';
 
 export class ElementsAtEnumerable<T> extends Enumerable<T> {
     public constructor(

@@ -1,4 +1,4 @@
-import { Comparer } from '../internal';
+import { Comparer } from './Comparer';
 
 export class InverseComparer<T> extends Comparer<T> {
     public constructor(private readonly innerComparer: Comparer<T>) {

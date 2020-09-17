@@ -1,4 +1,4 @@
-import { Enumerable } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
 
 export class AppendEnumerable<T> extends Enumerable<T> {
     public constructor(
