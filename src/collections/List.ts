@@ -1,37 +1,9 @@
-import { Enumerable, ReadOnlyList } from '../internal';
+import { ReadOnlyList } from './ReadOnlyList';
 
 /**
  * Represents a list of objects that can be accessed by index.
  */
 export class List<T> extends ReadOnlyList<T> {
-    public static empty<T>(): List<T> {
-        return new List<T>();
-    }
-
-    public static from<T>(source: Iterable<T>): List<T> {
-        return new List<T>(source);
-    }
-
-    public static fromRest<T>(...elements: T[]): List<T> {
-        return new List<T>(elements);
-    }
-
-    public static repeat<T>(element: T, count: number): List<T> {
-        return Enumerable.repeat(element, count).toList();
-    }
-
-    public static range(count: number): List<number>;
-    public static range(start: number, count: number): List<number>;
-    public static range(start: number, count: number, increment: number): List<number>;
-    public static range(a: number, b?: number, c?: number): List<number> {
-        // @ts-ignore
-        return Enumerable.range(a, b, c).toList();
-    }
-
-    public static single<T>(element: T): List<T> {
-        return List.fromRest(element);
-    }
-
     public add(value: T): void {
         this.source.push(value);
     }

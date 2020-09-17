@@ -1,4 +1,4 @@
-import { Comparer } from '../internal';
+import { Comparer } from './Comparer';
 
 export class CombinedComparer<T> extends Comparer<T> {
     public constructor(

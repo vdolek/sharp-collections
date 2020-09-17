@@ -1,4 +1,6 @@
-import { Enumerable, Grouping, ReadOnlyDictionary } from '../internal';
+import { Enumerable } from './Enumerable';
+import { Grouping } from './Grouping';
+import { ReadOnlyDictionary } from './ReadOnlyDictionary';
 
 export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>> {
     public constructor(private readonly dict: ReadOnlyDictionary<TKey, Grouping<TKey, TElement>>) {

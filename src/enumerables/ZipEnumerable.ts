@@ -1,4 +1,4 @@
-import { Enumerable } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
 
 export class ZipEnumerable<TFirst, TSecond, TResult> extends Enumerable<TResult> {
     public constructor(

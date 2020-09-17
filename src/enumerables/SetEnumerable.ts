@@ -1,4 +1,4 @@
-import { Enumerable } from '../internal';
+import { Enumerable } from '../collections/Enumerable';
 
 export class SetEnumerable<T> extends Enumerable<T> {
     public constructor(protected readonly source: Set<T>) {
