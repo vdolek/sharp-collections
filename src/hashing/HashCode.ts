@@ -12,43 +12,44 @@ export class HashCode {
         }
 
         switch (typeof value) {
-            case 'boolean': return HashCode.hashBoolean(value);
-            case 'number': return HashCode.hashNumber(value);
-            case 'string': return HashCode.hashString(value);
-            case 'object': return HashCode.hashObject(value);
+            case 'boolean': return HashCode.hashBoolean(value, 2354214525);
+            case 'number': return HashCode.hashNumber(value, 1312455877);
+            case 'string': return HashCode.hashString(value, 1745632457);
+            case 'object': return HashCode.hashObject(value, 2031456879);
+            case 'symbol': return HashCode.hashString(value.toString(), 1942554899);
             default: throw new Error(`Not supported type for hashing (${typeof value})`);
         }
     }
 
     public static combine(hashCodes: Iterable<number>): number {
-        return HashCode.combineInner(hashCodes);
+        return HashCode.combineInner(hashCodes, 0);
     }
 
     public static combineParams(...hashCodes: number[]): number {
-        return HashCode.combineInner(hashCodes);
+        return HashCode.combineInner(hashCodes, 0);
     }
 
-    private static hashBoolean(bool: boolean): number {
-        return HashCode.hashNumber(bool ? 1 : 0);
+    private static hashBoolean(bool: boolean, seed: number): number {
+        return HashCode.hashNumber(bool ? 1 : 0, seed);
     }
 
-    private static hashNumber(num: number): number {
+    private static hashNumber(num: number, seed: number): number {
         if (Number.isFinite(num)) {
-            return HashCode.combineInner(Enumerable.single(num), 2354214525);
+            return HashCode.combineInner(Enumerable.single(num), seed);
         }
 
         return 0;
     }
 
-    private static hashString(value: string): number {
+    private static hashString(value: string, seed: number): number {
         const charCodes = Enumerable.from(value).select(x => x.charCodeAt(0));
-        return HashCode.combineInner(charCodes, 1745632457); // TODO test
+        return HashCode.combineInner(charCodes, seed); // TODO test
     }
 
-    private static hashObject<T>(value: T): number {
+    private static hashObject<T>(value: T, seed: number): number {
         let hashCode = HashCode.objectHashCodes.get(value);
         if (hashCode == null) {
-            hashCode = HashCode.hashNumber(++HashCode.lastHashCode);
+            hashCode = HashCode.hashNumber(++HashCode.lastHashCode, seed);
             HashCode.objectHashCodes.set(value, hashCode);
         }
 
@@ -56,7 +57,7 @@ export class HashCode {
     }
 
     // source: https://stackoverflow.com/a/52171480/2262449
-    private static combineInner(source: Iterable<number>, seed: number = 0): number {
+    private static combineInner(source: Iterable<number>, seed: number): number {
         let h1 = seed ^ 0xDEADBEEF;
         let h2 = seed ^ 0x41C6CE57;
 
