@@ -29,6 +29,7 @@ describe('HashCode tests', () => {
 
         expect(HashCode.getHashCode(Symbol('aaa'))).to.be.equal(HashCode.getHashCode(Symbol('aaa')));
         expect(HashCode.getHashCode(Symbol('aaa'))).to.not.be.equal(HashCode.getHashCode(Symbol('bbb')));
+        expect(HashCode.getHashCode(Symbol('aaa'))).to.not.be.equal(HashCode.getHashCode(Symbol('aaa').toString()));
     });
 
     it('object test', () => {
