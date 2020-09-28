@@ -2,7 +2,7 @@
 
 import { Enumerable } from '../collections/Enumerable';
 
-export class HashCode {
+export abstract class HashCode {
     private static lastHashCode = 0;
     private static readonly objectHashCodes = new WeakMap<{ }, number>();
 
