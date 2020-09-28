@@ -21,6 +21,7 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
 
     public clear(): void {
         this.buckets.clear();
+        this.sizeInternal = 0;
     }
 
     public remove(key: TKey): boolean {

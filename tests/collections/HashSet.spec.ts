@@ -8,6 +8,7 @@ describe('HashSet tests', () => {
         set.add(3);
         set.add(2);
 
+        expect(set.size).to.be.equal(3);
         expect(set.count()).to.be.equal(3);
         expect(set.contains(1)).to.be.true;
         expect(set.contains(2)).to.be.true;
@@ -30,6 +31,7 @@ describe('HashSet tests', () => {
         set.add(3);
         set.remove(2);
 
+        expect(set.size).to.be.equal(2);
         expect(set.count()).to.be.equal(2);
         expect(set.contains(1)).to.be.true;
         expect(set.contains(2)).to.be.false;
@@ -42,6 +44,7 @@ describe('HashSet tests', () => {
         set.add(3);
         set.clear();
 
+        expect(set.size).to.be.equal(0);
         expect(set.count()).to.be.equal(0);
         expect(set.contains(1)).to.be.false;
         expect(set.contains(2)).to.be.false;

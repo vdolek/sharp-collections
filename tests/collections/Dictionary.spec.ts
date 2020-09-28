@@ -41,6 +41,7 @@ describe('Dictionary tests', () => {
         dict.add('a3', 3);
         dict.clear();
 
+        expect(dict.size).to.be.equal(0);
         expect(dict.count()).to.be.equal(0);
         expect(dict.getOrDefault('a1')).to.be.undefined;
         expect(dict.getOrDefault('a2')).to.be.undefined;

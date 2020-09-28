@@ -10,8 +10,8 @@ import { List } from './List';
  */
 // @ts-ignore
 export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> {
+    protected readonly buckets: Map<number, List<Pair<TKey, TValue>>> = new Map<number, List<Pair<TKey, TValue>>>();
     protected readonly equalityComparer: EqualityComparer<TKey>;
-    protected buckets: Map<number, List<Pair<TKey, TValue>>> = new Map<number, List<Pair<TKey, TValue>>>();
     protected sizeInternal = 0;
 
     public constructor(source?: Iterable<Pair<TKey, TValue>>, comparer?: EqualityComparer<TKey>) {

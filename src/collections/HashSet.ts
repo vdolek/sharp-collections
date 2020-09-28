@@ -8,8 +8,8 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
         super(source ?? []);
     }
 
-    public add(value: T): this {
-        this.source.add(value);
+    public add(element: T): this {
+        this.addInternal(element);
         return this;
     }
 
@@ -18,10 +18,33 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
     }
 
     public clear(): void {
-        this.source.clear();
+        this.buckets.clear();
+        this.sizeInternal = 0;
     }
 
-    public remove(value: T): boolean {
-        return this.source.delete(value);
+    public remove(element: T): boolean {
+        const hashCode = this.equalityComparer.getHashCode(element);
+
+        const bucket = this.buckets.get(hashCode);
+        if (bucket == null) {
+            return false;
+        }
+
+        let removed = false;
+        for (let i = 0; i < bucket.size; ++i) {
+            const item = bucket.get(i);
+            if (this.equalityComparer.equals(item, element)) {
+                bucket.remove(i);
+                removed = true;
+                --this.sizeInternal;
+                break;
+            }
+        }
+
+        if (bucket.size === 0) {
+            this.buckets.delete(hashCode);
+        }
+
+        return removed;
     }
 }
