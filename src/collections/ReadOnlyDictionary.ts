@@ -14,8 +14,23 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
     protected readonly equalityComparer: EqualityComparer<TKey>;
     protected sizeInternal = 0;
 
-    public constructor(source?: Iterable<Pair<TKey, TValue>>, comparer?: EqualityComparer<TKey>) {
+    public constructor();
+    public constructor(source?: Iterable<Pair<TKey, TValue>>);
+    public constructor(comparer?: EqualityComparer<TKey>);
+    public constructor(source?: Iterable<Pair<TKey, TValue>>, comparer?: EqualityComparer<TKey>);
+    public constructor(a?: Iterable<Pair<TKey, TValue>> | EqualityComparer<TKey>, b?: EqualityComparer<TKey>) {
         super();
+
+        let source: Iterable<Pair<TKey, TValue>> | undefined;
+        let comparer: EqualityComparer<TKey> | undefined;
+
+        if (a instanceof EqualityComparer) {
+            source = undefined;
+            comparer = a;
+        } else {
+            source = a;
+            comparer = b;
+        }
 
         this.equalityComparer = comparer ?? EqualityComparer.getDefault<TKey>();
 
