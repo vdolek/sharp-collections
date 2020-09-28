@@ -24,12 +24,12 @@ export class HashCode {
         return HashCode.getObjectHashCode(value);
     }
 
-    private static getNumberHashCode<T>(value: number): number {
+    private static getNumberHashCode(value: number): number {
         const hashCode = value | 0; // convert to 32bit integer
         return hashCode;
     }
 
-    private static getStringHashCode<T>(value: string): number {
+    private static getStringHashCode(value: string): number {
         const hashCode = HashCode.cyrb53(value);
         return hashCode;
     }
