@@ -1,13 +1,11 @@
+import { EqualityComparer } from '../comparers/EqualityComparer';
+
 import { ReadOnlyHashSet } from './ReadOnlyHashSet';
 
 /**
  * Represents a set of values.
  */
 export class HashSet<T> extends ReadOnlyHashSet<T> {
-    public constructor(source?: Iterable<T>) {
-        super(source ?? []);
-    }
-
     public add(element: T): this {
         this.addInternal(element);
         return this;

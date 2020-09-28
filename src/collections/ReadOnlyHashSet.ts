@@ -11,8 +11,23 @@ export class ReadOnlyHashSet<T> extends Enumerable<T> {
     protected readonly equalityComparer: EqualityComparer<T>;
     protected sizeInternal = 0;
 
-    public constructor(source?: Iterable<T>, comparer?: EqualityComparer<T>) {
+    public constructor();
+    public constructor(source?: Iterable<T>);
+    public constructor(comparer?: EqualityComparer<T>);
+    public constructor(source?: Iterable<T>, comparer?: EqualityComparer<T>);
+    public constructor(a?: Iterable<T> | EqualityComparer<T>, b?: EqualityComparer<T>) {
         super();
+
+        let source: Iterable<T> | undefined;
+        let comparer: EqualityComparer<T> | undefined;
+
+        if (a instanceof EqualityComparer) {
+            source = undefined;
+            comparer = a;
+        } else {
+            source = a;
+            comparer = b;
+        }
 
         this.equalityComparer = comparer ?? EqualityComparer.getDefault<T>();
 

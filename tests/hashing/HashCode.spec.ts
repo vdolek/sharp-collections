@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { HashCode } from '../../src/hashing/HashCode';
 
-describe.only('HashCode tests', () => {
+describe('HashCode tests', () => {
     it('simple test', () => {
         expect(HashCode.getHashCode(false)).to.be.equal(HashCode.getHashCode(false));
         expect(HashCode.getHashCode(true)).to.be.equal(HashCode.getHashCode(true));
