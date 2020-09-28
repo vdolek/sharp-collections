@@ -7,8 +7,7 @@ export class MapEnumerable<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> 
     }
 
     public *[Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
-        for (const element of this.map) {
-            const pair = element[1];
+        for (const [, pair] of this.map) {
             yield pair;
         }
     }
