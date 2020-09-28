@@ -8,6 +8,7 @@ describe('Dictionary tests', () => {
         dict.add('a3', 3);
         dict.set('a2', 22);
 
+        expect(dict.size).to.be.equal(3);
         expect(dict.count()).to.be.equal(3);
         expect(dict.get('a1')).to.be.equal(1);
         expect(dict.get('a2')).to.be.equal(22);
@@ -27,6 +28,7 @@ describe('Dictionary tests', () => {
         dict.add('a3', 3);
         dict.remove('a2');
 
+        expect(dict.size).to.be.equal(2);
         expect(dict.count()).to.be.equal(2);
         expect(dict.get('a1')).to.be.equal(1);
         expect(dict.get('a3')).to.be.equal(3);

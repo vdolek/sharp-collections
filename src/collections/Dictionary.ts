@@ -1,5 +1,4 @@
 import { Errors } from '../Errors';
-import { Pair } from '../models/Pair';
 
 import { ReadOnlyDictionary } from './ReadOnlyDictionary';
 
@@ -8,11 +7,11 @@ import { ReadOnlyDictionary } from './ReadOnlyDictionary';
  */
 export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     public add(key: TKey, value: TValue): this {
-        if (this.map.has(key)) {
+        if (this.containsKey(key)) {
             throw Errors.itemWithKeyAlreadyAdded();
         }
 
-        this.map.set(key, new Pair<TKey, TValue>(key, value));
+        this.set(key, value);
         return this;
     }
 
@@ -21,15 +20,37 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     }
 
     public clear(): void {
-        this.map.clear();
+        this.buckets.clear();
     }
 
     public remove(key: TKey): boolean {
-        return this.map.delete(key);
+        const hashCode = this.equalityComparer.getHashCode(key);
+
+        const bucket = this.buckets.get(hashCode);
+        if (bucket == null) {
+            return false;
+        }
+
+        let removed = false;
+        for (let i = 0; i < bucket.size; ++i) {
+            const pair = bucket.get(i);
+            if (this.equalityComparer.equals(pair.key, key)) {
+                bucket.remove(i);
+                removed = true;
+                --this.sizeInternal;
+                break;
+            }
+        }
+
+        if (bucket.size === 0) {
+            this.buckets.delete(hashCode);
+        }
+
+        return removed;
     }
 
     public set(key: TKey, value: TValue): this {
-        this.map.set(key, new Pair<TKey, TValue>(key, value));
+        this.setInternal(key, value);
         return this;
     }
 }
