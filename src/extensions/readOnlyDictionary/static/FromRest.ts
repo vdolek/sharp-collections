@@ -18,7 +18,7 @@ function fromRest<TKey, TValue>(comparer: EqualityComparer<TKey> | Pair<TKey, TV
         return new Dictionary<TKey, TValue>(elements, comparer);
     }
 
-    return new Dictionary([comparer, ...elements]);
+    return new Dictionary([comparer, ...elements]); // TODO undefined
 }
 
 ReadOnlyDictionary.fromRest = fromRest;

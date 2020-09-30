@@ -34,12 +34,12 @@ function toDictionary<T, TKey, TValue = T>(
 }
 
 function toDictionaryStrict<T, TKey, TValue = T>(
-    enumerable: Enumerable<T>,
+    source: Enumerable<T>,
     keySelector: (element: T, index: number) => TKey,
     valueSelector?: (element: T, index: number) => TValue,
     comparer?: EqualityComparer<TKey>
 ): Dictionary<TKey, TValue> {
-    const pairs = enumerable.select((x, idx) => Pair.from(
+    const pairs = source.select((x, idx) => Pair.from(
         keySelector(x, idx),
         valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue));
 

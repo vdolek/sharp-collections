@@ -6,11 +6,11 @@ import { List } from '../List';
 import { DictionaryAbstraction } from './DictionaryAbstraction';
 
 export class EqualityComparerDictionary<TKey, TValue> implements DictionaryAbstraction<TKey, TValue> {
-    protected readonly buckets: Map<number, List<Pair<TKey, TValue>>> = new Map<number, List<Pair<TKey, TValue>>>();
+    protected readonly buckets = new Map<number, List<Pair<TKey, TValue>>>();
     protected readonly comparer: EqualityComparer<TKey>;
     protected sizeInternal = 0;
 
-    public constructor(source: Iterable<Pair<TKey, TValue>> | undefined, comparer: EqualityComparer<TKey>) {
+    public constructor(comparer: EqualityComparer<TKey>, source?: Iterable<Pair<TKey, TValue>>) {
         this.comparer = comparer;
 
         if (source != null) {

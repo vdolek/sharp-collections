@@ -35,7 +35,7 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
         if (comparer == null) {
             this.innerDictionary = new SimpleDictionary<TKey, TValue>(source);
         } else {
-            this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(source, comparer);
+            this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(comparer, source);
         }
     }
 

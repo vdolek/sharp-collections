@@ -15,6 +15,10 @@ export class Errors {
         return new Error('An item with the same key has already been added');
     }
 
+    public static elementAlreadyAdded(): Error {
+        return new Error('The element has already been added');
+    }
+
     public static keyNotInDictionary(): Error {
         return new Error('The given key was not present in the dictionary');
     }

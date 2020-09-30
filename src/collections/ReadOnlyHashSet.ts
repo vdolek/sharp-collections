@@ -1,15 +1,16 @@
 import { EqualityComparer } from '../comparers/EqualityComparer';
+import { Errors } from '../Errors';
 
 import { Enumerable } from './Enumerable';
-import { List } from './List';
+import { EqualityComparerHashSet } from './internal/EqualityComparerHashSet';
+import { HashSetAbstraction } from './internal/HashSetAbstraction';
+import { SimpleHashSet } from './internal/SimpleHashSet';
 
 /**
  * Represents a read-only set of values.
  */
 export class ReadOnlyHashSet<T> extends Enumerable<T> {
-    protected readonly buckets: Map<number, List<T>> = new Map<number, List<T>>();
-    protected readonly equalityComparer: EqualityComparer<T>;
-    protected sizeInternal = 0;
+    protected readonly internalHashSet: HashSetAbstraction<T>;
 
     public constructor();
     public constructor(source?: Iterable<T>);
@@ -29,63 +30,36 @@ export class ReadOnlyHashSet<T> extends Enumerable<T> {
             comparer = b;
         }
 
-        this.equalityComparer = comparer ?? EqualityComparer.getDefault<T>();
+        if (comparer == null) {
+            this.internalHashSet = new SimpleHashSet<T>();
+        } else {
+            this.internalHashSet = new EqualityComparerHashSet<T>(comparer);
+        }
 
         if (source != null) {
-            for (const item of source) {
-                this.addInternal(item);
+            for (const element of source) {
+                this.addInternal(element);
             }
         }
     }
 
-    public *[Symbol.iterator](): Iterator<T> {
-        for (const [, bucket] of this.buckets) {
-            for (const value of bucket) {
-                yield value;
-            }
-        }
+    public [Symbol.iterator](): Iterator<T> {
+        return this.internalHashSet[Symbol.iterator]();
     }
 
     public get size(): number {
-        return this.sizeInternal;
+        return this.internalHashSet.getSize();
     }
 
     public contains(element: T): boolean {
-        const hashCode = this.equalityComparer.getHashCode(element);
-
-        const bucket = this.buckets.get(hashCode);
-        if (bucket == null) {
-            return false;
-        }
-
-        for (let i = 0; i < bucket.size; ++i) {
-            const item = bucket.get(i);
-            if (this.equalityComparer.equals(item, element)) {
-                return true;
-            }
-        }
-
-        return false;
+        return this.internalHashSet.contains(element);
     }
 
-    protected addInternal(element: T): boolean {
-        const hashCode = this.equalityComparer.getHashCode(element);
-
-        let bucket = this.buckets.get(hashCode);
-        if (bucket == null) {
-            bucket = new List<T>();
-            this.buckets.set(hashCode, bucket);
+    protected addInternal(element: T): void {
+        if (this.contains(element)) {
+            throw Errors.elementAlreadyAdded();
         }
 
-        for (let i = 0; i < bucket.size; ++i) {
-            const item = bucket.get(i);
-            if (this.equalityComparer.equals(item, element)) {
-                return false;
-            }
-        }
-
-        bucket.add(element);
-        ++this.sizeInternal;
-        return true;
+        this.internalHashSet.set(element);
     }
 }

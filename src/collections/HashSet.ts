@@ -1,3 +1,5 @@
+import { Errors } from '../Errors';
+
 import { ReadOnlyHashSet } from './ReadOnlyHashSet';
 
 /**
@@ -14,33 +16,15 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
     }
 
     public clear(): void {
-        this.buckets.clear();
-        this.sizeInternal = 0;
+        this.internalHashSet.clear();
     }
 
     public remove(element: T): boolean {
-        const hashCode = this.equalityComparer.getHashCode(element);
+        return this.internalHashSet.remove(element);
+    }
 
-        const bucket = this.buckets.get(hashCode);
-        if (bucket == null) {
-            return false;
-        }
-
-        let removed = false;
-        for (let i = 0; i < bucket.size; ++i) {
-            const item = bucket.get(i);
-            if (this.equalityComparer.equals(item, element)) {
-                bucket.remove(i);
-                removed = true;
-                --this.sizeInternal;
-                break;
-            }
-        }
-
-        if (bucket.size === 0) {
-            this.buckets.delete(hashCode);
-        }
-
-        return removed;
+    public set(element: T): this {
+        this.internalHashSet.set(element);
+        return this;
     }
 }
