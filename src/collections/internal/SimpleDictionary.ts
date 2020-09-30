@@ -4,15 +4,7 @@ import { Enumerable } from '../Enumerable';
 import { DictionaryAbstraction } from './DictionaryAbstraction';
 
 export class SimpleDictionary<TKey, TValue> implements DictionaryAbstraction<TKey, TValue> {
-    private readonly source: Map<TKey, Pair<TKey, TValue>>;
-
-    public constructor(source: Iterable<Pair<TKey, TValue>> | undefined) {
-        if (source != null) {
-            this.source = Enumerable.from(source).toMap(x => x.key);
-        } else {
-            this.source = new Map<TKey, Pair<TKey, TValue>>();
-        }
-    }
+    private readonly source = new Map<TKey, Pair<TKey, TValue>>();
 
     public [Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
         return this.source.values();

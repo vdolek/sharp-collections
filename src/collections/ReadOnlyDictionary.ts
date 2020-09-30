@@ -33,9 +33,15 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
         }
 
         if (comparer == null) {
-            this.innerDictionary = new SimpleDictionary<TKey, TValue>(source);
+            this.innerDictionary = new SimpleDictionary<TKey, TValue>();
         } else {
-            this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(comparer, source);
+            this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(comparer);
+        }
+
+        if (source != null) {
+            for (const pair of source) {
+                this.addInternal(pair.key, pair.value);
+            }
         }
     }
 
@@ -71,5 +77,13 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
 
     public values(): Enumerable<TValue> {
         return this.innerDictionary.values();
+    }
+
+    protected addInternal(key: TKey, value: TValue): void {
+        if (this.containsKey(key)) {
+            throw Errors.itemWithKeyAlreadyAdded();
+        }
+
+        this.innerDictionary.set(key, value);
     }
 }

@@ -10,14 +10,8 @@ export class EqualityComparerDictionary<TKey, TValue> implements DictionaryAbstr
     protected readonly comparer: EqualityComparer<TKey>;
     protected sizeInternal = 0;
 
-    public constructor(comparer: EqualityComparer<TKey>, source?: Iterable<Pair<TKey, TValue>>) {
+    public constructor(comparer: EqualityComparer<TKey>) {
         this.comparer = comparer;
-
-        if (source != null) {
-            for (const { key, value } of source) {
-                this.setInternal(key, value);
-            }
-        }
     }
 
     public *[Symbol.iterator](): Iterator<Pair<TKey, TValue>> {

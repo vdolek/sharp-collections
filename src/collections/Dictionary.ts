@@ -7,11 +7,7 @@ import { ReadOnlyDictionary } from './ReadOnlyDictionary';
  */
 export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     public add(key: TKey, value: TValue): this {
-        if (this.containsKey(key)) {
-            throw Errors.itemWithKeyAlreadyAdded();
-        }
-
-        this.set(key, value);
+        this.addInternal(key, value);
         return this;
     }
 
