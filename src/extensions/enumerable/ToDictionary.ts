@@ -8,6 +8,12 @@ declare module '../../collections/Enumerable' {
         /** Converts sequence to a Dictionary. */
         toDictionary<TKey, TValue = T>(
             keySelector: (element: T, index: number) => TKey,
+            comparer?: EqualityComparer<TKey>
+        ): Dictionary<TKey, TValue>;
+
+        /** Converts sequence to a Dictionary. */
+        toDictionary<TKey, TValue = T>(
+            keySelector: (element: T, index: number) => TKey,
             valueSelector?: (element: T, index: number) => TValue,
             comparer?: EqualityComparer<TKey>
         ): Dictionary<TKey, TValue>;
@@ -17,10 +23,23 @@ declare module '../../collections/Enumerable' {
 function toDictionary<T, TKey, TValue = T>(
     this: Enumerable<T>,
     keySelector: (element: T, index: number) => TKey,
+    valueSelector?: ((element: T, index: number) => TValue) | EqualityComparer<TKey>,
+    comparer?: EqualityComparer<TKey>
+): Dictionary<TKey, TValue> {
+    if (valueSelector instanceof EqualityComparer) {
+        return toDictionaryStrict(this, keySelector, undefined, valueSelector);
+    }
+
+    return toDictionaryStrict(this, keySelector, valueSelector, comparer);
+}
+
+function toDictionaryStrict<T, TKey, TValue = T>(
+    enumerable: Enumerable<T>,
+    keySelector: (element: T, index: number) => TKey,
     valueSelector?: (element: T, index: number) => TValue,
     comparer?: EqualityComparer<TKey>
 ): Dictionary<TKey, TValue> {
-    const pairs = this.select((x, idx) => Pair.from(
+    const pairs = enumerable.select((x, idx) => Pair.from(
         keySelector(x, idx),
         valueSelector != null ? valueSelector(x, idx) : x as unknown as TValue));
 

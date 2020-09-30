@@ -1,5 +1,3 @@
-import { EqualityComparer } from '../comparers/EqualityComparer';
-
 import { ReadOnlyHashSet } from './ReadOnlyHashSet';
 
 /**

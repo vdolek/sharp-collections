@@ -3,16 +3,16 @@ import { Errors } from '../Errors';
 import { Pair } from '../models/Pair';
 
 import { Enumerable } from './Enumerable';
-import { List } from './List';
+import { DictionaryAbstraction } from './internal/DictionaryAbstraction';
+import { EqualityComparerDictionary } from './internal/EqualityComparerDictionary';
+import { SimpleDictionary } from './internal/SimpleDictionary';
 
 /**
  * Represents a read-only collection of keys and values. Values can be accessed by keys.
  */
 // @ts-ignore
 export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> {
-    protected readonly buckets: Map<number, List<Pair<TKey, TValue>>> = new Map<number, List<Pair<TKey, TValue>>>();
-    protected readonly equalityComparer: EqualityComparer<TKey>;
-    protected sizeInternal = 0;
+    protected readonly innerDictionary: DictionaryAbstraction<TKey, TValue>;
 
     public constructor();
     public constructor(source?: Iterable<Pair<TKey, TValue>>);
@@ -32,34 +32,27 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
             comparer = b;
         }
 
-        this.equalityComparer = comparer ?? EqualityComparer.getDefault<TKey>();
-
-        if (source != null) {
-            for (const { key, value } of source) {
-                this.setInternal(key, value);
-            }
+        if (comparer == null) {
+            this.innerDictionary = new SimpleDictionary<TKey, TValue>(source);
+        } else {
+            this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(source, comparer);
         }
     }
 
     public get size(): number {
-        return this.sizeInternal;
+        return this.innerDictionary.getSize();
     }
 
-    public *[Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
-        for (const [, bucket] of this.buckets) {
-            for (const pair of bucket) {
-                yield pair;
-            }
-        }
+    public [Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
+        return this.innerDictionary[Symbol.iterator]();
     }
 
     public containsKey(key: TKey): boolean {
-        const pair = this.getPair(key);
-        return pair != null;
+        return this.innerDictionary.containsKey(key);
     }
 
     public get(key: TKey): TValue {
-        const pair = this.getPair(key);
+        const pair = this.innerDictionary.getPair(key);
         if (pair == null) {
             throw Errors.keyNotInDictionary();
         }
@@ -68,60 +61,15 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
     }
 
     public getOrDefault(key: TKey): TValue | undefined {
-        const pair = this.getPair(key);
+        const pair = this.innerDictionary.getPair(key);
         return pair?.value;
     }
 
     public keys(): Enumerable<TKey> {
-        return Enumerable.from(this.buckets.values())
-            .selectMany(x => Enumerable.from(x))
-            .select(x => x.key);
+        return this.innerDictionary.keys();
     }
 
     public values(): Enumerable<TValue> {
-        return Enumerable.from(this.buckets.values())
-            .selectMany(x => Enumerable.from(x))
-            .select(x => x.value);
-    }
-
-    protected setInternal(key: TKey, value: TValue): void {
-        const hashCode = this.equalityComparer.getHashCode(key);
-
-        let bucket = this.buckets.get(hashCode);
-        if (bucket == null) {
-            bucket = new List<Pair<TKey, TValue>>();
-            this.buckets.set(hashCode, bucket);
-        }
-
-        let set = false;
-        for (let i = 0; i < bucket.size; ++i) {
-            const pair = bucket.get(i);
-            if (this.equalityComparer.equals(pair.key, key)) {
-                bucket.set(i, Pair.from(key, value));
-                set = true;
-                break;
-            }
-        }
-
-        if (!set) {
-            bucket.add(Pair.from(key, value));
-            ++this.sizeInternal;
-        }
-    }
-
-    protected getPair(key: TKey): Pair<TKey, TValue> | undefined {
-        const hashCode = this.equalityComparer.getHashCode(key);
-        const bucket = this.buckets.get(hashCode);
-        if (bucket == null) {
-            return undefined;
-        }
-
-        for (const pair of bucket) {
-            if (this.equalityComparer.equals(key, pair.key)) {
-                return pair;
-            }
-        }
-
-        return undefined;
+        return this.innerDictionary.values();
     }
 }

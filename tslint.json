@@ -120,9 +120,8 @@
         "no-implicit-dependencies": [
             true,
             [
-                "@src",
-                "@sharp-collections",
-                "chai"
+                "chai",
+                "mocha-param"
             ]
         ],
         "no-inferrable-types": [
@@ -178,10 +177,7 @@
             true,
             "allow-declarations"
         ],
-        "prefer-conditional-expression": [
-            true,
-            "check-else-if"
-        ],
+        "prefer-conditional-expression": false,
         "prefer-function-over-method": [
             true,
             "allow-public",

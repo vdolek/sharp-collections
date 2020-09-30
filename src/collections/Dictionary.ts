@@ -20,38 +20,15 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     }
 
     public clear(): void {
-        this.buckets.clear();
-        this.sizeInternal = 0;
+        this.innerDictionary.clear();
     }
 
     public remove(key: TKey): boolean {
-        const hashCode = this.equalityComparer.getHashCode(key);
-
-        const bucket = this.buckets.get(hashCode);
-        if (bucket == null) {
-            return false;
-        }
-
-        let removed = false;
-        for (let i = 0; i < bucket.size; ++i) {
-            const pair = bucket.get(i);
-            if (this.equalityComparer.equals(pair.key, key)) {
-                bucket.remove(i);
-                removed = true;
-                --this.sizeInternal;
-                break;
-            }
-        }
-
-        if (bucket.size === 0) {
-            this.buckets.delete(hashCode);
-        }
-
-        return removed;
+        return this.innerDictionary.remove(key);
     }
 
     public set(key: TKey, value: TValue): this {
-        this.setInternal(key, value);
+        this.innerDictionary.set(key, value);
         return this;
     }
 }
