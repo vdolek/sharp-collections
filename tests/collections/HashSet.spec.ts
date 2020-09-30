@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import { itParam } from 'mocha-param';
 
-import { EqualityComparer, HashSet } from '../../src/index';
+import { Enumerable, EqualityComparer, HashSet } from '../../src/index';
 
 describe('HashSet tests', () => {
     itParam('contains test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
@@ -62,6 +62,35 @@ describe('HashSet tests', () => {
         expect(set.contains(4)).to.be.false;
     });
 
+    itParam('object test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
+        const objects = Enumerable.range(0, 5)
+            .select(x => new Foo(x))
+            .toList();
+
+        const set = withEqualityComparer
+            ? objects.toHashSet(EqualityComparer.getDefault())
+            : objects.toHashSet();
+
+        const second = objects.get(1);
+        expect(set.contains(second)).to.be.true;
+        expect(set.contains(new Foo(1))).to.be.false;
+
+        second.id = 99;
+        expect(set.contains(second)).to.be.true;
+    });
+
+    it('object test (with selector equality comparer)', () => {
+        const objects = Enumerable.range(0, 5)
+            .select(x => new Foo(x))
+            .toList();
+
+        const set = objects.toHashSet(EqualityComparer.fromSelector((x: Foo) => x.id));
+
+        const second = objects.get(1);
+        expect(set.contains(second)).to.be.true;
+        expect(set.contains(new Foo(1))).to.be.true;
+    });
+
     function getHashSet(withEqualityComparer: boolean): HashSet<number> {
         const hashSet = withEqualityComparer
             ? new HashSet<number>(EqualityComparer.getDefault())
@@ -71,5 +100,9 @@ describe('HashSet tests', () => {
         hashSet.add(2);
 
         return hashSet;
+    }
+
+    class Foo {
+        public constructor(public id: number) { }
     }
 });

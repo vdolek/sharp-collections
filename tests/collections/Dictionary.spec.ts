@@ -83,8 +83,8 @@ describe('Dictionary tests', () => {
     });
 
     itParam('object test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const objects = Enumerable.range(1, 5)
-            .select(x => ({ id: x }))
+        const objects = Enumerable.range(0, 5)
+            .select(x => new Foo(x))
             .toList();
 
         const dict = withEqualityComparer
@@ -92,12 +92,24 @@ describe('Dictionary tests', () => {
             : objects.toDictionary(x => x, y => y.id);
 
         const second = objects.get(1);
-        expect(dict.get(second)).to.be.equal(2);
-        expect(dict.getOrDefault({ id: 1 })).to.be.undefined;
+        expect(dict.get(second)).to.be.equal(1);
+        expect(dict.getOrDefault(new Foo(1))).to.be.undefined;
         expect(() => dict.get({ id: 1 })).throw('The given key was not present in the dictionary');
 
         second.id = 99;
-        expect(dict.get(second)).to.be.equal(2);
+        expect(dict.get(second)).to.be.equal(1);
+    });
+
+    it('object test (with selector equality comparer)', () => {
+        const objects = Enumerable.range(0, 5)
+            .select(x => new Foo(x))
+            .toList();
+
+        const dict = objects.toDictionary(x => x, y => y.id, EqualityComparer.fromSelector((x: Foo) => x.id));
+
+        const second = objects.get(1);
+        expect(dict.get(second)).to.be.equal(1);
+        expect(dict.get(new Foo(1))).to.be.equal(1);
     });
 
     function getDictionary(withEqualityComparer: boolean): Dictionary<string, number> {
@@ -109,5 +121,9 @@ describe('Dictionary tests', () => {
         dict.add('a2', 2);
 
         return dict;
+    }
+
+    class Foo {
+        public constructor(public id: number) { }
     }
 });
