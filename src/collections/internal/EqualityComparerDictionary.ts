@@ -85,16 +85,6 @@ export class EqualityComparerDictionary<TKey, TValue> implements DictionaryAbstr
     }
 
     public set(key: TKey, value: TValue): void {
-        this.setInternal(key, value);
-    }
-
-    public values(): Enumerable<TValue> {
-        return Enumerable.from(this.buckets.values())
-            .selectMany(x => Enumerable.from(x))
-            .select(x => x.value);
-    }
-
-    protected setInternal(key: TKey, value: TValue): void {
         const hashCode = this.comparer.getHashCode(key);
 
         let bucket = this.buckets.get(hashCode);
@@ -117,5 +107,11 @@ export class EqualityComparerDictionary<TKey, TValue> implements DictionaryAbstr
             bucket.add(Pair.from(key, value));
             ++this.sizeInternal;
         }
+    }
+
+    public values(): Enumerable<TValue> {
+        return Enumerable.from(this.buckets.values())
+            .selectMany(x => Enumerable.from(x))
+            .select(x => x.value);
     }
 }
