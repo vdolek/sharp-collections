@@ -1,19 +1,15 @@
 import { Enumerable } from '../collections/Enumerable';
-import { Pair } from '../models/Pair';
 
-export class MapEnumerable<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> {
-    public constructor(protected readonly map: Map<TKey, Pair<TKey, TValue>>) {
+export class MapEnumerable<TKey, TValue> extends Enumerable<[TKey, TValue]> {
+    public constructor(protected readonly source: Map<TKey, TValue>) {
         super();
     }
 
-    public *[Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
-        for (const element of this.map) {
-            const pair = element[1];
-            yield pair;
-        }
+    public [Symbol.iterator](): Iterator<[TKey, TValue]> {
+        return this.source[Symbol.iterator]();
     }
 
     public count(): number {
-        return this.map.size;
+        return this.source.size;
     }
 }
