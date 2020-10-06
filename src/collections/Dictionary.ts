@@ -1,5 +1,4 @@
 import { Errors } from '../Errors';
-import { Pair } from '../models/Pair';
 
 import { ReadOnlyDictionary } from './ReadOnlyDictionary';
 
@@ -8,11 +7,7 @@ import { ReadOnlyDictionary } from './ReadOnlyDictionary';
  */
 export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     public add(key: TKey, value: TValue): this {
-        if (this.map.has(key)) {
-            throw Errors.itemWithKeyAlreadyAdded();
-        }
-
-        this.map.set(key, new Pair<TKey, TValue>(key, value));
+        this.addInternal(key, value);
         return this;
     }
 
@@ -21,15 +16,15 @@ export class Dictionary<TKey, TValue> extends ReadOnlyDictionary<TKey, TValue> {
     }
 
     public clear(): void {
-        this.map.clear();
+        this.innerDictionary.clear();
     }
 
     public remove(key: TKey): boolean {
-        return this.map.delete(key);
+        return this.innerDictionary.remove(key);
     }
 
     public set(key: TKey, value: TValue): this {
-        this.map.set(key, new Pair<TKey, TValue>(key, value));
+        this.innerDictionary.set(key, value);
         return this;
     }
 }

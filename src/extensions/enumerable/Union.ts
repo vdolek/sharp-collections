@@ -1,14 +1,15 @@
 import { Enumerable } from '../../collections/Enumerable';
+import { EqualityComparer } from '../../comparers/EqualityComparer';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {
         /** Produces the set union of two sequences. */
-        union(second: Enumerable<T>): Enumerable<T>;
+        union(second: Enumerable<T>, comparer?: EqualityComparer<T>): Enumerable<T>;
     }
 }
 
-function union<T>(this: Enumerable<T>, second: Enumerable<T>): Enumerable<T> { // TODO MV Equality Comparer
-    return this.concat(second).distinct();
+function union<T>(this: Enumerable<T>, second: Enumerable<T>, comparer?: EqualityComparer<T>): Enumerable<T> {
+    return this.concat(second).distinct(comparer);
 }
 
 Enumerable.prototype.union = union;

@@ -1,15 +1,13 @@
+import { Errors } from '../Errors';
+
 import { ReadOnlyHashSet } from './ReadOnlyHashSet';
 
 /**
  * Represents a set of values.
  */
 export class HashSet<T> extends ReadOnlyHashSet<T> {
-    public constructor(source?: Iterable<T>) {
-        super(source ?? []);
-    }
-
-    public add(value: T): this {
-        this.source.add(value);
+    public add(element: T): this {
+        this.addInternal(element);
         return this;
     }
 
@@ -18,10 +16,15 @@ export class HashSet<T> extends ReadOnlyHashSet<T> {
     }
 
     public clear(): void {
-        this.source.clear();
+        this.internalHashSet.clear();
     }
 
-    public remove(value: T): boolean {
-        return this.source.delete(value);
+    public remove(element: T): boolean {
+        return this.internalHashSet.remove(element);
+    }
+
+    public set(element: T): this {
+        this.internalHashSet.set(element);
+        return this;
     }
 }

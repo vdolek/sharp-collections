@@ -9,7 +9,6 @@ declare module '../../collections/Enumerable' {
     }
 }
 
-/** Filters the elements based on a specified type. */
 // tslint:disable-next-line:no-any
 function ofType<T, TResult>(this: Enumerable<T>, type: new(...args: any[]) => TResult): Enumerable<TResult> {
     return new OfTypeEnumerable(this, type);

@@ -18,9 +18,10 @@ singleOrDefault, join, where etc.).
 
 - All .NET LINQ methods available and some more
 - Deferred (lazy) execution
+- Dictionary and HashSet with EqualityComparer support (same as in .NET)
 - Intellisense friendly
 - Implemented using generators and iterators
-- ForOf cycle compatible (with `downlevelIteration` TS option set to `true`)
+- ForOf cycle compatible
 - Supports ES5 targeting
 
 ## Playground
@@ -51,7 +52,7 @@ const enumerable = Enumerable.from(data); // or List.from(data)
 const adults = enumerable.where(x => x.age >= 18);
 const adultsGroupedBySex = adults.groupBy(x => x.sex); // nothing is executed so far
 
-// use any collection (Enumerable, List, ...) in ForOf cycle
+// use any collection (Enumerable, List, Dictionary, ...) in ForOf cycle
 for (const group of adultsGroupedBySex) {
   console.debug(`Sex: ${group.key}, count: ${group.count()}`);
 }

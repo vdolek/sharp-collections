@@ -55,6 +55,7 @@ import './extensions/enumerable/static/Single';
 // static extensions - EqualityComparer
 import './extensions/equalityComparer/static/Combine';
 import './extensions/equalityComparer/static/FromPredicate';
+import './extensions/equalityComparer/static/FromSelector';
 
 // static extensions - HashSet
 import './extensions/hashSet/static/Empty';

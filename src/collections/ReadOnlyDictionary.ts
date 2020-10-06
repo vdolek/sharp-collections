@@ -1,56 +1,89 @@
-import { MapEnumerable } from '../enumerables/MapEnumerable';
+import { EqualityComparer } from '../comparers/EqualityComparer';
 import { Errors } from '../Errors';
 import { Pair } from '../models/Pair';
 
 import { Enumerable } from './Enumerable';
+import { DictionaryAbstraction } from './internal/DictionaryAbstraction';
+import { EqualityComparerDictionary } from './internal/EqualityComparerDictionary';
+import { SimpleDictionary } from './internal/SimpleDictionary';
 
 /**
  * Represents a read-only collection of keys and values. Values can be accessed by keys.
  */
 // @ts-ignore
-export class ReadOnlyDictionary<TKey, TValue> extends MapEnumerable<TKey, TValue> {
-    public constructor(source?: Iterable<Pair<TKey, TValue>>) {
-        super(ReadOnlyDictionary.getSourceMap(source));
+export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TValue>> {
+    protected readonly innerDictionary: DictionaryAbstraction<TKey, TValue>;
+
+    public constructor();
+    public constructor(source?: Iterable<Pair<TKey, TValue>>);
+    public constructor(comparer?: EqualityComparer<TKey>);
+    public constructor(source?: Iterable<Pair<TKey, TValue>>, comparer?: EqualityComparer<TKey>);
+    public constructor(a?: Iterable<Pair<TKey, TValue>> | EqualityComparer<TKey>, b?: EqualityComparer<TKey>) {
+        super();
+
+        let source: Iterable<Pair<TKey, TValue>> | undefined;
+        let comparer: EqualityComparer<TKey> | undefined;
+
+        if (a instanceof EqualityComparer) {
+            source = undefined;
+            comparer = a;
+        } else {
+            source = a;
+            comparer = b;
+        }
+
+        if (comparer == null) {
+            this.innerDictionary = new SimpleDictionary<TKey, TValue>();
+        } else {
+            this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(comparer);
+        }
+
+        if (source != null) {
+            for (const pair of source) {
+                this.addInternal(pair.key, pair.value);
+            }
+        }
     }
 
     public get size(): number {
-        return this.map.size;
+        return this.innerDictionary.getSize();
     }
 
-    private static getSourceMap<TKey, TValue>(source?: Iterable<Pair<TKey, TValue>>): Map<TKey, Pair<TKey, TValue>> {
-        const sourceEnumerable = Enumerable.from(source ?? []);
-        const mapped = sourceEnumerable.select<[TKey, Pair<TKey, TValue>]>(pair => [pair.key, pair]);
-        return new Map<TKey, Pair<TKey, TValue>>(mapped);
+    public [Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
+        return this.innerDictionary[Symbol.iterator]();
     }
 
     public containsKey(key: TKey): boolean {
-        return this.map.has(key);
+        return this.innerDictionary.containsKey(key);
     }
 
     public get(key: TKey): TValue {
-        if (!this.map.has(key)) {
+        const pair = this.innerDictionary.getPair(key);
+        if (pair == null) {
             throw Errors.keyNotInDictionary();
         }
 
-        // tslint:disable-next-line:no-non-null-assertion // TODO MV remove
-        return this.map.get(key)!.value;
+        return pair.value;
     }
 
     public getOrDefault(key: TKey): TValue | undefined {
-        if (!this.map.has(key)) {
-            return undefined;
-        }
-
-        // tslint:disable-next-line:no-non-null-assertion // TODO MV remove
-        return this.map.get(key)!.value;
+        const pair = this.innerDictionary.getPair(key);
+        return pair?.value;
     }
 
     public keys(): Enumerable<TKey> {
-        return Enumerable.from(this.map.keys());
+        return this.innerDictionary.keys();
     }
 
     public values(): Enumerable<TValue> {
-        return Enumerable.from(this.map.values())
-            .select(x => x.value);
+        return this.innerDictionary.values();
+    }
+
+    protected addInternal(key: TKey, value: TValue): void {
+        if (this.containsKey(key)) {
+            throw Errors.itemWithKeyAlreadyAdded();
+        }
+
+        this.innerDictionary.set(key, value);
     }
 }
