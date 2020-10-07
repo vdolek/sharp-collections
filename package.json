@@ -15,12 +15,14 @@
     "dist/**/*"
   ],
   "keywords": [
-    "linq",
-    "typescript",
-    "collections",
-    "list",
-    "dictionary",
-    "hashset"
+    "Linq",
+    "Typescript",
+    "Collections",
+    "List",
+    "Dictionary",
+    "HashSet",
+    "HashCode",
+    "EqualityComparer"
   ],
   "author": "Martin Volek",
   "license": "MIT",
