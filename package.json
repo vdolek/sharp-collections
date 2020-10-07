@@ -1,6 +1,6 @@
 {
   "name": "sharp-collections",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": ".NET Linq like collection library for TypeScript and JavaScript.",
   "scripts": {
     "build": "tsc",
@@ -15,16 +15,18 @@
     "dist/**/*"
   ],
   "keywords": [
-    "linq",
-    "typescript",
-    "collections",
-    "list",
-    "dictionary",
-    "hashset"
+    "Linq",
+    "Typescript",
+    "Collections",
+    "List",
+    "Dictionary",
+    "HashSet",
+    "HashCode",
+    "EqualityComparer"
   ],
   "author": "Martin Volek",
   "license": "MIT",
-  "homepage": "https://github.com/vdolek/sharp-collections#sharp-collections---typescript-linq-library",
+  "homepage": "https://github.com/vdolek/sharp-collections#readme",
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
