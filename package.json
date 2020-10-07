@@ -24,7 +24,7 @@
   ],
   "author": "Martin Volek",
   "license": "MIT",
-  "homepage": "https://github.com/vdolek/sharp-collections#sharp-collections---typescript-linq-library",
+  "homepage": "https://github.com/vdolek/sharp-collections#readme",
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
