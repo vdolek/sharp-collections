@@ -1,5 +1,8 @@
 /* tslint:disable:file-name-casing ordered-imports no-import-side-effect */
 
+// hashing
+export { HashCode } from './hashing/HashCode';
+
 // comparers
 export { CombinedComparer } from './comparers/CombinedComparer';
 export { Comparer } from './comparers/Comparer';
