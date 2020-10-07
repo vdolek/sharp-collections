@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { HashCode } from '../../src/hashing/HashCode';
+import { HashCode } from '../../src/index';
 
 describe('HashCode tests', () => {
     it('simple test', () => {
