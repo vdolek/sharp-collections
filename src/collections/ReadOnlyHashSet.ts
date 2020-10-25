@@ -4,12 +4,9 @@ import { SelectorEqualityComparer } from '../comparers/SelectorEqualityComparer'
 import { Errors } from '../Errors';
 
 import { Enumerable } from './Enumerable';
-import { EqualityComparerDictionary } from './internal/EqualityComparerDictionary';
 import { EqualityComparerHashSet } from './internal/EqualityComparerHashSet';
 import { HashSetAbstraction } from './internal/HashSetAbstraction';
-import { SelectorEqualityDictionary } from './internal/SelectorEqualityDictionary';
 import { SelectorEqualityHashSet } from './internal/SelectorEqualityHashSet';
-import { SimpleDictionary } from './internal/SimpleDictionary';
 import { SimpleHashSet } from './internal/SimpleHashSet';
 
 /**

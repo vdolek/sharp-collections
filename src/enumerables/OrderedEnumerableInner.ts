@@ -11,20 +11,15 @@ export class OrderedEnumerableInner<T, TKey> extends OrderedEnumerable<T> {
         super();
     }
 
-    private static getComparer<T, TKey>(keySelector: (element: T) => TKey, comparer: Comparer<TKey>): Comparer<T> {
-        const result = new SelectorComparer(keySelector, comparer);
-        return result;
-    }
-
     public *[Symbol.iterator](): Iterator<T> {
-        const comparer = OrderedEnumerableInner.getComparer(this.keySelector, this.comparer);
+        const comparer = Comparer.fromSelector(this.keySelector, this.comparer);
 
         const indexed = Enumerable.from(this.source)
             .select<[T, number]>((element, index) => [element, index]);
 
         const stableComparer = Comparer.combine<[T, number]>(
-            new SelectorComparer<[T, number], T>(x => x[0], comparer),
-            new SelectorComparer<[T, number], number>(x => x[1], Comparer.getDefault<number>())
+            Comparer.fromSelector(x => x[0], comparer),
+            Comparer.fromSelector(x => x[1], Comparer.getDefault<number>())
         );
 
         const buffer = Array.from(indexed);
@@ -36,10 +31,10 @@ export class OrderedEnumerableInner<T, TKey> extends OrderedEnumerable<T> {
     }
 
     public thenBy<TInnerKey>(keySelector: (element: T) => TInnerKey, comparer?: Comparer<TInnerKey>, descending: boolean = false): OrderedEnumerable<T> {
-        const firstComparer = OrderedEnumerableInner.getComparer(this.keySelector, this.comparer);
+        const firstComparer = Comparer.fromSelector(this.keySelector, this.comparer);
 
         const newComparer = Comparer.invert(comparer ?? Comparer.getDefault(), descending);
-        const secondComparer = OrderedEnumerableInner.getComparer(keySelector, newComparer);
+        const secondComparer = Comparer.fromSelector(keySelector, newComparer);
 
         const combinedComparer = Comparer.combine(firstComparer, secondComparer);
         return new OrderedEnumerableInner(this.source, x => x, combinedComparer);
