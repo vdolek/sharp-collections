@@ -2,11 +2,20 @@
 import { expect } from 'chai';
 import { itParam } from 'mocha-param';
 
+import { Errors } from '../../src/Errors';
 import { Dictionary, Enumerable, EqualityComparer } from '../../src/index';
 
+enum DictionaryType {
+    Simple,
+    Selector,
+    Comparer
+}
+
+const allDictionaryTypes = [DictionaryType.Simple, DictionaryType.Selector, DictionaryType.Comparer];
+
 describe('Dictionary tests', () => {
-    itParam('get test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('get test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         dict.add('a3', 3);
         dict.set('a2', 22);
 
@@ -19,16 +28,16 @@ describe('Dictionary tests', () => {
         expect(dict.getOrDefault('dummy')).to.be.undefined;
     });
 
-    itParam('add test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('add test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         dict.add('a3', 3);
         dict.set('a2', 22);
 
         expect(() => dict.add('a1', 11)).throws('An item with the same key has already been added');
     });
 
-    itParam('remove test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('remove test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         dict.add('a3', 3);
         dict.remove('a2');
 
@@ -40,8 +49,8 @@ describe('Dictionary tests', () => {
         expect(dict.getOrDefault('a2')).to.be.undefined;
     });
 
-    itParam('clear test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('clear test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         dict.add('a3', 3);
         dict.clear();
 
@@ -52,8 +61,8 @@ describe('Dictionary tests', () => {
         expect(dict.getOrDefault('a3')).to.be.undefined;
     });
 
-    itParam('size test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('size test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         expect(dict.size).to.be.equal(2);
         expect(dict.count()).to.be.equal(2);
 
@@ -66,28 +75,28 @@ describe('Dictionary tests', () => {
         expect(dict.count()).to.be.equal(2);
     });
 
-    itParam('keys test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('keys test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         const keys = dict.keys().toArray();
 
         expect(keys).to.have.length(2);
         expect(keys).to.have.members(['a1', 'a2']);
     });
 
-    itParam('values test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const dict = getDictionary(withEqualityComparer);
+    itParam('values test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
+        const dict = getDictionary(dictionaryType);
         const values = dict.values().toArray();
 
         expect(values).to.have.length(2);
         expect(values).to.have.members([1, 2]);
     });
 
-    itParam('object test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
+    itParam('object test (with equality comparer: ${value})', allDictionaryTypes, (dictionaryType: DictionaryType) => {
         const objects = Enumerable.range(0, 5)
             .select(x => new Foo(x))
             .toList();
 
-        const dict = withEqualityComparer
+        const dict = dictionaryType
             ? objects.toDictionary(x => x, y => y.id, EqualityComparer.getDefault())
             : objects.toDictionary(x => x, y => y.id);
 
@@ -112,10 +121,15 @@ describe('Dictionary tests', () => {
         expect(dict.get(new Foo(1))).to.be.equal(1);
     });
 
-    function getDictionary(withEqualityComparer: boolean): Dictionary<string, number> {
-        const dict = withEqualityComparer
-            ? new Dictionary<string, number>(EqualityComparer.getDefault<string>())
-            : new Dictionary<string, number>();
+    function getDictionary(hashSetType: DictionaryType): Dictionary<string, number> {
+        let dict: Dictionary<string, number> | undefined;
+
+        switch (hashSetType) {
+            case DictionaryType.Simple: dict = new Dictionary<string, number>(); break;
+            case DictionaryType.Selector: dict = new Dictionary<string, number>(EqualityComparer.fromSelector(x => x)); break;
+            case DictionaryType.Comparer: dict = new Dictionary<string, number>(EqualityComparer.fromPredicate((x, y) => x === y)); break;
+            default: throw Errors.unexpectedError();
+        }
 
         dict.add('a1', 1);
         dict.add('a2', 2);

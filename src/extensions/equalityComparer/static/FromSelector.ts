@@ -1,5 +1,5 @@
 import { EqualityComparer } from '../../../comparers/EqualityComparer';
-import { PredicateEqualityComparer } from '../../../comparers/PredicateEqualityComparer';
+import { SelectorEqualityComparer } from '../../../comparers/SelectorEqualityComparer';
 
 declare module '../../../comparers/EqualityComparer' {
     namespace EqualityComparer {
@@ -9,9 +9,7 @@ declare module '../../../comparers/EqualityComparer' {
 
 function fromSelector<TSource, TKey>(selector: (value: TSource) => TKey, keyEqualityComparer?: EqualityComparer<TKey>): EqualityComparer<TSource> {
     const comparer = keyEqualityComparer ?? EqualityComparer.getDefault();
-    return new PredicateEqualityComparer<TSource>(
-        (x, y) => comparer.equals(selector(x), selector(y)),
-        x => comparer.getHashCode(selector(x)));
+    return new SelectorEqualityComparer<TSource, TKey>(selector, comparer);
 }
 
 EqualityComparer.fromSelector = fromSelector;
