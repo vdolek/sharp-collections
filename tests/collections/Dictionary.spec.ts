@@ -121,10 +121,10 @@ describe('Dictionary tests', () => {
         expect(dict.get(new Foo(1))).to.be.equal(1);
     });
 
-    function getDictionary(type: DictionaryType): Dictionary<string, number> {
+    function getDictionary(hashSetType: DictionaryType): Dictionary<string, number> {
         let dict: Dictionary<string, number> | undefined;
 
-        switch (type) {
+        switch (hashSetType) {
             case DictionaryType.Simple: dict = new Dictionary<string, number>(); break;
             case DictionaryType.Selector: dict = new Dictionary<string, number>(EqualityComparer.fromSelector(x => x)); break;
             case DictionaryType.Comparer: dict = new Dictionary<string, number>(EqualityComparer.fromPredicate((x, y) => x === y)); break;

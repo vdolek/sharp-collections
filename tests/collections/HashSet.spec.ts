@@ -2,11 +2,20 @@
 import { expect } from 'chai';
 import { itParam } from 'mocha-param';
 
+import { Errors } from '../../src/Errors';
 import { Enumerable, EqualityComparer, HashSet } from '../../src/index';
 
+enum HashSetType {
+    Simple,
+    Selector,
+    Comparer
+}
+
+const allHashSetTypes = [HashSetType.Simple, HashSetType.Selector, HashSetType.Comparer];
+
 describe('HashSet tests', () => {
-    itParam('contains test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const set = getHashSet(withEqualityComparer);
+    itParam('contains test (with equality comparer: ${value})', allHashSetTypes, (hashSetType: HashSetType) => {
+        const set = getHashSet(hashSetType);
         set.add(3);
         set.set(2);
 
@@ -18,16 +27,16 @@ describe('HashSet tests', () => {
         expect(set.contains(4)).to.be.false;
     });
 
-    itParam('add test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const set = getHashSet(withEqualityComparer);
+    itParam('add test (with equality comparer: ${value})', allHashSetTypes, (hashSetType: HashSetType) => {
+        const set = getHashSet(hashSetType);
 
         expect(() => set.add(1)).throw('The element has already been added');
         expect(() => set.set(1)).does.not.throw();
         expect(() => set.add(3)).does.not.throw();
     });
 
-    itParam('toArray test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const set = getHashSet(withEqualityComparer);
+    itParam('toArray test (with equality comparer: ${value})', allHashSetTypes, (hashSetType: HashSetType) => {
+        const set = getHashSet(hashSetType);
         set.add(3);
 
         const asArray = set.toArray();
@@ -36,8 +45,8 @@ describe('HashSet tests', () => {
         expect(asArray).to.have.members([1, 2, 3]);
     });
 
-    itParam('remove test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const set = getHashSet(withEqualityComparer);
+    itParam('remove test (with equality comparer: ${value})', allHashSetTypes, (hashSetType: HashSetType) => {
+        const set = getHashSet(hashSetType);
         set.add(3);
         set.remove(2);
 
@@ -49,8 +58,8 @@ describe('HashSet tests', () => {
         expect(set.contains(4)).to.be.false;
     });
 
-    itParam('clear test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
-        const set = getHashSet(withEqualityComparer);
+    itParam('clear test (with equality comparer: ${value})', allHashSetTypes, (hashSetType: HashSetType) => {
+        const set = getHashSet(hashSetType);
         set.add(3);
         set.clear();
 
@@ -62,14 +71,18 @@ describe('HashSet tests', () => {
         expect(set.contains(4)).to.be.false;
     });
 
-    itParam('object test (with equality comparer: ${value})', [false, true], (withEqualityComparer: boolean) => {
+    itParam('object test (with equality comparer: ${value})', allHashSetTypes, (hashSetType: HashSetType) => {
         const objects = Enumerable.range(0, 5)
             .select(x => new Foo(x))
             .toList();
 
-        const set = withEqualityComparer
-            ? objects.toHashSet(EqualityComparer.getDefault())
-            : objects.toHashSet();
+        let set: HashSet<Foo> | undefined;
+        switch (hashSetType) {
+            case HashSetType.Simple: set = objects.toHashSet(); break;
+            case HashSetType.Selector: set = objects.toHashSet(EqualityComparer.fromSelector(x => x)); break;
+            case HashSetType.Comparer: set = objects.toHashSet(EqualityComparer.fromPredicate((x, y) => x === y)); break;
+            default: throw Errors.unexpectedError();
+        }
 
         const second = objects.get(1);
         expect(set.contains(second)).to.be.true;
@@ -91,10 +104,14 @@ describe('HashSet tests', () => {
         expect(set.contains(new Foo(1))).to.be.true;
     });
 
-    function getHashSet(withEqualityComparer: boolean): HashSet<number> {
-        const hashSet = withEqualityComparer
-            ? new HashSet<number>(EqualityComparer.getDefault())
-            : new HashSet<number>();
+    function getHashSet(hashSetType: HashSetType): HashSet<number> {
+        let hashSet: HashSet<number> | undefined;
+        switch (hashSetType) {
+            case HashSetType.Simple: hashSet = new HashSet<number>(); break;
+            case HashSetType.Selector: hashSet = new HashSet<number>(EqualityComparer.fromSelector(x => x)); break;
+            case HashSetType.Comparer: hashSet = new HashSet<number>(EqualityComparer.fromPredicate((x, y) => x === y)); break;
+            default: throw Errors.unexpectedError();
+        }
 
         hashSet.add(1);
         hashSet.add(2);

@@ -5,10 +5,8 @@ import { DictionaryAbstraction } from './DictionaryAbstraction';
 
 export class SelectorEqualityDictionary<TKey, TValue, TKeySelector> implements DictionaryAbstraction<TKey, TValue> {
     private readonly source = new Map<TKeySelector, Pair<TKey, TValue>>();
-    private readonly keySelector: (value: TKey) => TKeySelector;
 
-    public constructor(keySelector: (key: TKey) => TKeySelector) {
-        this.keySelector = keySelector;
+    public constructor(private readonly keySelector: (key: TKey) => TKeySelector) {
     }
 
     public [Symbol.iterator](): Iterator<Pair<TKey, TValue>> {
