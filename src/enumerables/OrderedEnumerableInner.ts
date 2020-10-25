@@ -18,7 +18,7 @@ export class OrderedEnumerableInner<T, TKey> extends OrderedEnumerable<T> {
 
         const stableComparer = Comparer.combine<[T, number]>(
             Comparer.fromSelector(x => x[0], comparer),
-            Comparer.fromSelector(x => x[1], Comparer.getDefault<number>())
+            Comparer.fromSelector(x => x[1])
         );
 
         const buffer = Array.from(indexed);
