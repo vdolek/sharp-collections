@@ -1,5 +1,3 @@
-import { Errors } from '../Errors';
-
 import { ReadOnlyDictionary } from './ReadOnlyDictionary';
 
 /**

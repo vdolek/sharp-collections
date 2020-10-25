@@ -1,10 +1,13 @@
+import { DefaultEqualityComparer } from '../comparers/DefaultEqualityComparer';
 import { EqualityComparer } from '../comparers/EqualityComparer';
+import { SelectorEqualityComparer } from '../comparers/SelectorEqualityComparer';
 import { Errors } from '../Errors';
 import { Pair } from '../models/Pair';
 
 import { Enumerable } from './Enumerable';
 import { DictionaryAbstraction } from './internal/DictionaryAbstraction';
 import { EqualityComparerDictionary } from './internal/EqualityComparerDictionary';
+import { SelectorEqualityDictionary } from './internal/SelectorEqualityDictionary';
 import { SimpleDictionary } from './internal/SimpleDictionary';
 
 /**
@@ -32,8 +35,11 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
             comparer = b;
         }
 
-        if (comparer == null) {
+        if (comparer == null || comparer instanceof DefaultEqualityComparer) {
             this.innerDictionary = new SimpleDictionary<TKey, TValue>();
+        } else if (comparer instanceof SelectorEqualityComparer) {
+            // tslint:disable-next-line:no-any
+            this.innerDictionary = new SelectorEqualityDictionary<TKey, TValue, any>(comparer.keySelector);
         } else {
             this.innerDictionary = new EqualityComparerDictionary<TKey, TValue>(comparer);
         }
