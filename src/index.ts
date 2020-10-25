@@ -4,14 +4,8 @@
 export { HashCode } from './hashing/HashCode';
 
 // comparers
-export { CombinedComparer } from './comparers/CombinedComparer';
 export { Comparer } from './comparers/Comparer';
-export { DefaultComparer } from './comparers/DefaultComparer';
-export { DefaultEqualityComparer } from './comparers/DefaultEqualityComparer';
 export { EqualityComparer } from './comparers/EqualityComparer';
-export { InverseComparer } from './comparers/InverseComparer';
-export { PredicateEqualityComparer } from './comparers/PredicateEqualityComparer';
-export { SelectorComparer } from './comparers/SelectorComparer';
 
 // collections
 export { Dictionary } from './collections/Dictionary';
@@ -38,7 +32,8 @@ export { ZipElement } from './models/ZipElement';
 
 // static extensions - Comparer
 import './extensions/comparer/static/Combine';
-import './extensions/comparer/static/DefaultComparer';
+import './extensions/comparer/static/FromSelector';
+import './extensions/comparer/static/GetDefault';
 import './extensions/comparer/static/Invert';
 
 // static extensions - Dictionary
@@ -56,7 +51,7 @@ import './extensions/enumerable/static/Repeat';
 import './extensions/enumerable/static/Single';
 
 // static extensions - EqualityComparer
-import './extensions/equalityComparer/static/Combine';
+import './extensions/equalityComparer/static/GetDefault';
 import './extensions/equalityComparer/static/FromPredicate';
 import './extensions/equalityComparer/static/FromSelector';
 

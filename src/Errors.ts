@@ -39,6 +39,10 @@ export class Errors {
         return new Error('Sequence contains more than one matching element');
     }
 
+    public static unexpectedError(): Error {
+        return new Error('Unexpected error');
+    }
+
     public static valueIsNotNumber(): Error {
         return new TypeError('Value is not a number');
     }
