@@ -32,6 +32,7 @@ export { ZipElement } from './models/ZipElement';
 
 // static extensions - Comparer
 import './extensions/comparer/static/Combine';
+import './extensions/comparer/static/FromSelector';
 import './extensions/comparer/static/GetDefault';
 import './extensions/comparer/static/Invert';
 

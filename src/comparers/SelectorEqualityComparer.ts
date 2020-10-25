@@ -1,14 +1,10 @@
 import { EqualityComparer } from './EqualityComparer';
 
 export class SelectorEqualityComparer<TSource, TKey> extends EqualityComparer<TSource> {
-    private readonly keyEqualityComparer: EqualityComparer<TKey>;
-
     public constructor(
         public readonly keySelector: (value: TSource) => TKey,
-        keyEqualityComparer?: EqualityComparer<TKey>) {
+        private readonly keyEqualityComparer: EqualityComparer<TKey>) {
         super();
-
-        this.keyEqualityComparer = keyEqualityComparer ?? EqualityComparer.getDefault();
     }
 
     public equals(value1: TSource, value2: TSource): boolean {
