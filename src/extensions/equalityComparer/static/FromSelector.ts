@@ -3,12 +3,12 @@ import { SelectorEqualityComparer } from '../../../comparers/SelectorEqualityCom
 
 declare module '../../../comparers/EqualityComparer' {
     namespace EqualityComparer {
-        function fromSelector<TSource, TKey>(selector: (value: TSource) => TKey, keyEqualityComparer?: EqualityComparer<TKey>): EqualityComparer<TSource>;
+        function fromSelector<TSource, TKey>(selector: (value: TSource) => TKey, innerComparer?: EqualityComparer<TKey>): EqualityComparer<TSource>;
     }
 }
 
-function fromSelector<TSource, TKey>(selector: (value: TSource) => TKey, keyEqualityComparer?: EqualityComparer<TKey>): EqualityComparer<TSource> {
-    const comparer = keyEqualityComparer ?? EqualityComparer.getDefault();
+function fromSelector<TSource, TKey>(selector: (value: TSource) => TKey, innerComparer?: EqualityComparer<TKey>): EqualityComparer<TSource> {
+    const comparer = innerComparer ?? EqualityComparer.getDefault();
     return new SelectorEqualityComparer<TSource, TKey>(selector, comparer);
 }
 
