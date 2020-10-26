@@ -37,7 +37,7 @@ export class ReadOnlyDictionary<TKey, TValue> extends Enumerable<Pair<TKey, TVal
 
         if (comparer == null || comparer instanceof DefaultEqualityComparer) {
             this.innerDictionary = new SimpleDictionary<TKey, TValue>();
-        } else if (comparer instanceof SelectorEqualityComparer) {
+        } else if (comparer instanceof SelectorEqualityComparer && comparer.innerComparer instanceof DefaultEqualityComparer) {
             // tslint:disable-next-line:no-any
             this.innerDictionary = new SelectorEqualityDictionary<TKey, TValue, any>(comparer.keySelector);
         } else {
