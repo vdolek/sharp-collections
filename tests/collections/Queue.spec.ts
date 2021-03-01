@@ -1,39 +1,39 @@
 import { expect } from 'chai';
 
-import { Stack } from '../../src/index';
+import { Queue } from '../../src/index';
 
 describe('LinkedList tests', () => {
     it('read test', () => {
-        const stack = Stack.fromRest(2, 4);
-        stack.push(6);
+        const stack = Queue.fromRest(2, 4);
+        stack.enqueue(6);
 
         expect(stack.size).to.be.equal(3);
-        expect(stack.peek()).to.be.equal(6);
+        expect(stack.peek()).to.be.equal(2);
         expect(stack.size).to.be.equal(3);
 
-        expect(stack.pop()).to.be.equal(6);
+        expect(stack.dequeue()).to.be.equal(2);
         expect(stack.size).to.be.equal(2);
 
         expect(stack.peek()).to.be.equal(4);
         expect(stack.size).to.be.equal(2);
 
-        expect(stack.pop()).to.be.equal(4);
+        expect(stack.dequeue()).to.be.equal(4);
         expect(stack.size).to.be.equal(1);
 
-        expect(stack.pop()).to.be.equal(2);
+        expect(stack.dequeue()).to.be.equal(6);
         expect(stack.size).to.be.equal(0);
     });
 
     it('empty test', () => {
-        const stack = Stack.fromRest(1);
-        stack.pop();
+        const stack = Queue.fromRest(1);
+        stack.dequeue();
 
-        expect(() => stack.peek()).throws(Error, 'Stack is empty');
-        expect(() => stack.pop()).throws(Error, 'Stack is empty');
+        expect(() => stack.peek()).throws(Error, 'Queue is empty');
+        expect(() => stack.dequeue()).throws(Error, 'Queue is empty');
     });
 
     it('enumerate test', () => {
-        const stack = Stack.fromRest(2, 4, 6);
+        const stack = Queue.fromRest(2, 4, 6);
 
         const array = stack.toArray();
         const reverseArray = stack.reverse().toArray();

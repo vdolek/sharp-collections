@@ -6,7 +6,7 @@ import { LinkedList } from './LinkedList';
 /**
  * Represents a stack of objects.
  */
-export class Stack<T> extends Enumerable<T> {
+export class Queue<T> extends Enumerable<T> {
     private readonly source: LinkedList<T>;
 
     public constructor(source?: Iterable<T>) {
@@ -24,23 +24,23 @@ export class Stack<T> extends Enumerable<T> {
 
     public peek(): T {
         if (this.size === 0) {
-            throw Errors.stackEmpty();
+            throw Errors.queueEmpty();
         }
 
-        return this.source.lastItem!.value;
+        return this.source.firstItem!.value;
     }
 
-    public pop(): T {
+    public dequeue(): T {
         if (this.size === 0) {
-            throw Errors.stackEmpty();
+            throw Errors.queueEmpty();
         }
 
-        const value = this.source.lastItem!.value;
-        this.source.removeLast();
+        const value = this.source.firstItem!.value;
+        this.source.removeFirst();
         return value;
     }
 
-    public push(value: T): void {
+    public enqueue(value: T): void {
         this.source.addLast(value);
     }
 
