@@ -12,11 +12,15 @@ export { Dictionary } from './collections/Dictionary';
 export { Enumerable } from './collections/Enumerable';
 export { Grouping } from './collections/Grouping';
 export { HashSet } from './collections/HashSet';
+export { LinkedList } from './collections/LinkedList';
 export { List } from './collections/List';
 export { Lookup } from './collections/Lookup';
 export { OrderedEnumerable } from './collections/OrderedEnumerable';
+export { Queue } from './collections/Queue';
+export { Stack } from './collections/Stack';
 export { ReadOnlyDictionary } from './collections/ReadOnlyDictionary';
 export { ReadOnlyHashSet } from './collections/ReadOnlyHashSet';
+export { ReadOnlyLinkedList } from './collections/ReadOnlyLinkedList';
 export { ReadOnlyList } from './collections/ReadOnlyList';
 
 // models
@@ -26,6 +30,7 @@ export { IndexedPair } from './models/IndexedPair';
 export { JoinElement } from './models/JoinElement';
 export { LeftGroupJoinElement } from './models/LeftGroupJoinElement';
 export { LeftJoinElement } from './models/LeftJoinElement';
+export { LinkedListItem } from './models/LinkedListItem';
 export { Pair } from './models/Pair';
 export { RightJoinElement } from './models/RightJoinElement';
 export { ZipElement } from './models/ZipElement';
@@ -62,6 +67,14 @@ import './extensions/hashSet/static/FromRest';
 import './extensions/hashSet/static/Range';
 import './extensions/hashSet/static/Single';
 
+// static extensions - LinkedList
+import './extensions/linkedList/static/Empty';
+import './extensions/linkedList/static/From';
+import './extensions/linkedList/static/FromRest';
+import './extensions/linkedList/static/Range';
+import './extensions/linkedList/static/Repeat';
+import './extensions/linkedList/static/Single';
+
 // static extensions - List
 import './extensions/list/static/Empty';
 import './extensions/list/static/From';
@@ -69,6 +82,22 @@ import './extensions/list/static/FromRest';
 import './extensions/list/static/Range';
 import './extensions/list/static/Repeat';
 import './extensions/list/static/Single';
+
+// static extensions - Queue
+import './extensions/queue/static/Empty';
+import './extensions/queue/static/From';
+import './extensions/queue/static/FromRest';
+import './extensions/queue/static/Range';
+import './extensions/queue/static/Repeat';
+import './extensions/queue/static/Single';
+
+// static extensions - Stack
+import './extensions/stack/static/Empty';
+import './extensions/stack/static/From';
+import './extensions/stack/static/FromRest';
+import './extensions/stack/static/Range';
+import './extensions/stack/static/Repeat';
+import './extensions/stack/static/Single';
 
 // static extensions - ReadOnlyDictionary
 import './extensions/readOnlyDictionary/static/Empty';
@@ -82,6 +111,14 @@ import './extensions/readOnlyHashSet/static/From';
 import './extensions/readOnlyHashSet/static/FromRest';
 import './extensions/readOnlyHashSet/static/Range';
 import './extensions/readOnlyHashSet/static/Single';
+
+// static extensions - ReadOnlyLinkedList
+import './extensions/readOnlyLinkedList/static/Empty';
+import './extensions/readOnlyLinkedList/static/From';
+import './extensions/readOnlyLinkedList/static/FromRest';
+import './extensions/readOnlyLinkedList/static/Range';
+import './extensions/readOnlyLinkedList/static/Repeat';
+import './extensions/readOnlyLinkedList/static/Single';
 
 // static extensions - ReadOnlyList
 import './extensions/readOnlyList/static/Empty';
@@ -147,11 +184,13 @@ import './extensions/enumerable/TakeWhile';
 import './extensions/enumerable/ToArray';
 import './extensions/enumerable/ToDictionary';
 import './extensions/enumerable/ToHashSet';
+import './extensions/enumerable/ToLinkedList';
 import './extensions/enumerable/ToList';
 import './extensions/enumerable/ToLookup';
 import './extensions/enumerable/ToMap';
 import './extensions/enumerable/ToReadOnlyDictionary';
 import './extensions/enumerable/ToReadOnlyHashSet';
+import './extensions/enumerable/ToReadOnlyLinkedList';
 import './extensions/enumerable/ToReadOnlyList';
 import './extensions/enumerable/ToReadOnlyMap';
 import './extensions/enumerable/ToReadOnlySet';
