@@ -1,4 +1,4 @@
-import { LinkedListItemInternal } from '../models/LinkedListItemInternal';
+import { LinkedListNodeInternal } from '../models/LinkedListNodeInternal';
 
 import { ReadOnlyLinkedList } from './ReadOnlyLinkedList';
 
@@ -10,54 +10,54 @@ export class LinkedList<T> extends ReadOnlyLinkedList<T> {
         return this;
     }
 
-    public addFirst(value: T): void {
-        const item = new LinkedListItemInternal<T>(value);
+    public addHead(value: T): void {
+        const item = new LinkedListNodeInternal<T>(value);
         if (this.size === 0) {
-            this.firstInternal = this.lastInternal = item;
+            this.headInternal = this.tailInternal = item;
         } else {
-            this.firstInternal!.previous = item;
-            item.next = this.firstInternal;
-            this.firstInternal = item;
+            this.headInternal!.previous = item;
+            item.next = this.headInternal;
+            this.headInternal = item;
         }
 
         ++this.sizeInternal;
     }
 
-    public addLast(value: T): void {
+    public addTail(value: T): void {
         this.add(value);
     }
 
-    public removeFirst(): void {
+    public removeHead(): void {
         if (this.size === 0) {
             return;
         }
 
-        const oldFirst = this.firstInternal;
-        this.firstInternal = this.firstInternal!.next;
+        const oldFirst = this.headInternal;
+        this.headInternal = this.headInternal!.next;
         oldFirst!.next = undefined;
 
-        if (this.firstInternal == null) {
-            this.lastInternal = undefined;
+        if (this.headInternal == null) {
+            this.tailInternal = undefined;
         } else {
-            this.firstInternal.previous = undefined;
+            this.headInternal.previous = undefined;
         }
 
         --this.sizeInternal;
     }
 
-    public removeLast(): void {
+    public removeTail(): void {
         if (this.size === 0) {
             return;
         }
 
-        const oldLast = this.lastInternal;
-        this.lastInternal = this.lastInternal!.previous;
+        const oldLast = this.tailInternal;
+        this.tailInternal = this.tailInternal!.previous;
         oldLast!.previous = undefined;
 
-        if (this.lastInternal == null) {
-            this.firstInternal = undefined;
+        if (this.tailInternal == null) {
+            this.headInternal = undefined;
         } else {
-            this.lastInternal.next = undefined;
+            this.tailInternal.next = undefined;
         }
 
         --this.sizeInternal;
@@ -65,6 +65,6 @@ export class LinkedList<T> extends ReadOnlyLinkedList<T> {
 
     public clear(): void {
         this.sizeInternal = 0;
-        this.firstInternal = this.lastInternal = undefined;
+        this.headInternal = this.tailInternal = undefined;
     }
 }

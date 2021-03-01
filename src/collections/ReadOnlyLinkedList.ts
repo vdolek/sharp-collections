@@ -1,6 +1,6 @@
 import { IteratorEnumerable } from '../enumerables/IteratorEnumerable';
-import { LinkedListItem } from '../models/LinkedListItem';
-import { LinkedListItemInternal } from '../models/LinkedListItemInternal';
+import { LinkedListNode } from '../models/LinkedListNode';
+import { LinkedListNodeInternal } from '../models/LinkedListNodeInternal';
 
 import { Enumerable } from './Enumerable';
 
@@ -9,8 +9,8 @@ import { Enumerable } from './Enumerable';
  */
 export class ReadOnlyLinkedList<T> extends Enumerable<T> {
     protected sizeInternal = 0;
-    protected firstInternal: LinkedListItemInternal<T> | undefined;
-    protected lastInternal: LinkedListItemInternal<T> | undefined;
+    protected headInternal: LinkedListNodeInternal<T> | undefined;
+    protected tailInternal: LinkedListNodeInternal<T> | undefined;
 
     public constructor(source?: Iterable<T>) {
         super();
@@ -27,12 +27,12 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
             return;
         }
 
-        for (let item = this.firstItem; item != null; item = item.next) {
+        for (let item = this.head; item != null; item = item.next) {
             yield item.value;
         }
     }
 
-    public get items(): Enumerable<LinkedListItem<T>> {
+    public get items(): Enumerable<LinkedListNode<T>> {
         return new IteratorEnumerable(this.itemsInternal());
     }
 
@@ -40,29 +40,29 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
         return this.sizeInternal;
     }
 
-    public get firstItem(): LinkedListItem<T> | undefined {
-        return this.firstInternal?.wrapper;
+    public get head(): LinkedListNode<T> | undefined {
+        return this.headInternal?.wrapper;
     }
 
-    public get lastItem(): LinkedListItem<T> | undefined {
-        return this.lastInternal?.wrapper;
+    public get tail(): LinkedListNode<T> | undefined {
+        return this.tailInternal?.wrapper;
     }
 
     protected add(value: T): void {
-        const item = new LinkedListItemInternal<T>(value);
+        const item = new LinkedListNodeInternal<T>(value);
         if (this.size === 0) {
-            this.firstInternal = this.lastInternal = item;
+            this.headInternal = this.tailInternal = item;
         } else {
-            this.lastInternal!.next = item;
-            item.previous = this.lastInternal;
-            this.lastInternal = item;
+            this.tailInternal!.next = item;
+            item.previous = this.tailInternal;
+            this.tailInternal = item;
         }
 
         ++this.sizeInternal;
     }
 
-    private *itemsInternal(): Iterator<LinkedListItem<T>> {
-        for (let item = this.firstItem; item != null; item = item.next) {
+    private *itemsInternal(): Iterator<LinkedListNode<T>> {
+        for (let item = this.head; item != null; item = item.next) {
             yield item;
         }
     }

@@ -30,7 +30,7 @@ export { IndexedPair } from './models/IndexedPair';
 export { JoinElement } from './models/JoinElement';
 export { LeftGroupJoinElement } from './models/LeftGroupJoinElement';
 export { LeftJoinElement } from './models/LeftJoinElement';
-export { LinkedListItem } from './models/LinkedListItem';
+export { LinkedListNode } from './models/LinkedListNode';
 export { Pair } from './models/Pair';
 export { RightJoinElement } from './models/RightJoinElement';
 export { ZipElement } from './models/ZipElement';
