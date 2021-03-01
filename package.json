@@ -19,8 +19,11 @@
     "Typescript",
     "Collections",
     "List",
+    "LinkedList",
     "Dictionary",
     "HashSet",
+    "Stack",
+    "Queue",
     "HashCode",
     "EqualityComparer"
   ],
