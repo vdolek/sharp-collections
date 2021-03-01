@@ -2,7 +2,7 @@ import { ArrayEnumerable } from '../enumerables/ArrayEnumerable';
 import { Errors } from '../Errors';
 
 /**
- * Represents a read-only list of objects that can be accessed by index.
+ * Represents a read-only linked list of objects.
  */
 export class ReadOnlyList<T> extends ArrayEnumerable<T> {
     public constructor(source?: Iterable<T>) {
