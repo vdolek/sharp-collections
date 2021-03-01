@@ -70,6 +70,18 @@ describe('LinkedList tests', () => {
         expect(list.tail).to.be.undefined;
     });
 
+    it('find test', () => {
+        const list = LinkedList.fromRest(2, 3, 5, 3, 6, 8);
+
+        expect(list.find(3)).to.be.equal(list.head!.next);
+        expect(list.findLast(3)).to.be.equal(list.tail!.previous!.previous);
+
+        expect(list.find(2)).to.be.equal(list.head);
+        expect(list.findLast(2)).to.be.equal(list.head);
+
+        expect(list.findLast(1)).to.be.undefined;
+    });
+
     it('remove single test', () => {
         const list = LinkedList.fromRest(2, 4, 6, 8);
         list.removeTail();
@@ -105,11 +117,11 @@ describe('LinkedList tests', () => {
         expect(reverseArray).to.be.deep.equal([8, 6, 4, 2, 1]);
     });
 
-    it('items test', () => {
+    it('nodes test', () => {
         const list = LinkedList.fromRest(2, 4);
         list.head!.value = 2;
         list.addTail(6);
 
-        expect(list.items.toArray()).to.be.deep.equal([list.head, list.head!.next, list.tail]);
+        expect(list.nodes.toArray()).to.be.deep.equal([list.head, list.head!.next, list.tail]);
     });
 });
