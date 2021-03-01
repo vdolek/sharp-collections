@@ -1,4 +1,3 @@
-import { IteratorEnumerable } from '../enumerables/IteratorEnumerable';
 import { ReversibleIteratorEnumerable } from '../enumerables/ReversibleIteratorEnumerable';
 import { LinkedListNode } from '../models/LinkedListNode';
 import { LinkedListNodeInternal } from '../models/LinkedListNodeInternal';
@@ -31,6 +30,14 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
         for (let item = this.head; item != null; item = item.next) {
             yield item.value;
         }
+    }
+
+    public reverse(): Enumerable<T> {
+        const nodes = this.nodes;
+        return new ReversibleIteratorEnumerable<T>(
+            nodes.reverse().select(x => x.value)[Symbol.iterator](),
+            nodes.select(x => x.value)[Symbol.iterator]()
+        );
     }
 
     public get nodes(): Enumerable<LinkedListNode<T>> {
