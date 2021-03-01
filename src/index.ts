@@ -12,11 +12,13 @@ export { Dictionary } from './collections/Dictionary';
 export { Enumerable } from './collections/Enumerable';
 export { Grouping } from './collections/Grouping';
 export { HashSet } from './collections/HashSet';
+export { LinkedList } from './collections/LinkedList';
 export { List } from './collections/List';
 export { Lookup } from './collections/Lookup';
 export { OrderedEnumerable } from './collections/OrderedEnumerable';
 export { ReadOnlyDictionary } from './collections/ReadOnlyDictionary';
 export { ReadOnlyHashSet } from './collections/ReadOnlyHashSet';
+export { ReadOnlyLinkedList } from './collections/ReadOnlyLinkedList';
 export { ReadOnlyList } from './collections/ReadOnlyList';
 
 // models
@@ -26,6 +28,7 @@ export { IndexedPair } from './models/IndexedPair';
 export { JoinElement } from './models/JoinElement';
 export { LeftGroupJoinElement } from './models/LeftGroupJoinElement';
 export { LeftJoinElement } from './models/LeftJoinElement';
+export { LinkedListItem } from './models/LinkedListItem';
 export { Pair } from './models/Pair';
 export { RightJoinElement } from './models/RightJoinElement';
 export { ZipElement } from './models/ZipElement';
