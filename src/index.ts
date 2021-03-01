@@ -65,6 +65,14 @@ import './extensions/hashSet/static/FromRest';
 import './extensions/hashSet/static/Range';
 import './extensions/hashSet/static/Single';
 
+// static extensions - LinkedList
+import './extensions/linkedList/static/Empty';
+import './extensions/linkedList/static/From';
+import './extensions/linkedList/static/FromRest';
+import './extensions/linkedList/static/Range';
+import './extensions/linkedList/static/Repeat';
+import './extensions/linkedList/static/Single';
+
 // static extensions - List
 import './extensions/list/static/Empty';
 import './extensions/list/static/From';
@@ -85,6 +93,14 @@ import './extensions/readOnlyHashSet/static/From';
 import './extensions/readOnlyHashSet/static/FromRest';
 import './extensions/readOnlyHashSet/static/Range';
 import './extensions/readOnlyHashSet/static/Single';
+
+// static extensions - ReadOnlyLinkedList
+import './extensions/readOnlyLinkedList/static/Empty';
+import './extensions/readOnlyLinkedList/static/From';
+import './extensions/readOnlyLinkedList/static/FromRest';
+import './extensions/readOnlyLinkedList/static/Range';
+import './extensions/readOnlyLinkedList/static/Repeat';
+import './extensions/readOnlyLinkedList/static/Single';
 
 // static extensions - ReadOnlyList
 import './extensions/readOnlyList/static/Empty';

@@ -4,7 +4,7 @@ import { LinkedList, List } from '../../src/index';
 
 describe('LinkedList tests', () => {
     it('read test', () => {
-        const list = new LinkedList([2, 4, 6]);
+        const list = LinkedList.fromRest(2, 4, 6);
 
         expect(list.size).to.be.equal(3);
         expect(list.firstItem!.value).to.be.equal(2);
@@ -20,7 +20,7 @@ describe('LinkedList tests', () => {
     });
 
     it('write test', () => {
-        const list = new LinkedList([7, 4, 6]);
+        const list = LinkedList.fromRest(2, 4, 6);
         list.firstItem!.value = 2;
         list.addFirst(1);
         list.addLast(8);
@@ -43,7 +43,7 @@ describe('LinkedList tests', () => {
     });
 
     it('empty test', () => {
-        const list = new LinkedList();
+        const list = LinkedList.empty();
 
         expect(list.size).to.be.equal(0);
         expect(list.firstItem).to.be.undefined;
@@ -51,7 +51,7 @@ describe('LinkedList tests', () => {
     });
 
     it('enumerate test', () => {
-        const list = new LinkedList([2, 4, 6]);
+        const list = LinkedList.fromRest(2, 4, 6);
         list.firstItem!.value = 2;
         list.addFirst(1);
         list.addLast(8);
