@@ -15,7 +15,7 @@ export class ArrayEnumerable<T> extends Enumerable<T> {
         return new ReversibleIteratorEnumerable(this.reverseInternal(), this[Symbol.iterator]());
     }
 
-    public count(): number {
+    public count(): number { // TODO count filter
         return this.source.length;
     }
 
