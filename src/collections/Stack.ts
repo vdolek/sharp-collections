@@ -7,11 +7,16 @@ import { LinkedList } from './LinkedList';
  * Represents a stack of objects.
  */
 export class Stack<T> extends Enumerable<T> {
-    private readonly source: LinkedList<T>;
+    private readonly source: LinkedList<T> = new LinkedList<T>();
 
     public constructor(source?: Iterable<T>) {
         super();
-        this.source = new LinkedList<T>(source);
+
+        if (source != null) {
+            for (const value of source) {
+                this.push(value);
+            }
+        }
     }
 
     public [Symbol.iterator](): Iterator<T> {
@@ -27,7 +32,7 @@ export class Stack<T> extends Enumerable<T> {
             throw Errors.stackEmpty();
         }
 
-        return this.source.lastItem!.value;
+        return this.source.firstItem!.value;
     }
 
     public pop(): T {
@@ -35,13 +40,13 @@ export class Stack<T> extends Enumerable<T> {
             throw Errors.stackEmpty();
         }
 
-        const value = this.source.lastItem!.value;
-        this.source.removeLast();
+        const value = this.source.firstItem!.value;
+        this.source.removeFirst();
         return value;
     }
 
     public push(value: T): void {
-        this.source.addLast(value);
+        this.source.addFirst(value);
     }
 
     public clear(): void {

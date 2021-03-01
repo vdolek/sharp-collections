@@ -7,11 +7,16 @@ import { LinkedList } from './LinkedList';
  * Represents a stack of objects.
  */
 export class Queue<T> extends Enumerable<T> {
-    private readonly source: LinkedList<T>;
+    private readonly source: LinkedList<T> = new LinkedList<T>();
 
     public constructor(source?: Iterable<T>) {
         super();
-        this.source = new LinkedList<T>(source);
+
+        if (source != null) {
+            for (const value of source) {
+                this.enqueue(value);
+            }
+        }
     }
 
     public [Symbol.iterator](): Iterator<T> {

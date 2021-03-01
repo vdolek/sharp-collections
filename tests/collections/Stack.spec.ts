@@ -38,7 +38,7 @@ describe('LinkedList tests', () => {
         const array = stack.toArray();
         const reverseArray = stack.reverse().toArray();
 
-        expect(array).to.be.deep.equal([2, 4, 6]);
-        expect(reverseArray).to.be.deep.equal([6, 4, 2]);
+        expect(array).to.be.deep.equal([6, 4, 2]);
+        expect(reverseArray).to.be.deep.equal([2, 4, 6]);
     });
 });
