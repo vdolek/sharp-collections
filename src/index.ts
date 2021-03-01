@@ -16,6 +16,7 @@ export { LinkedList } from './collections/LinkedList';
 export { List } from './collections/List';
 export { Lookup } from './collections/Lookup';
 export { OrderedEnumerable } from './collections/OrderedEnumerable';
+export { Stack } from './collections/Stack';
 export { ReadOnlyDictionary } from './collections/ReadOnlyDictionary';
 export { ReadOnlyHashSet } from './collections/ReadOnlyHashSet';
 export { ReadOnlyLinkedList } from './collections/ReadOnlyLinkedList';
@@ -80,6 +81,14 @@ import './extensions/list/static/FromRest';
 import './extensions/list/static/Range';
 import './extensions/list/static/Repeat';
 import './extensions/list/static/Single';
+
+// static extensions - Stack
+import './extensions/stack/static/Empty';
+import './extensions/stack/static/From';
+import './extensions/stack/static/FromRest';
+import './extensions/stack/static/Range';
+import './extensions/stack/static/Repeat';
+import './extensions/stack/static/Single';
 
 // static extensions - ReadOnlyDictionary
 import './extensions/readOnlyDictionary/static/Empty';

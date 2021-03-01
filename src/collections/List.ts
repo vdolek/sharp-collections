@@ -1,7 +1,7 @@
 import { ReadOnlyList } from './ReadOnlyList';
 
 /**
- * Represents a list of objects that can be accessed by index.
+ * Represents a linked list of objects.
  */
 export class List<T> extends ReadOnlyList<T> {
     public add(value: T): void {

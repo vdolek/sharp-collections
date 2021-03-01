@@ -39,6 +39,14 @@ export class Errors {
         return new Error('Sequence contains more than one matching element');
     }
 
+    public static stackEmpty(): Error {
+        return new Error('Stack is empty');
+    }
+
+    public static queueEmpty(): Error {
+        return new Error('Queue is empty');
+    }
+
     public static unexpectedError(): Error {
         return new Error('Unexpected error');
     }

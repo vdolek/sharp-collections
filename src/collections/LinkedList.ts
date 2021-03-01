@@ -26,4 +26,45 @@ export class LinkedList<T> extends ReadOnlyLinkedList<T> {
     public addLast(value: T): void {
         this.add(value);
     }
+
+    public removeFirst(): void {
+        if (this.size === 0) {
+            return;
+        }
+
+        const oldFirst = this.firstInternal;
+        this.firstInternal = this.firstInternal!.next;
+        oldFirst!.next = undefined;
+
+        if (this.firstInternal == null) {
+            this.lastInternal = undefined;
+        } else {
+            this.firstInternal.previous = undefined;
+        }
+
+        --this.sizeInternal;
+    }
+
+    public removeLast(): void {
+        if (this.size === 0) {
+            return;
+        }
+
+        const oldLast = this.lastInternal;
+        this.lastInternal = this.lastInternal!.previous;
+        oldLast!.previous = undefined;
+
+        if (this.lastInternal == null) {
+            this.firstInternal = undefined;
+        } else {
+            this.lastInternal.next = undefined;
+        }
+
+        --this.sizeInternal;
+    }
+
+    public clear(): void {
+        this.sizeInternal = 0;
+        this.firstInternal = this.lastInternal = undefined;
+    }
 }
