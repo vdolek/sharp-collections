@@ -1,3 +1,4 @@
+import { IteratorEnumerable } from '../enumerables/IteratorEnumerable';
 import { LinkedListItem } from '../models/LinkedListItem';
 import { LinkedListItemInternal } from '../models/LinkedListItemInternal';
 
@@ -31,6 +32,10 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
         }
     }
 
+    public get items(): Enumerable<LinkedListItem<T>> {
+        return new IteratorEnumerable(this.itemsInternal());
+    }
+
     public get size(): number {
         return this.sizeInternal;
     }
@@ -54,5 +59,11 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
         }
 
         ++this.sizeInternal;
+    }
+
+    private *itemsInternal(): Iterator<LinkedListItem<T>> {
+        for (let item = this.firstItem; item != null; item = item.next) {
+            yield item;
+        }
     }
 }

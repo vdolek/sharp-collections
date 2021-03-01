@@ -104,4 +104,12 @@ describe('LinkedList tests', () => {
         expect(array).to.be.deep.equal([1, 2, 4, 6, 8]);
         expect(reverseArray).to.be.deep.equal([8, 6, 4, 2, 1]);
     });
+
+    it('items test', () => {
+        const list = LinkedList.fromRest(2, 4);
+        list.firstItem!.value = 2;
+        list.addLast(6);
+
+        expect(list.items.toArray()).to.be.deep.equal([list.firstItem, list.firstItem!.next, list.lastItem]);
+    });
 });
