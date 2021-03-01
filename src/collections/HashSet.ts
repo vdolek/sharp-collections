@@ -1,5 +1,3 @@
-import { Errors } from '../Errors';
-
 import { ReadOnlyHashSet } from './ReadOnlyHashSet';
 
 /**

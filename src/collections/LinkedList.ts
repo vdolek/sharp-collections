@@ -6,6 +6,10 @@ import { ReadOnlyLinkedList } from './ReadOnlyLinkedList';
  * Represents a linked list of objects.
  */
 export class LinkedList<T> extends ReadOnlyLinkedList<T> {
+    public asReadOnly(): ReadOnlyLinkedList<T> {
+        return this;
+    }
+
     public addFirst(value: T): void {
         const item = new LinkedListItemInternal<T>(value);
         if (this.size === 0) {

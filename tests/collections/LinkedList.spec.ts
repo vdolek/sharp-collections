@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { LinkedList, List } from '../../src/index';
+import { LinkedList } from '../../src/index';
 
 describe('LinkedList tests', () => {
     it('read test', () => {
