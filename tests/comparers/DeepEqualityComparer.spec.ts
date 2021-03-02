@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { EqualityComparer, Queue } from '../../src/index';
+import { EqualityComparer } from '../../src/index';
 
 describe('DeepEqualityComparer tests', () => {
     it('simple test', () => {
