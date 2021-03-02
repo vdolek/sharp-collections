@@ -152,4 +152,11 @@ describe('LinkedList tests', () => {
 
         expect(list.nodes.toArray()).to.be.deep.equal([list.head, list.head!.next, list.tail]);
     });
+
+    it('add node from other linked list test', () => {
+        const list1 = LinkedList.fromRest(2, 4, 6);
+        const list2 = LinkedList.fromRest(2, 4, 6);
+
+        expect(() => list1.remove(list2.tail)).throws(Error, 'Node does not belong to LinkedList');
+    });
 });
