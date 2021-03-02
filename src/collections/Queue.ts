@@ -28,7 +28,7 @@ export class Queue<T> extends Enumerable<T> {
     }
 
     public peek(): T {
-        if (this.isEmpty()) {
+        if (this.size === 0) {
             throw Errors.queueEmpty();
         }
 
@@ -36,7 +36,7 @@ export class Queue<T> extends Enumerable<T> {
     }
 
     public dequeue(): T {
-        if (this.isEmpty()) {
+        if (this.size === 0) {
             throw Errors.queueEmpty();
         }
 

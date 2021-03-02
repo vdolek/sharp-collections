@@ -50,11 +50,11 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
             throw Errors.linkedListEmpty();
         }
 
-        return this.headInternal.wrapper;
+        return this.headInternal;
     }
 
     public get headOrDefault(): LinkedListNode<T> | undefined {
-        return this.headInternal?.wrapper;
+        return this.headInternal;
     }
 
     public get tail(): LinkedListNode<T> {
@@ -62,11 +62,11 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
             throw Errors.linkedListEmpty();
         }
 
-        return this.tailInternal.wrapper;
+        return this.tailInternal;
     }
 
     public get tailOrDefault(): LinkedListNode<T> | undefined {
-        return this.tailInternal?.wrapper;
+        return this.tailInternal;
     }
 
     public find(value: T): LinkedListNode<T> | undefined {
@@ -90,26 +90,26 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
     }
 
     protected add(value: T): void {
-        const item = new LinkedListNodeInternal<T>(value);
+        const item = new LinkedListNodeInternal<T>(value, this);
         if (this.size === 0) {
             this.headInternal = this.tailInternal = item;
         } else {
-            this.tailInternal!.next = item;
-            item.previous = this.tailInternal;
+            this.tailInternal!.nextInternal = item;
+            item.previousInternal = this.tailInternal;
             this.tailInternal = item;
         }
 
         ++this.sizeInternal;
     }
 
-    private *nodesInternal(): Iterator<LinkedListNode<T>> {
-        for (let node = this.headOrDefault; node != null; node = node.next) {
+    private *nodesInternal(): Iterator<LinkedListNodeInternal<T>> {
+        for (let node = this.headInternal; node != null; node = node.nextInternal) {
             yield node;
         }
     }
 
-    private *nodesReverseInternal(): Iterator<LinkedListNode<T>> {
-        for (let node = this.tailOrDefault; node != null; node = node.previous) {
+    private *nodesReverseInternal(): Iterator<LinkedListNodeInternal<T>> {
+        for (let node = this.tailInternal; node != null; node = node.previousInternal) {
             yield node;
         }
     }

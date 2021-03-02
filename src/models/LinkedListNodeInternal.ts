@@ -1,12 +1,30 @@
+import { LinkedList } from '../collections/LinkedList';
+import { ReadOnlyLinkedList } from '../collections/ReadOnlyLinkedList';
+
 import { LinkedListNode } from './LinkedListNode';
 
-export class LinkedListNodeInternal<TValue> {
+export class LinkedListNodeInternal<TValue> extends LinkedListNode<TValue> {
     public constructor(
-        public value: TValue,
-        public previous?: LinkedListNodeInternal<TValue> | undefined,
-        public next?: LinkedListNodeInternal<TValue> | undefined) {
-        this.wrapper = new LinkedListNode<TValue>(this);
+        public valueInternal: TValue,
+        public linkedList: LinkedList<TValue> | ReadOnlyLinkedList<TValue>,
+        public previousInternal?: LinkedListNodeInternal<TValue>,
+        public nextInternal?: LinkedListNodeInternal<TValue>) {
+        super();
     }
 
-    public readonly wrapper: LinkedListNode<TValue>;
+    public get value(): TValue {
+        return this.valueInternal;
+    }
+
+    public set value(val: TValue) {
+        this.valueInternal = val;
+    }
+
+    public get previous(): LinkedListNode<TValue> | undefined {
+        return this.previousInternal;
+    }
+
+    public get next(): LinkedListNode<TValue> | undefined {
+        return this.nextInternal;
+    }
 }

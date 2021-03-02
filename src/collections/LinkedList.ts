@@ -11,12 +11,12 @@ export class LinkedList<T> extends ReadOnlyLinkedList<T> {
     }
 
     public addHead(value: T): void {
-        const item = new LinkedListNodeInternal<T>(value);
+        const item = new LinkedListNodeInternal<T>(value, this);
         if (this.size === 0) {
             this.headInternal = this.tailInternal = item;
         } else {
-            this.headInternal!.previous = item;
-            item.next = this.headInternal;
+            this.headInternal!.previousInternal = item;
+            item.nextInternal = this.headInternal;
             this.headInternal = item;
         }
 
@@ -33,13 +33,13 @@ export class LinkedList<T> extends ReadOnlyLinkedList<T> {
         }
 
         const oldFirst = this.headInternal;
-        this.headInternal = this.headInternal!.next;
-        oldFirst!.next = undefined;
+        this.headInternal = this.headInternal!.nextInternal;
+        oldFirst!.nextInternal = undefined;
 
         if (this.headInternal == null) {
             this.tailInternal = undefined;
         } else {
-            this.headInternal.previous = undefined;
+            this.headInternal.previousInternal = undefined;
         }
 
         --this.sizeInternal;
@@ -51,13 +51,13 @@ export class LinkedList<T> extends ReadOnlyLinkedList<T> {
         }
 
         const oldLast = this.tailInternal;
-        this.tailInternal = this.tailInternal!.previous;
-        oldLast!.previous = undefined;
+        this.tailInternal = this.tailInternal!.previousInternal;
+        oldLast!.previousInternal = undefined;
 
         if (this.tailInternal == null) {
             this.headInternal = undefined;
         } else {
-            this.tailInternal.next = undefined;
+            this.tailInternal.nextInternal = undefined;
         }
 
         --this.sizeInternal;

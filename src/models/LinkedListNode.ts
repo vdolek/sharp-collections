@@ -1,23 +1,9 @@
-import { LinkedListNodeInternal } from './LinkedListNodeInternal';
+export abstract class LinkedListNode<TValue> {
+    public abstract get value(): TValue;
 
-export class LinkedListNode<TValue> {
-    public constructor(
-        private readonly internal: LinkedListNodeInternal<TValue>) {
-    }
+    public abstract set value(val: TValue);
 
-    public get previous(): LinkedListNode<TValue> | undefined {
-        return this.internal.previous?.wrapper;
-    }
+    public abstract get previous(): LinkedListNode<TValue> | undefined;
 
-    public get next(): LinkedListNode<TValue> | undefined {
-        return this.internal.next?.wrapper;
-    }
-
-    public get value(): TValue {
-        return this.internal.value;
-    }
-
-    public set value(val: TValue) {
-        this.internal.value = val;
-    }
+    public abstract get next(): LinkedListNode<TValue> | undefined;
 }

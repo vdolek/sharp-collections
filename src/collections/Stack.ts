@@ -28,7 +28,7 @@ export class Stack<T> extends Enumerable<T> {
     }
 
     public peek(): T {
-        if (this.isEmpty()) {
+        if (this.size === 0) {
             throw Errors.stackEmpty();
         }
 
@@ -36,7 +36,7 @@ export class Stack<T> extends Enumerable<T> {
     }
 
     public pop(): T {
-        if (this.isEmpty()) {
+        if (this.size === 0) {
             throw Errors.stackEmpty();
         }
 

@@ -122,6 +122,19 @@ describe('LinkedList tests', () => {
         expect(reverseArray).to.be.deep.equal([8, 6, 4, 2, 1]);
     });
 
+    it('fromTail test', () => {
+        const list = LinkedList.fromRest(2, 4, 6);
+        list.head!.value = 2;
+        list.addHead(1);
+        list.addTail(8);
+
+        const array = list.toArray();
+        const reverseArray = list.fromTail.toArray();
+
+        expect(array).to.be.deep.equal([1, 2, 4, 6, 8]);
+        expect(reverseArray).to.be.deep.equal([8, 6, 4, 2, 1]);
+    });
+
     it('nodes test', () => {
         const list = LinkedList.fromRest(2, 4);
         list.head!.value = 2;
