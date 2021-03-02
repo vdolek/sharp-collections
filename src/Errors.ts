@@ -23,6 +23,10 @@ export class Errors {
         return new Error('The given key was not present in the dictionary');
     }
 
+    public static linkedListEmpty(): Error {
+        return new Error('LinkedList is empty');
+    }
+
     public static noElements(): Error {
         return new Error('Sequence contains no elements');
     }

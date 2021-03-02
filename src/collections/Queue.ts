@@ -28,19 +28,19 @@ export class Queue<T> extends Enumerable<T> {
     }
 
     public peek(): T {
-        if (this.size === 0) {
+        if (this.isEmpty()) {
             throw Errors.queueEmpty();
         }
 
-        return this.source.head!.value;
+        return this.source.head.value;
     }
 
     public dequeue(): T {
-        if (this.size === 0) {
+        if (this.isEmpty()) {
             throw Errors.queueEmpty();
         }
 
-        const value = this.source.head!.value;
+        const value = this.source.head.value;
         this.source.removeHead();
         return value;
     }

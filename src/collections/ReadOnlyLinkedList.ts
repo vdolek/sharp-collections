@@ -1,4 +1,5 @@
-import { ReversibleIteratorEnumerable } from '../enumerables/ReversibleIteratorEnumerable';
+import { IteratorEnumerable } from '../enumerables/IteratorEnumerable';
+import { Errors } from '../Errors';
 import { LinkedListNode } from '../models/LinkedListNode';
 import { LinkedListNodeInternal } from '../models/LinkedListNodeInternal';
 
@@ -27,41 +28,67 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
             return;
         }
 
-        for (let item = this.head; item != null; item = item.next) {
+        for (let item = this.headOrDefault; item != null; item = item.next) {
             yield item.value;
         }
     }
 
-    public reverse(): Enumerable<T> {
-        const nodes = this.nodes;
-        return new ReversibleIteratorEnumerable<T>(
-            nodes.reverse().select(x => x.value)[Symbol.iterator](),
-            nodes.select(x => x.value)[Symbol.iterator]()
-        );
+    public get fromTail(): Enumerable<T> {
+        return this.nodesFromTail.select(x => x.value);
     }
 
     public get nodes(): Enumerable<LinkedListNode<T>> {
-        return new ReversibleIteratorEnumerable(this.itemsInternal(), this.itemsReverseInternal());
+        return new IteratorEnumerable(this.nodesInternal());
+    }
+
+    public get nodesFromTail(): Enumerable<LinkedListNode<T>> {
+        return new IteratorEnumerable(this.nodesReverseInternal());
     }
 
     public get size(): number {
         return this.sizeInternal;
     }
 
-    public get head(): LinkedListNode<T> | undefined {
+    public get head(): LinkedListNode<T> {
+        if (this.headInternal == null) {
+            throw Errors.linkedListEmpty();
+        }
+
+        return this.headInternal.wrapper;
+    }
+
+    public get headOrDefault(): LinkedListNode<T> | undefined {
         return this.headInternal?.wrapper;
     }
 
-    public get tail(): LinkedListNode<T> | undefined {
+    public get tail(): LinkedListNode<T> {
+        if (this.tailInternal == null) {
+            throw Errors.linkedListEmpty();
+        }
+
+        return this.tailInternal.wrapper;
+    }
+
+    public get tailOrDefault(): LinkedListNode<T> | undefined {
         return this.tailInternal?.wrapper;
     }
 
     public find(value: T): LinkedListNode<T> | undefined {
+        const node = this.nodes.first(x => x.value === value);
+        return node;
+    }
+
+    public findOrDefault(value: T): LinkedListNode<T> | undefined {
         const node = this.nodes.firstOrDefault(x => x.value === value);
         return node;
     }
 
     public findLast(value: T): LinkedListNode<T> | undefined {
+        const node = this.nodes.reverse().first(x => x.value === value);
+        return node;
+    }
+
+    public findLastOrDefault(value: T): LinkedListNode<T> | undefined {
         const node = this.nodes.reverse().firstOrDefault(x => x.value === value);
         return node;
     }
@@ -79,14 +106,14 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
         ++this.sizeInternal;
     }
 
-    private *itemsInternal(): Iterator<LinkedListNode<T>> {
-        for (let item = this.head; item != null; item = item.next) {
+    private *nodesInternal(): Iterator<LinkedListNode<T>> {
+        for (let item = this.headOrDefault; item != null; item = item.next) {
             yield item;
         }
     }
 
-    private *itemsReverseInternal(): Iterator<LinkedListNode<T>> {
-        for (let item = this.tail; item != null; item = item.previous) {
+    private *nodesReverseInternal(): Iterator<LinkedListNode<T>> {
+        for (let item = this.tailOrDefault; item != null; item = item.previous) {
             yield item;
         }
     }

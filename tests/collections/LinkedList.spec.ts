@@ -66,8 +66,10 @@ describe('LinkedList tests', () => {
         const list = LinkedList.empty();
 
         expect(list.size).to.be.equal(0);
-        expect(list.head).to.be.undefined;
-        expect(list.tail).to.be.undefined;
+        expect(list.headOrDefault).to.be.undefined;
+        expect(list.tailOrDefault).to.be.undefined;
+        expect(() => list.head).throws(Error, 'LinkedList is empty');
+        expect(() => list.tail).throws(Error, 'LinkedList is empty');
     });
 
     it('find test', () => {
@@ -79,7 +81,8 @@ describe('LinkedList tests', () => {
         expect(list.find(2)).to.be.equal(list.head);
         expect(list.findLast(2)).to.be.equal(list.head);
 
-        expect(list.findLast(1)).to.be.undefined;
+        expect(list.findLastOrDefault(1)).to.be.undefined;
+        expect(() => list.findLast(1)).throws(Error, 'Sequence contains no matching element');
     });
 
     it('remove single test', () => {
@@ -100,8 +103,10 @@ describe('LinkedList tests', () => {
         list.removeTail();
 
         expect(list.size).to.be.equal(0);
-        expect(list.head).to.be.undefined;
-        expect(list.tail).to.be.undefined;
+        expect(list.headOrDefault).to.be.undefined;
+        expect(list.tailOrDefault).to.be.undefined;
+        expect(() => list.head).throws(Error, 'LinkedList is empty');
+        expect(() => list.tail).throws(Error, 'LinkedList is empty');
     });
 
     it('enumerate test', () => {

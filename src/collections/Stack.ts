@@ -28,19 +28,19 @@ export class Stack<T> extends Enumerable<T> {
     }
 
     public peek(): T {
-        if (this.size === 0) {
+        if (this.isEmpty()) {
             throw Errors.stackEmpty();
         }
 
-        return this.source.head!.value;
+        return this.source.head.value;
     }
 
     public pop(): T {
-        if (this.size === 0) {
+        if (this.isEmpty()) {
             throw Errors.stackEmpty();
         }
 
-        const value = this.source.head!.value;
+        const value = this.source.head.value;
         this.source.removeHead();
         return value;
     }
