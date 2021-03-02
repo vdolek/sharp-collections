@@ -24,12 +24,8 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
     }
 
     public *[Symbol.iterator](): Iterator<T> {
-        if (this.size === 0) {
-            return;
-        }
-
-        for (let item = this.headOrDefault; item != null; item = item.next) {
-            yield item.value;
+        for (let node = this.headOrDefault; node != null; node = node.next) {
+            yield node.value;
         }
     }
 
@@ -107,14 +103,14 @@ export class ReadOnlyLinkedList<T> extends Enumerable<T> {
     }
 
     private *nodesInternal(): Iterator<LinkedListNode<T>> {
-        for (let item = this.headOrDefault; item != null; item = item.next) {
-            yield item;
+        for (let node = this.headOrDefault; node != null; node = node.next) {
+            yield node;
         }
     }
 
     private *nodesReverseInternal(): Iterator<LinkedListNode<T>> {
-        for (let item = this.tailOrDefault; item != null; item = item.previous) {
-            yield item;
+        for (let node = this.tailOrDefault; node != null; node = node.previous) {
+            yield node;
         }
     }
 }
