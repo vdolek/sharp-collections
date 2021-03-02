@@ -116,7 +116,7 @@ describe('LinkedList tests', () => {
         list.addTail(8);
 
         const array = list.toArray();
-        const reverseArray = list.reverse().toArray();
+        const reverseArray = list.fromTail.toArray();
 
         expect(array).to.be.deep.equal([1, 2, 4, 6, 8]);
         expect(reverseArray).to.be.deep.equal([8, 6, 4, 2, 1]);
