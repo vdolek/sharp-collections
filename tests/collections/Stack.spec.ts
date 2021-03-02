@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { Stack } from '../../src/index';
 
-describe('LinkedList tests', () => {
+describe('Stack tests', () => {
     it('read test', () => {
         const stack = Stack.fromRest(2, 4);
         stack.push(6);

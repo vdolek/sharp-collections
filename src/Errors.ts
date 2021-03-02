@@ -58,4 +58,8 @@ export class Errors {
     public static valueIsNotNumber(): Error {
         return new TypeError('Value is not a number');
     }
+
+    public static valueNotFoundLinkedList(): Error {
+        return new Error('The value is not present in LinkedList');
+    }
 }

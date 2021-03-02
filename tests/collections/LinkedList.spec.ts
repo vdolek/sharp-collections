@@ -24,40 +24,47 @@ describe('LinkedList tests', () => {
         list.head!.value = 2;
         list.addHead(1);
         list.addTail(8);
+        list.addAfter(list.head.next, 10);
+        list.addBefore(list.tail, 12);
 
-        expect(list.size).to.be.equal(5);
+        expect(list.size).to.be.equal(7);
         expect(list.head!.value).to.be.equal(1);
         expect(list.head!.previous).to.be.undefined;
         expect(list.head!.next!.value).to.be.equal(2);
-        expect(list.head!.next!.next!.value).to.be.equal(4);
-        expect(list.head!.next!.next!.next!.value).to.be.equal(6);
-        expect(list.head!.next!.next!.next!.next!.value).to.be.equal(8);
-        expect(list.head!.next!.next!.next!.next).to.be.equal(list.tail);
+        expect(list.head!.next!.next!.value).to.be.equal(10);
+        expect(list.head!.next!.next!.next!.value).to.be.equal(4);
+        expect(list.head!.next!.next!.next!.next!.value).to.be.equal(6);
+        expect(list.head!.next!.next!.next!.next!.next!.value).to.be.equal(12);
+        expect(list.head!.next!.next!.next!.next!.next!.next!.value).to.be.equal(8);
+        expect(list.head!.next!.next!.next!.next!.next!.next).to.be.equal(list.tail);
         expect(list.tail!.value).to.be.equal(8);
         expect(list.tail!.next).to.be.undefined;
-        expect(list.tail!.previous!.value).to.be.equal(6);
-        expect(list.tail!.previous!.previous!.value).to.be.equal(4);
-        expect(list.tail!.previous!.previous!.previous!.value).to.be.equal(2);
-        expect(list.tail!.previous!.previous!.previous!.previous!.value).to.be.equal(1);
-        expect(list.tail!.previous!.previous!.previous!.previous!).to.be.equal(list.head);
+        expect(list.tail!.previous!.value).to.be.equal(12);
+        expect(list.tail!.previous!.previous!.value).to.be.equal(6);
+        expect(list.tail!.previous!.previous!.previous!.value).to.be.equal(4);
+        expect(list.tail!.previous!.previous!.previous!.previous!.value).to.be.equal(10);
+        expect(list.tail!.previous!.previous!.previous!.previous!.previous!.value).to.be.equal(2);
+        expect(list.tail!.previous!.previous!.previous!.previous!.previous!.previous!.value).to.be.equal(1);
+        expect(list.tail!.previous!.previous!.previous!.previous!.previous!.previous).to.be.equal(list.head);
     });
 
     it('remove test', () => {
-        const list = LinkedList.fromRest(2, 4, 6);
+        const list = LinkedList.fromRest(2, 4, 6, 8);
         list.removeHead();
         list.addHead(1);
         list.addTail(8);
         list.removeTail();
+        list.remove(list.head.next!);
 
         expect(list.size).to.be.equal(3);
         expect(list.head!.value).to.be.equal(1);
         expect(list.head!.previous).to.be.undefined;
-        expect(list.head!.next!.value).to.be.equal(4);
-        expect(list.head!.next!.next!.value).to.be.equal(6);
+        expect(list.head!.next!.value).to.be.equal(6);
+        expect(list.head!.next!.next!.value).to.be.equal(8);
         expect(list.head!.next!.next).to.be.equal(list.tail);
-        expect(list.tail!.value).to.be.equal(6);
+        expect(list.tail!.value).to.be.equal(8);
         expect(list.tail!.next).to.be.undefined;
-        expect(list.tail!.previous!.value).to.be.equal(4);
+        expect(list.tail!.previous!.value).to.be.equal(6);
         expect(list.tail!.previous!.previous!.value).to.be.equal(1);
         expect(list.tail!.previous!.previous!!).to.be.equal(list.head);
     });
@@ -81,8 +88,11 @@ describe('LinkedList tests', () => {
         expect(list.find(2)).to.be.equal(list.head);
         expect(list.findLast(2)).to.be.equal(list.head);
 
+        expect(list.findOrDefault(1)).to.be.undefined;
+        expect(() => list.find(1)).throws(Error, 'The value is not present in LinkedList');
+
         expect(list.findLastOrDefault(1)).to.be.undefined;
-        expect(() => list.findLast(1)).throws(Error, 'Sequence contains no matching element');
+        expect(() => list.findLast(1)).throws(Error, 'The value is not present in LinkedList');
     });
 
     it('remove single test', () => {

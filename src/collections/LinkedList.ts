@@ -69,8 +69,12 @@ export class LinkedList<T> extends Enumerable<T> {
         return this.tailInternal;
     }
 
-    public find(value: T): LinkedListNode<T> | undefined {
-        const node = this.nodes.first(x => x.value === value);
+    public find(value: T): LinkedListNode<T> {
+        const node = this.findOrDefault(value);
+        if (node == null) {
+            throw Errors.valueNotFoundLinkedList();
+        }
+
         return node;
     }
 
@@ -79,8 +83,12 @@ export class LinkedList<T> extends Enumerable<T> {
         return node;
     }
 
-    public findLast(value: T): LinkedListNode<T> | undefined {
-        const node = this.nodes.reverse().first(x => x.value === value);
+    public findLast(value: T): LinkedListNode<T> {
+        const node = this.findLastOrDefault(value);
+        if (node == null) {
+            throw Errors.valueNotFoundLinkedList();
+        }
+
         return node;
     }
 
@@ -90,70 +98,99 @@ export class LinkedList<T> extends Enumerable<T> {
     }
 
     public addHead(value: T): void {
-        const item = new LinkedListNodeInternal<T>(value, this);
-        if (this.size === 0) {
-            this.headInternal = this.tailInternal = item;
-        } else {
-            this.headInternal!.previousInternal = item;
-            item.nextInternal = this.headInternal;
-            this.headInternal = item;
-        }
-
-        ++this.sizeInternal;
+        this.addBefore(this.headInternal, value);
     }
 
     public addTail(value: T): void {
-        const item = new LinkedListNodeInternal<T>(value, this);
-        if (this.size === 0) {
-            this.headInternal = this.tailInternal = item;
-        } else {
-            this.tailInternal!.nextInternal = item;
-            item.previousInternal = this.tailInternal;
-            this.tailInternal = item;
-        }
+        this.addAfter(this.tailInternal, value);
+    }
 
-        ++this.sizeInternal;
+    public addAfter(node: LinkedListNode<T> | undefined, value: T): void {
+        const nodeInternal = this.extractNode(node);
+        const newNode = new LinkedListNodeInternal(value, this, nodeInternal, nodeInternal?.nextInternal);
+        this.addNode(newNode);
+    }
+
+    public addBefore(node: LinkedListNode<T> | undefined, value: T): void {
+        const nodeInternal = this.extractNode(node);
+        const newNode = new LinkedListNodeInternal(value, this, nodeInternal?.previousInternal, nodeInternal);
+        this.addNode(newNode);
     }
 
     public removeHead(): void {
-        if (this.size === 0) {
-            return;
-        }
-
-        const oldFirst = this.headInternal;
-        this.headInternal = this.headInternal!.nextInternal;
-        oldFirst!.nextInternal = undefined;
-
-        if (this.headInternal == null) {
-            this.tailInternal = undefined;
-        } else {
-            this.headInternal.previousInternal = undefined;
-        }
-
-        --this.sizeInternal;
+        this.remove(this.head);
     }
 
     public removeTail(): void {
-        if (this.size === 0) {
-            return;
+        this.remove(this.tail);
+    }
+
+    public remove(node: LinkedListNode<T>): void {
+        const n = this.extractNode(node);
+        const prev = n.previousInternal;
+        const next = n.nextInternal;
+
+        if (prev != null) {
+            prev.nextInternal = next;
         }
 
-        const oldLast = this.tailInternal;
-        this.tailInternal = this.tailInternal!.previousInternal;
-        oldLast!.previousInternal = undefined;
+        if (next != null) {
+            next.previousInternal = prev;
+        }
 
-        if (this.tailInternal == null) {
-            this.headInternal = undefined;
-        } else {
-            this.tailInternal.nextInternal = undefined;
+        if (node === this.headInternal) {
+            this.headInternal = next;
+        }
+
+        if (node === this.tailInternal) {
+            this.tailInternal = prev;
         }
 
         --this.sizeInternal;
+
+        n.previousInternal = undefined;
+        n.nextInternal = undefined;
     }
 
     public clear(): void {
         this.sizeInternal = 0;
         this.headInternal = this.tailInternal = undefined;
+    }
+
+    private addNode(node: LinkedListNodeInternal<T>): void {
+        if (node.previousInternal != null) {
+            node.previousInternal.nextInternal = node;
+        }
+
+        if (node.nextInternal != null) {
+            node.nextInternal.previousInternal = node;
+        }
+
+        if (node.previousInternal == null) {
+            this.headInternal = node;
+        }
+
+        if (node.nextInternal == null) {
+            this.tailInternal = node;
+        }
+
+        ++this.sizeInternal;
+    }
+
+    private extractNode(node: LinkedListNode<T>): LinkedListNodeInternal<T>;
+    private extractNode(node: LinkedListNode<T> | undefined): LinkedListNodeInternal<T> | undefined;
+    private extractNode(node: LinkedListNode<T> | undefined): LinkedListNodeInternal<T> | undefined {
+        if (node == null) {
+            return undefined;
+        }
+
+        if (node instanceof LinkedListNodeInternal) {
+            if (node.linkedList === this) {
+                return node;
+            }
+        }
+
+        throw new Error('Node does not belong to LinkedList');
     }
 
     private *nodesInternal(): Iterator<LinkedListNodeInternal<T>> {
