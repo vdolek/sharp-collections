@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { Queue } from '../../src/index';
 
-describe('LinkedList tests', () => {
+describe('Queue tests', () => {
     it('read test', () => {
         const stack = Queue.fromRest(2, 4);
         stack.enqueue(6);

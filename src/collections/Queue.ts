@@ -32,7 +32,7 @@ export class Queue<T> extends Enumerable<T> {
             throw Errors.queueEmpty();
         }
 
-        return this.source.firstItem!.value;
+        return this.source.head.value;
     }
 
     public dequeue(): T {
@@ -40,13 +40,13 @@ export class Queue<T> extends Enumerable<T> {
             throw Errors.queueEmpty();
         }
 
-        const value = this.source.firstItem!.value;
-        this.source.removeFirst();
+        const value = this.source.head.value;
+        this.source.removeHead();
         return value;
     }
 
     public enqueue(value: T): void {
-        this.source.addLast(value);
+        this.source.addTail(value);
     }
 
     public clear(): void {

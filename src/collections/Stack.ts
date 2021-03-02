@@ -32,7 +32,7 @@ export class Stack<T> extends Enumerable<T> {
             throw Errors.stackEmpty();
         }
 
-        return this.source.firstItem!.value;
+        return this.source.head.value;
     }
 
     public pop(): T {
@@ -40,13 +40,13 @@ export class Stack<T> extends Enumerable<T> {
             throw Errors.stackEmpty();
         }
 
-        const value = this.source.firstItem!.value;
-        this.source.removeFirst();
+        const value = this.source.head.value;
+        this.source.removeHead();
         return value;
     }
 
     public push(value: T): void {
-        this.source.addFirst(value);
+        this.source.addHead(value);
     }
 
     public clear(): void {

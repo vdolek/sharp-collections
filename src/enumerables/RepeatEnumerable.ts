@@ -12,8 +12,4 @@ export class RepeatEnumerable<T> extends Enumerable<T> {
             yield this.element;
         }
     }
-
-    public count(): number {
-        return this.elementCount;
-    }
 }

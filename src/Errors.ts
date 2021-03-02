@@ -23,6 +23,10 @@ export class Errors {
         return new Error('The given key was not present in the dictionary');
     }
 
+    public static linkedListEmpty(): Error {
+        return new Error('LinkedList is empty');
+    }
+
     public static noElements(): Error {
         return new Error('Sequence contains no elements');
     }
@@ -53,5 +57,9 @@ export class Errors {
 
     public static valueIsNotNumber(): Error {
         return new TypeError('Value is not a number');
+    }
+
+    public static valueNotFoundLinkedList(): Error {
+        return new Error('The value is not present in LinkedList');
     }
 }

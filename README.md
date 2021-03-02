@@ -70,9 +70,9 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 |--------------|-------------------------|-----------------------------------------------------------------------------|
 | `Enumerable` | -                       | Represents a collection which supports a simple iteration.                  |
 | `List`       | `ReadOnlyList`          | Represents a list of objects that can be accessed by index.                 |
-| `LinkedList` | `ReadOnlyLinkedList`    | Represents a linked list of objects.                                        |
 | `Dictionary` | `ReadOnlyDictionary`    | Represents a collection of keys and values. Values can be accessed by keys. |
 | `HashSet`    | `ReadOnlyHashSet`       | Represents a set of values.                                                 |
+| `LinkedList` | -                       | Represents a linked list of objects.                                        |
 | `Stack`      | -                       | Represents a stack of objects.                                              |
 | `Queue`      | -                       | Represents a queue of objects.                                              |
 
@@ -147,7 +147,6 @@ const adultsGroupedBySexArray = adultsGroupedBySex.toArray();
 | `toLookup`            | Converts sequence to a `Lookup`. |
 | `toMap`               | Converts sequence to a `Map`. |
 | `toReadOnlyHashSet`   | Converts sequence to a `ReadOnlyHashSet`. |
-| `toReadOnlyLinkedList` | Converts sequence to a `ReadOnlyLinkedList`. |
 | `toReadOnlyList`      | Converts sequence to a `ReadOnlyList`. |
 | `toReadOnlyMap`       | Converts sequence to a `ReadOnlyMap`. |
 | `toReadOnlySet`       | Converts sequence to a `ReadOnlySet`. |
