@@ -25,7 +25,7 @@ export abstract class HashCode {
         return HashCode.combineInner(hashCodes, 0);
     }
 
-    public static combineParams(...hashCodes: number[]): number {
+    public static combineRest(...hashCodes: number[]): number {
         return HashCode.combineInner(hashCodes, 0);
     }
 

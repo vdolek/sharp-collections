@@ -31,7 +31,13 @@
   "author": "Martin Volek",
   "license": "MIT",
   "homepage": "https://github.com/vdolek/sharp-collections#readme",
+  "dependencies": {
+    "@types/fast-json-stable-stringify": "^2.0.0",
+    "deep-equal": "^2.0.5",
+    "fast-json-stable-stringify": "^2.1.0"
+  },
   "devDependencies": {
+    "@types/deep-equal": "^1.0.1",
     "@types/chai": "^4.2.15",
     "@types/mocha": "^8.2.1",
     "chai": "^4.3.0",
