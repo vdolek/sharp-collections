@@ -24,7 +24,7 @@ describe('groupBy tests', () => {
         ]);
     });
 
-    it.only('memberwise comparator test', () => {
+    it('memberwise comparator test', () => {
         const list = List.range(5);
         const grouped = list
             .groupBy(

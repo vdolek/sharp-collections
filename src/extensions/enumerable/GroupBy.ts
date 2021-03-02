@@ -49,4 +49,5 @@ function groupBy<T, TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
     return new GroupByEnumerable(this, keySelector, keyEqualityComparer, elementSelector, resultSelector);
 }
 
+// @ts-ignore
 Enumerable.prototype.groupBy = groupBy;
