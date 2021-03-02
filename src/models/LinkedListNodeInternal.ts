@@ -1,12 +1,11 @@
 import { LinkedList } from '../collections/LinkedList';
-import { ReadOnlyLinkedList } from '../collections/ReadOnlyLinkedList';
 
 import { LinkedListNode } from './LinkedListNode';
 
 export class LinkedListNodeInternal<TValue> extends LinkedListNode<TValue> {
     public constructor(
         public valueInternal: TValue,
-        public linkedList: LinkedList<TValue> | ReadOnlyLinkedList<TValue>,
+        public readonly linkedList: LinkedList<TValue>,
         public previousInternal?: LinkedListNodeInternal<TValue>,
         public nextInternal?: LinkedListNodeInternal<TValue>) {
         super();

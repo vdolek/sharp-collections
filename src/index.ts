@@ -20,7 +20,6 @@ export { Queue } from './collections/Queue';
 export { Stack } from './collections/Stack';
 export { ReadOnlyDictionary } from './collections/ReadOnlyDictionary';
 export { ReadOnlyHashSet } from './collections/ReadOnlyHashSet';
-export { ReadOnlyLinkedList } from './collections/ReadOnlyLinkedList';
 export { ReadOnlyList } from './collections/ReadOnlyList';
 
 // models
@@ -112,14 +111,6 @@ import './extensions/readOnlyHashSet/static/FromRest';
 import './extensions/readOnlyHashSet/static/Range';
 import './extensions/readOnlyHashSet/static/Single';
 
-// static extensions - ReadOnlyLinkedList
-import './extensions/readOnlyLinkedList/static/Empty';
-import './extensions/readOnlyLinkedList/static/From';
-import './extensions/readOnlyLinkedList/static/FromRest';
-import './extensions/readOnlyLinkedList/static/Range';
-import './extensions/readOnlyLinkedList/static/Repeat';
-import './extensions/readOnlyLinkedList/static/Single';
-
 // static extensions - ReadOnlyList
 import './extensions/readOnlyList/static/Empty';
 import './extensions/readOnlyList/static/From';
@@ -190,7 +181,6 @@ import './extensions/enumerable/ToLookup';
 import './extensions/enumerable/ToMap';
 import './extensions/enumerable/ToReadOnlyDictionary';
 import './extensions/enumerable/ToReadOnlyHashSet';
-import './extensions/enumerable/ToReadOnlyLinkedList';
 import './extensions/enumerable/ToReadOnlyList';
 import './extensions/enumerable/ToReadOnlyMap';
 import './extensions/enumerable/ToReadOnlySet';
