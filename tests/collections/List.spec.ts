@@ -14,13 +14,6 @@ describe('List tests', () => {
         expect(() => list.containsIndex(2.5)).throws(Error, 'Index was not an integer');
     });
 
-    it('reverse test', () => {
-        const list = List.fromRest(2, 4, 6)
-            .reverse();
-
-        expect(list.toArray()).to.be.deep.equal([6, 4, 2]);
-    });
-
     it('clear test', () => {
         const list = List.fromRest(2, 4, 6);
         list.clear();
