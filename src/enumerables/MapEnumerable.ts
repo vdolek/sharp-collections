@@ -8,8 +8,4 @@ export class MapEnumerable<TKey, TValue> extends Enumerable<[TKey, TValue]> {
     public [Symbol.iterator](): Iterator<[TKey, TValue]> {
         return this.source[Symbol.iterator]();
     }
-
-    public count(): number {
-        return this.source.size;
-    }
 }

@@ -15,10 +15,6 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
         return this.dict.containsKey(key);
     }
 
-    public count(): number {
-        return this.dict.count();
-    }
-
     public get(key: TKey): Grouping<TKey, TElement> {
         return this.dict.get(key);
     }
