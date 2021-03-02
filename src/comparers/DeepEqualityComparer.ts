@@ -14,7 +14,7 @@ export class DeepEqualityComparer<T> extends EqualityComparer<T> {
 
     public getHashCode(value: T): number {
         const str = stringify(value, {
-            cycles: true
+            cycles: false // this has to be false, because of compatibility with deepEqual
         });
 
         return HashCode.getHashCode(str);
