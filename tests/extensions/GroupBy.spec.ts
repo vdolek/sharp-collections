@@ -27,11 +27,7 @@ describe('groupBy tests', () => {
     it('shallow comparator test', () => {
         const list = List.range(5);
         const grouped = list
-            .groupBy(
-                EqualityComparer.shallow(),
-                x => {
-                    return x === 0 ? { name: `name ${x % 2}`, value: x % 2 } : { value: x % 2, name: `name ${x % 2}` };
-                })
+            .groupBy(x => ({ name: `name ${x % 2}`, value: x % 2 }), EqualityComparer.shallow())
             .toList();
 
         const asArray = grouped

@@ -6,9 +6,9 @@ import { EqualityComparer } from '../comparers/EqualityComparer';
 
 export class GroupByEnumerable<TKey, TValue, TElement = TValue, TResult = Grouping<TKey, TElement>> extends Enumerable<TResult> {
     public constructor(
-        private readonly keyEqualityComparer: EqualityComparer<TKey> | undefined,
         private readonly source: Iterable<TValue>,
         private readonly keySelector: (value: TValue, index: number) => TKey,
+        private readonly keyEqualityComparer?: EqualityComparer<TKey>,
         private readonly elementSelector?: (value: TValue, index: number) => TElement,
         private readonly resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult) {
         super();
