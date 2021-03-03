@@ -26,7 +26,7 @@ export class ShallowEqualityComparer<T> extends EqualityComparer<T> {
         const hashCodes = Enumerable.from(Object.keys(value))
             .orderBy(x => x)
             // @ts-ignore
-            .selectMany(x => Enumerable.fromRest(x, value[x]))
+            .selectMany(x => [x, value[x]])
             .select(x => HashCode.getHashCode(x));
 
         return HashCode.combine(hashCodes);
