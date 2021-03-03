@@ -24,11 +24,11 @@ describe('groupBy tests', () => {
         ]);
     });
 
-    it('memberwise comparator test', () => {
+    it('shallow comparator test', () => {
         const list = List.range(5);
         const grouped = list
             .groupBy(
-                EqualityComparer.deep(),
+                EqualityComparer.shallow(),
                 x => {
                     return x === 0 ? { name: `name ${x % 2}`, value: x % 2 } : { value: x % 2, name: `name ${x % 2}` };
                 })
