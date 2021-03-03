@@ -5,6 +5,14 @@ import { EqualityComparer } from './EqualityComparer';
 
 export class ShallowEqualityComparer<T> extends EqualityComparer<T> {
     public equals(value1: T, value2: T): boolean {
+        if (typeof value1 !== typeof value2) {
+            return false;
+        }
+
+        if (typeof value1 !== 'object') {
+            return value1 === value2;
+        }
+
         const keys1 = Object.getOwnPropertyNames(value1);
         const keys2 = Object.getOwnPropertyNames(value1);
 
@@ -23,6 +31,10 @@ export class ShallowEqualityComparer<T> extends EqualityComparer<T> {
     }
 
     public getHashCode(value: T): number {
+        if (typeof value !== 'object') {
+            return HashCode.getHashCode(value);
+        }
+
         const hashCodes = Enumerable.from(Object.getOwnPropertyNames(value))
             .orderBy(x => x)
             // @ts-ignore
