@@ -46,7 +46,7 @@ function groupBy<T, TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
         resultSelector = c as unknown as (key: TKey, group: Enumerable<TElement>) => TResult;
     }
 
-    return new GroupByEnumerable(this, keySelector, keyEqualityComparer, elementSelector, resultSelector);
+    return new GroupByEnumerable(keyEqualityComparer, this, keySelector, elementSelector, resultSelector);
 }
 
 // @ts-ignore
