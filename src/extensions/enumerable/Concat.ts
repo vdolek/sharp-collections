@@ -4,11 +4,11 @@ import { ConcatEnumerable } from '../../enumerables/ConcatEnumerable';
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {
         /** Concatenates two sequences. */
-        concat(second: Enumerable<T>): Enumerable<T>;
+        concat(second: Iterable<T>): Enumerable<T>;
     }
 }
 
-function concat<T>(this: Enumerable<T>, second: Enumerable<T>): Enumerable<T> {
+function concat<T>(this: Enumerable<T>, second: Iterable<T>): Enumerable<T> {
     return new ConcatEnumerable(this, second);
 }
 
