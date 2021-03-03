@@ -39,7 +39,7 @@ function groupBy<T, TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
         resultSelector = c;
     } else {
         keyEqualityComparer = undefined;
-        elementSelector = a as (value: T, index: number) => TElement;
+        elementSelector = a;
         resultSelector = b as (key: TKey, group: Enumerable<TElement>) => TResult;
     }
 
