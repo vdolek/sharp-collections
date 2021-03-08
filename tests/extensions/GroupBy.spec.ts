@@ -34,8 +34,12 @@ describe('groupBy tests', () => {
             .select(x => x.toArray())
             .toArray();
 
-        expect(grouped.get(0).key).to.be.deep.equal({ name: `name ${0}`, value: 0 });
-        expect(grouped.get(1).key).to.be.deep.equal({ name: `name ${1}`, value: 1 });
+        expect(grouped.get(0).key).to.be.deep.equal({ name: 'name 0', value: 0 });
+        expect(grouped.get(0).key.name).to.be.equal('name 0');
+        expect(grouped.get(0).key.value).to.be.equal(0);
+        expect(grouped.get(1).key).to.be.deep.equal({ name: 'name 1', value: 1 });
+        expect(grouped.get(1).key.name).to.be.equal('name 1');
+        expect(grouped.get(1).key.value).to.be.equal(1);
 
         expect(asArray).to.be.deep.equal([
             [0, 2, 4],

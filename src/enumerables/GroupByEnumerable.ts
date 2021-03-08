@@ -8,7 +8,7 @@ export class GroupByEnumerable<TKey, TValue, TElement = TValue, TResult = Groupi
     public constructor(
         private readonly source: Iterable<TValue>,
         private readonly keySelector: (value: TValue, index: number) => TKey,
-        private readonly keyEqualityComparer?: EqualityComparer<TKey>,
+        private readonly keyEqualityComparer?: EqualityComparer,
         private readonly elementSelector?: (value: TValue, index: number) => TElement,
         private readonly resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult) {
         super();
