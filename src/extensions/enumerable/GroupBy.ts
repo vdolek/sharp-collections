@@ -8,7 +8,7 @@ declare module '../../collections/Enumerable' {
         /** Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. */
         groupBy<TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
             keySelector: (value: T, index: number) => TKey,
-            keyEqualityComparer: EqualityComparer<TKey>,
+            keyEqualityComparer: EqualityComparer,
             elementSelector?: (value: T, index: number) => TElement,
             resultSelector?: (key: TKey, group: Enumerable<TElement>) => TResult
         ): Enumerable<TResult>;
@@ -25,11 +25,11 @@ declare module '../../collections/Enumerable' {
 function groupBy<T, TKey, TElement = T, TResult = Grouping<TKey, TElement>>(
     this: Enumerable<T>,
     keySelector: (value: T, index: number) => TKey,
-    a?: EqualityComparer<TKey> | ((value: T, index: number) => TElement),
+    a?: EqualityComparer | ((value: T, index: number) => TElement),
     b?: ((value: T, index: number) => TElement) | ((key: TKey, group: Enumerable<TElement>) => TResult),
     c?: (key: TKey, group: Enumerable<TElement>) => TResult
 ): Enumerable<TResult> {
-    let keyEqualityComparer: EqualityComparer<TKey> | undefined;
+    let keyEqualityComparer: EqualityComparer | undefined;
     let elementSelector: ((value: T, index: number) => TElement) | undefined;
     let resultSelector: ((key: TKey, group: Enumerable<TElement>) => TResult) | undefined;
 
