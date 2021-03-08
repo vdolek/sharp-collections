@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { List } from '../../src/index';
+import { EqualityComparer, List } from '../../src/index';
 
 describe('groupBy tests', () => {
     it('simple test', () => {
@@ -21,6 +21,25 @@ describe('groupBy tests', () => {
             ['Hello', 'Hi'],
             ['Good morning', 'Good evening'],
             ['Bye']
+        ]);
+    });
+
+    it('shallow comparator test', () => {
+        const list = List.range(5);
+        const grouped = list
+            .groupBy(x => ({ name: `name ${x % 2}`, value: x % 2 }), EqualityComparer.shallow())
+            .toList();
+
+        const asArray = grouped
+            .select(x => x.toArray())
+            .toArray();
+
+        expect(grouped.get(0).key).to.be.deep.equal({ name: `name ${0}`, value: 0 });
+        expect(grouped.get(1).key).to.be.deep.equal({ name: `name ${1}`, value: 1 });
+
+        expect(asArray).to.be.deep.equal([
+            [0, 2, 4],
+            [1, 3]
         ]);
     });
 

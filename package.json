@@ -1,6 +1,6 @@
 {
   "name": "sharp-collections",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": ".NET Linq like collection library for TypeScript and JavaScript.",
   "scripts": {
     "build": "tsc",
@@ -31,7 +31,13 @@
   "author": "Martin Volek",
   "license": "MIT",
   "homepage": "https://github.com/vdolek/sharp-collections#readme",
+  "dependencies": {
+    "deep-equal": "^2.0.5",
+    "fast-json-stable-stringify": "^2.1.0"
+  },
   "devDependencies": {
+    "@types/deep-equal": "^1.0.1",
+    "@types/fast-json-stable-stringify": "^2.0.0",
     "@types/chai": "^4.2.15",
     "@types/mocha": "^8.2.1",
     "chai": "^4.3.0",

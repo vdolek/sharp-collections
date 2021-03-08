@@ -16,6 +16,7 @@ export abstract class HashCode {
             case 'number': return HashCode.hashNumber(value, 1312455877);
             case 'string': return HashCode.hashString(value, 1745632457);
             case 'object': return HashCode.hashObject(value, 2031456879);
+            case 'function': return HashCode.hashObject(value, 1426754523);
             case 'symbol': return HashCode.hashString(value.toString(), 1942554899);
             default: throw new Error(`Not supported type for hashing (${typeof value})`);
         }
@@ -25,7 +26,7 @@ export abstract class HashCode {
         return HashCode.combineInner(hashCodes, 0);
     }
 
-    public static combineParams(...hashCodes: number[]): number {
+    public static combineRest(...hashCodes: number[]): number {
         return HashCode.combineInner(hashCodes, 0);
     }
 

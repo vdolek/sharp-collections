@@ -4,11 +4,11 @@ import { EqualityComparer } from '../../comparers/EqualityComparer';
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {
         /** Determines whether two sequences are equal by comparing the elements. */
-        sequenceEqual(secondSource: Enumerable<T>, comparer?: EqualityComparer<T>): boolean;
+        sequenceEqual(secondSource: Iterable<T>, comparer?: EqualityComparer<T>): boolean;
     }
 }
 
-function sequenceEqual<T>(this: Enumerable<T>, secondSource: Enumerable<T>, comparer?: EqualityComparer<T>): boolean {
+function sequenceEqual<T>(this: Enumerable<T>, secondSource: Iterable<T>, comparer?: EqualityComparer<T>): boolean {
     const cmp = comparer ?? EqualityComparer.getDefault<T>();
 
     const iterator1 = this[Symbol.iterator]();

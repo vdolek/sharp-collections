@@ -58,6 +58,8 @@ import './extensions/enumerable/static/Single';
 import './extensions/equalityComparer/static/GetDefault';
 import './extensions/equalityComparer/static/FromPredicate';
 import './extensions/equalityComparer/static/FromSelector';
+import './extensions/equalityComparer/static/Deep';
+import './extensions/equalityComparer/static/Shallow';
 
 // static extensions - HashSet
 import './extensions/hashSet/static/Empty';

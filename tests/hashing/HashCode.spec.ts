@@ -47,7 +47,7 @@ describe('HashCode tests', () => {
     });
 
     it('combine test', () => {
-        expect(HashCode.combineParams(1, 2)).to.be.equal(HashCode.combineParams(1, 2));
-        expect(HashCode.combineParams(1, 2)).to.not.be.equal(HashCode.combineParams(2, 1));
+        expect(HashCode.combineRest(1, 2)).to.be.equal(HashCode.combineRest(1, 2));
+        expect(HashCode.combineRest(1, 2)).to.not.be.equal(HashCode.combineRest(2, 1));
     });
 });
