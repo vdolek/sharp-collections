@@ -26,7 +26,7 @@ singleOrDefault, join, where etc.).
 
 ## Playground
 
-[StackBlitz playground](https://stackblitz.com/edit/sharp-collections-playground?devtoolsheight=33&file=src/app/app.component.ts)
+[CodeSandbox playground](https://codesandbox.io/s/sharp-collections-playground-ys45x?file=/src/app/app.component.ts)
 
 ## How to install
 
