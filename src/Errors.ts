@@ -151,6 +151,8 @@ export class UnexpectedError extends CollectionError {
 
 /**
  * Thrown when a value is not a number
+ * Note: Extends TypeError instead of CollectionError for backward compatibility
+ * with the original implementation that used new TypeError()
  */
 export class ValueNotNumberError extends TypeError {
     constructor() {
