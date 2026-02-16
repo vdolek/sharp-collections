@@ -23,11 +23,11 @@ function single<T>(this: Enumerable<T>, predicate?: (x: T, index: number) => boo
         }
     }
 
-    if (!found || value === undefined) {
+    if (!found) {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    return value;
+    return value as T;
 }
 
 Enumerable.prototype.single = single;
