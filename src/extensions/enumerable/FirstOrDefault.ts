@@ -1,5 +1,4 @@
 import { Enumerable } from '../../collections/Enumerable';
-import { ExceptEnumerable } from '../../enumerables/ExceptEnumerable';
 
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {

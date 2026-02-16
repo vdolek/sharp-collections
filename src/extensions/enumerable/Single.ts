@@ -9,7 +9,7 @@ declare module '../../collections/Enumerable' {
 }
 
 function single<T>(this: Enumerable<T>, predicate?: (x: T, index: number) => boolean): T {
-    let value: T;
+    let value: T | undefined;
     let found = false;
     let index = 0;
     for (const element of this) {
@@ -23,11 +23,10 @@ function single<T>(this: Enumerable<T>, predicate?: (x: T, index: number) => boo
         }
     }
 
-    if (!found) {
+    if (!found || value === undefined) {
         throw predicate != null ? Errors.noMatch() : Errors.noElements();
     }
 
-    // @ts-ignore
     return value;
 }
 

@@ -21,8 +21,7 @@ function from<T>(source: Iterable<T>): Enumerable<T> {
     }
 
     if (source instanceof Map) {
-        // @ts-ignore
-        return new MapEnumerable(source);
+        return new MapEnumerable(source) as unknown as Enumerable<T>;
     }
 
     return new IterableEnumerable(source);

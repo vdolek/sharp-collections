@@ -1,7 +1,7 @@
 import { Enumerable } from '../collections/Enumerable';
 
 export class EmptyEnumerable<T> extends Enumerable<T> {
-    // tslint:disable-next-line:no-empty
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public *[Symbol.iterator](): Iterator<T> {
     }
 }

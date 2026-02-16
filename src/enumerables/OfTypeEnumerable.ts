@@ -3,7 +3,7 @@ import { Enumerable } from '../collections/Enumerable';
 export class OfTypeEnumerable<T, TResult> extends Enumerable<TResult> {
     public constructor(
         private readonly source: Iterable<T>,
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         private readonly type: new(...args: any[]) => TResult) {
         super();
     }

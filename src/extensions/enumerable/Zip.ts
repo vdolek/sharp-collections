@@ -17,8 +17,7 @@ function zip<T, TSecond, TResult = ZipElement<T, TSecond>>(
     second: Iterable<TSecond>,
     resultSelector?: (first: T, second: TSecond, index: number) => TResult
 ): Enumerable<TResult> {
-    const selector = resultSelector ?? ((f, s) => new ZipElement(f, s));
-    // @ts-ignore
+    const selector = resultSelector ?? ((f: T, s: TSecond) => new ZipElement(f, s) as unknown as TResult);
     return new ZipEnumerable(this, second, selector);
 }
 

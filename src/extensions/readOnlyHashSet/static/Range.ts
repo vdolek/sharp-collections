@@ -13,8 +13,7 @@ declare module '../../../collections/ReadOnlyHashSet' {
 }
 
 function range(a: number, b?: number, c?: number): ReadOnlyHashSet<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toReadOnlyHashSet();
+    return Enumerable.range(a, b as number, c as number).toReadOnlyHashSet();
 }
 
 ReadOnlyHashSet.range = range;

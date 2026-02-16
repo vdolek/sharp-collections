@@ -13,8 +13,7 @@ declare module '../../../collections/ReadOnlyList' {
 }
 
 function range(a: number, b?: number, c?: number): ReadOnlyList<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toReadOnlyList();
+    return Enumerable.range(a, b as number, c as number).toReadOnlyList();
 }
 
 ReadOnlyList.range = range;

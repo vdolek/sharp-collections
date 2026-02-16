@@ -13,8 +13,7 @@ declare module '../../../collections/List' {
 }
 
 function range(a: number, b?: number, c?: number): List<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toList();
+    return Enumerable.range(a, b as number, c as number).toList();
 }
 
 List.range = range;

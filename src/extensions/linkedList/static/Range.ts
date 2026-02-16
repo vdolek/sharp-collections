@@ -13,8 +13,7 @@ declare module '../../../collections/LinkedList' {
 }
 
 function range(a: number, b?: number, c?: number): LinkedList<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toLinkedList();
+    return Enumerable.range(a, b as number, c as number).toLinkedList();
 }
 
 LinkedList.range = range;

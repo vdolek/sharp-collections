@@ -1,4 +1,4 @@
-/* tslint:disable:file-name-casing ordered-imports no-import-side-effect */
+/* eslint-disable simple-import-sort/imports */
 
 // errors
 export {
