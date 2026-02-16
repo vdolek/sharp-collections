@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Dictionary, Enumerable } from '../../src/index';
 
 describe('Enumerable tests', () => {

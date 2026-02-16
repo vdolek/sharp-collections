@@ -4,7 +4,7 @@ import { Enumerable } from '../collections/Enumerable';
 
 export abstract class HashCode {
     private static lastHashCode = 0;
-    private static readonly objectHashCodes = new WeakMap<{ }, number>();
+    private static readonly objectHashCodes = new WeakMap<object, number>();
 
     public static getHashCode<T>(value: T): number {
         if (value == null) {

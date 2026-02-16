@@ -66,6 +66,7 @@ describe('LinkedList tests', () => {
         expect(list.tail!.next).to.be.undefined;
         expect(list.tail!.previous!.value).to.be.equal(6);
         expect(list.tail!.previous!.previous!.value).to.be.equal(1);
+        // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
         expect(list.tail!.previous!.previous!!).to.be.equal(list.head);
     });
 

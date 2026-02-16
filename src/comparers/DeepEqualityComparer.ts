@@ -12,11 +12,12 @@ export class DeepEqualityComparer<T> extends EqualityComparer<T> {
     }
 
     public getHashCode(value: T): number {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
         const str = (stringify as any)(value, {
             cycles: false // this has to be false, because of compatibility with deepEqual
         });
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         return HashCode.getHashCode(str);
     }
 }

@@ -3,19 +3,28 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": ["@typescript-eslint", "chai-friendly"],
   "parserOptions": {
     "ecmaVersion": 2022,
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    "sourceType": "module"
   },
   "rules": {
     "no-unused-expressions": "off",
     "chai-friendly/no-unused-expressions": "error",
     "@typescript-eslint/no-explicit-any": "warn"
   },
-  "ignorePatterns": ["dist/", "node_modules/", "*.js"]
+  "ignorePatterns": ["dist/", "node_modules/", "*.js"],
+  "overrides": [
+    {
+      "files": ["src/**/*.ts"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ]
+    }
+  ]
 }

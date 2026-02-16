@@ -20,6 +20,7 @@ describe('List tests', () => {
 
         expect(list.count()).to.be.equal(0);
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (const item of list) {
             assert.fail();
         }

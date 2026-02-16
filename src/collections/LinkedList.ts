@@ -186,6 +186,7 @@ export class LinkedList<T> extends Enumerable<T> {
 
         if (node instanceof LinkedListNodeInternal) {
             if (node.linkedList === this) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                 return node;
             }
         }
