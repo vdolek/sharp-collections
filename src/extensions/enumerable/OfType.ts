@@ -4,12 +4,12 @@ import { OfTypeEnumerable } from '../../enumerables/OfTypeEnumerable';
 declare module '../../collections/Enumerable' {
     interface Enumerable<T> {
         /** Filters the elements based on a specified type. */
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ofType<TResult>(type: new(...args: any[]) => TResult): Enumerable<TResult>;
     }
 }
 
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ofType<T, TResult>(this: Enumerable<T>, type: new(...args: any[]) => TResult): Enumerable<TResult> {
     return new OfTypeEnumerable(this, type);
 }

@@ -13,8 +13,7 @@ declare module '../../../collections/Stack' {
 }
 
 function range(a: number, b?: number, c?: number): Stack<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toStack();
+    return Enumerable.range(a, b as number, c as number).toStack();
 }
 
 Stack.range = range;

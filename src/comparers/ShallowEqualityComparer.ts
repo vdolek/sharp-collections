@@ -21,8 +21,7 @@ export class ShallowEqualityComparer<T> extends EqualityComparer<T> {
         }
 
         for (const key of keys1.concat(...keys2)) {
-            // @ts-ignore
-            if (value1[key] !== value2[key]) {
+            if ((value1 as Record<string, unknown>)[key] !== (value2 as Record<string, unknown>)[key]) {
                 return false;
             }
         }
@@ -37,8 +36,7 @@ export class ShallowEqualityComparer<T> extends EqualityComparer<T> {
 
         const hashCodes = Enumerable.from(Object.getOwnPropertyNames(value))
             .orderBy(x => x)
-            // @ts-ignore
-            .selectMany(x => [x, value[x]])
+            .selectMany(x => [x, (value as Record<string, unknown>)[x]])
             .select(x => HashCode.getHashCode(x));
 
         return HashCode.combine(hashCodes);

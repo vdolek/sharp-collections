@@ -6,7 +6,6 @@ export class DefaultComparer<T> extends Comparer<T> {
             return 0;
         }
 
-        // tslint:disable-next-line:strict-comparisons
         const result = value1 < value2 ? -1 : 1;
         return result;
     }

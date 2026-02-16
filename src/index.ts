@@ -1,4 +1,26 @@
-/* tslint:disable:file-name-casing ordered-imports no-import-side-effect */
+/* eslint-disable simple-import-sort/imports */
+
+// errors
+export {
+    CollectionError,
+    ArgumentOutOfRangeError,
+    IndexOutOfRangeError,
+    IndexNotIntegerError,
+    DuplicateKeyError,
+    DuplicateElementError,
+    KeyNotFoundError,
+    LinkedListEmptyError,
+    NoElementsError,
+    NoMatchError,
+    MoreThanOneMatchError,
+    MoreThanOneElementError,
+    StackEmptyError,
+    QueueEmptyError,
+    UnexpectedError,
+    ValueNotNumberError,
+    ValueNotFoundError,
+    Errors // Keep for backward compatibility
+} from './Errors';
 
 // hashing
 export { HashCode } from './hashing/HashCode';

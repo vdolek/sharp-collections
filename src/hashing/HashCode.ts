@@ -1,10 +1,10 @@
-/* tslint:disable:no-bitwise */
+/* eslint-disable no-bitwise */
 
 import { Enumerable } from '../collections/Enumerable';
 
 export abstract class HashCode {
     private static lastHashCode = 0;
-    private static readonly objectHashCodes = new WeakMap<{ }, number>();
+    private static readonly objectHashCodes = new WeakMap<object, number>();
 
     public static getHashCode<T>(value: T): number {
         if (value == null) {
@@ -48,10 +48,10 @@ export abstract class HashCode {
     }
 
     private static hashObject<T>(value: T, seed: number): number {
-        let hashCode = HashCode.objectHashCodes.get(value);
+        let hashCode = HashCode.objectHashCodes.get(value as Record<string, unknown>);
         if (hashCode == null) {
             hashCode = HashCode.hashNumber(++HashCode.lastHashCode, seed);
-            HashCode.objectHashCodes.set(value, hashCode);
+            HashCode.objectHashCodes.set(value as Record<string, unknown>, hashCode);
         }
 
         return hashCode;

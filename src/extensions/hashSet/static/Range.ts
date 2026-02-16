@@ -13,8 +13,7 @@ declare module '../../../collections/HashSet' {
 }
 
 function range(a: number, b?: number, c?: number): HashSet<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toHashSet();
+    return Enumerable.range(a, b as number, c as number).toHashSet();
 }
 
 HashSet.range = range;

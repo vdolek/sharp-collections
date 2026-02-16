@@ -13,8 +13,7 @@ declare module '../../../collections/Queue' {
 }
 
 function range(a: number, b?: number, c?: number): Queue<number> {
-    // @ts-ignore
-    return Enumerable.range(a, b, c).toQueue();
+    return Enumerable.range(a, b as number, c as number).toQueue();
 }
 
 Queue.range = range;

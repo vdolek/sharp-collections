@@ -36,7 +36,7 @@ export class ReadOnlyHashSet<T> extends Enumerable<T> {
         if (comparer == null || comparer instanceof DefaultEqualityComparer) {
             this.internalHashSet = new SimpleHashSet<T>();
         } else if (comparer instanceof SelectorEqualityComparer && comparer.innerComparer instanceof DefaultEqualityComparer) {
-            // tslint:disable-next-line:no-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             this.internalHashSet = new SelectorEqualityHashSet<T, any>(comparer.keySelector);
         } else {
             this.internalHashSet = new EqualityComparerHashSet<T>(comparer);
